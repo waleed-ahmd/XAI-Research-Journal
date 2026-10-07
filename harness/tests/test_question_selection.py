@@ -43,3 +43,15 @@ def test_write_and_load_round_trip(small_config, fixture_data_dir, tmp_path):
     write_selected_questions(selected, out_path)
     loaded = load_selected_questions(out_path)
     assert [s.model_dump() for s in loaded] == [s.model_dump() for s in selected]
+
+
+def test_config_hash_changes_when_protocol_or_task_changes(small_config):
+    baseline = small_config.model_hash()
+
+    changed_protocol = small_config.model_copy(deep=True)
+    changed_protocol.protocol_version = "test-v2"
+    assert changed_protocol.model_hash() != baseline
+
+    changed_task = small_config.model_copy(deep=True)
+    changed_task.questions.tasks = ["fake_task_a"]
+    assert changed_task.model_hash() != baseline

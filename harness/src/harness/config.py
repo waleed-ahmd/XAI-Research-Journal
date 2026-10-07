@@ -59,6 +59,7 @@ class ModelsConfig(BaseModel):
 
 class PromptFormatConfig(BaseModel):
     few_shot: bool
+    explanation_mode: Literal["visible_explanation"]
 
 
 class EstimateConfig(BaseModel):
@@ -67,6 +68,7 @@ class EstimateConfig(BaseModel):
 
 
 class HarnessConfig(BaseModel):
+    protocol_version: str
     seed: int
     questions: QuestionsConfig
     conditions: list[Condition]
@@ -87,7 +89,11 @@ class HarnessConfig(BaseModel):
 
         payload = json.dumps(
             {
+                "protocol_version": self.protocol_version,
                 "seed": self.seed,
+                "questions": self.questions.model_dump(),
+                "conditions": self.conditions,
+                "n_runs": self.n_runs,
                 "prompt_format": self.prompt_format.model_dump(),
                 "models": self.models.model_dump(),
             },

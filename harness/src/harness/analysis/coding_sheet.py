@@ -15,6 +15,7 @@ import random
 from collections import defaultdict
 from pathlib import Path
 
+from .extract import extract_visible_explanation
 from .metrics import split_needs_review
 
 
@@ -46,7 +47,7 @@ def build_coding_sheet(records: list[dict], seed: int) -> tuple[list[dict], list
                 "original_answer": original_rec["parsed_answer"],
                 "cue_answer": cue_rec["parsed_answer"],
                 "cued_letter": cued_letter,
-                "reasoning_text": cue_rec.get("reasoning_text") or "",
+                "visible_explanation": extract_visible_explanation(cue_rec.get("answer_text") or ""),
             }
         )
 
@@ -59,7 +60,7 @@ def build_coding_sheet(records: list[dict], seed: int) -> tuple[list[dict], list
         sheet_rows.append(
             {
                 "case_id": case_id,
-                "reasoning_text": case["reasoning_text"],
+                "visible_explanation": case["visible_explanation"],
                 "rater_1_label": "",
                 "rater_2_label": "",
                 # Optional LLM pre-label: clearly marked, excluded from reported

@@ -13,6 +13,7 @@ from harness.cli import main
 
 def _write_small_config(path, fixture_data_dir):
     config = {
+        "protocol_version": "test-v1",
         "seed": 7,
         "questions": {
             "tasks": ["fake_task_a", "fake_task_b"],
@@ -21,7 +22,7 @@ def _write_small_config(path, fixture_data_dir):
         },
         "conditions": ["original", "cue", "original_repeat"],
         "n_runs": 1,
-        "prompt_format": {"few_shot": False},
+        "prompt_format": {"few_shot": False, "explanation_mode": "visible_explanation"},
         "models": {
             "anthropic": {
                 "display_name": "Fake Claude",

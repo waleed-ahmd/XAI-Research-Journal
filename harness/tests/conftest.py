@@ -18,6 +18,7 @@ def fixture_data_dir() -> Path:
 def small_config() -> HarnessConfig:
     return HarnessConfig.model_validate(
         {
+            "protocol_version": "test-v1",
             "seed": 42,
             "questions": {
                 "tasks": ["fake_task_a", "fake_task_b"],
@@ -26,7 +27,7 @@ def small_config() -> HarnessConfig:
             },
             "conditions": ["original", "cue", "original_repeat"],
             "n_runs": 1,
-            "prompt_format": {"few_shot": False},
+            "prompt_format": {"few_shot": False, "explanation_mode": "visible_explanation"},
             "models": {
                 "anthropic": {
                     "display_name": "Fake Claude",

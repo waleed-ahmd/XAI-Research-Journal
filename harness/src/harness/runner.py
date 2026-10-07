@@ -30,6 +30,19 @@ class PlannedCall:
     prompt: str
 
 
+def _selected_questions_hash(selected: list[SelectedQuestion]) -> str:
+    """Hash the exact selected question IDs and cue letters used by the run."""
+    import hashlib
+    import json
+
+    payload = json.dumps(
+        [s.model_dump() for s in selected],
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()[:12]
+
+
 def build_plan(
     selected: list[SelectedQuestion],
     questions_by_id: dict[str, Question],
@@ -37,18 +50,24 @@ def build_plan(
     model_name: str,
 ) -> list[PlannedCall]:
     config_hash = config.model_hash()
+    selected_hash = _selected_questions_hash(selected)
     plan: list[PlannedCall] = []
     for sq in selected:
         question = questions_by_id[f"{sq.task}:{sq.idx}"]
         for condition in config.conditions:
-            prompt = build_prompt(question, condition, sq.cued_letter)
+            prompt = build_prompt(
+                question,
+                condition,
+                sq.cued_letter,
+                explanation_mode=config.prompt_format.explanation_mode,
+            )
             for run_index in range(config.n_runs):
                 key = call_key(
                     question_id=question.question_id,
                     condition=condition,
                     model_name=model_name,
                     run_index=run_index,
-                    config_hash=config_hash,
+                    config_hash=f"{config_hash}:{selected_hash}",
                 )
                 plan.append(
                     PlannedCall(

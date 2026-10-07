@@ -241,7 +241,7 @@ def analyze(ctx):
     write_csv(
         sheet_rows,
         summary_dir / "coding_sheet.csv",
-        ["case_id", "reasoning_text", "rater_1_label", "rater_2_label", "llm_pre_label_DO_NOT_USE_IN_METRICS"],
+        ["case_id", "visible_explanation", "rater_1_label", "rater_2_label", "llm_pre_label_DO_NOT_USE_IN_METRICS"],
     )
     write_csv(
         key_rows,

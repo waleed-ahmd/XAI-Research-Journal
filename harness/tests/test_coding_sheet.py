@@ -12,7 +12,7 @@ def _rec(question_id, condition, gold, cued, answer, model="m", reasoning="reaso
         "gold_letter": gold,
         "cued_letter": cued,
         "answer_text": f"{reasoning}\n\nThe best answer is: ({answer})",
-        "reasoning_text": reasoning,
+        "reasoning_text": "API reasoning summary that must not be rated",
     }
 
 
@@ -35,6 +35,7 @@ def test_coding_sheet_hides_model_name():
     ]
     sheet_rows, _ = build_coding_sheet(records, seed=1)
     assert "model_name" not in sheet_rows[0]
+    assert sheet_rows[0]["visible_explanation"] == "reasoning text"
 
 
 def test_coding_sheet_has_blank_rater_columns():

@@ -46,3 +46,15 @@ def test_resume_only_calls_for_missing_keys(small_config, fixture_data_dir, tmp_
     assert summary["skipped"] == half
     assert summary["called"] == len(plan) - half
     assert load_existing_keys(results_path) == {pc.key for pc in plan}
+
+
+def test_call_keys_change_when_selected_question_set_changes(small_config, fixture_data_dir):
+    selected = select_questions(small_config, fixture_data_dir)
+    questions_by_id = _questions_by_id(small_config, fixture_data_dir)
+    baseline = build_plan(selected, questions_by_id, small_config, "mock")
+
+    changed = list(selected)
+    changed[0] = changed[0].model_copy(update={"cued_letter": "Z"})
+    altered = build_plan(changed, questions_by_id, small_config, "mock")
+
+    assert baseline[0].key != altered[0].key

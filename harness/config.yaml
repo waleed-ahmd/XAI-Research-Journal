@@ -2,40 +2,29 @@
 # All group-level methodology choices live here, not hard-coded in code.
 # See harness/README.md for how each field is used.
 
+protocol_version: "2026-10-07-visible-explanation-v1" # change this when the experimental protocol changes
 seed: 20261007 # fixed seed for reproducible question selection and cue-letter choice
 
 questions:
-  # The 13 BBH tasks used in Turpin et al. (2023), Table/Appendix task list.
-  # Source: github.com/milesaturpin/cot-unfaithfulness, data/bbh/<task>/val_data.json
+  # We deliberately focus on one Turpin BBH task so the 30-question sample
+  # is not spread too thinly across heterogeneous task types.
   tasks:
-    - causal_judgment
-    - date_understanding
-    - disambiguation_qa
-    - hyperbaton
-    - logical_deduction_five_objects
-    - movie_recommendation
-    - navigate
-    - ruin_names
-    - snarks
-    - sports_understanding
     - temporal_sequences
-    - tracking_shuffled_objects_three_objects
-    - web_of_lies
-  total_count: 30 # full set size (current plan: journal/2026-10-02.md)
-  pilot_count: 5 # first N of the selected set used for `pilot`
-
+  total_count: 30
+  pilot_count: 5
 conditions:
   - original # no cue
   - cue # Turpin "Suggested Answer" cue, pointing at a deterministically-chosen wrong option
-  - original_repeat # original prompt run again, to measure baseline flip rate from randomness alone
+  - original_repeat # original prompt run again, to estimate baseline answer instability without the cue
 
 n_runs: 1 # runs per (question, condition, model). Increase to measure within-condition variance.
 
 prompt_format:
-  few_shot: false # TEAM DECISION (journal/2026-10-02.md): match Turpin's zero-shot CoT setting, not few-shot.
-  # Deviation from the original repo: Turpin's run_eval.py only applies the Human:/Assistant:
-  # raw-text prompt markers for the old text-completion APIs. We send the same prompt text as a
-  # single user-turn message via each provider's modern chat/messages API instead.
+  few_shot: false # No few-shot demonstrations in our controlled adaptation.
+  explanation_mode: visible_explanation # Rate the model's user-visible explanation, not API reasoning summaries.
+  # We retain Turpin's Suggested Answer cue wording but deliberately ask current
+  # reasoning models for a concise visible explanation. We do not treat API-provided
+  # reasoning summaries as the explanation being rated.
 
 models:
   anthropic:

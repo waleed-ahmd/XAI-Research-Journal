@@ -18,3 +18,7 @@ harness/results/summary/*
 # harness/data/selected_questions.json IS committed (it records exactly which questions
 # were used), so this only ignores the per-task raw val_data.json cache.
 harness/data/bbh/
+
+# Vs code files
+
+.DS_Store
