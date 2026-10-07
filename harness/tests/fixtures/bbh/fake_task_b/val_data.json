@@ -1,0 +1,163 @@
+{
+  "canary": "TEST CANARY GUID not-a-real-benchmark",
+  "data": [
+    {
+      "idx": 0,
+      "parsed_inputs": "Q: Fake question 0 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-0-A\n(B) fake_task_b-opt-0-B\n(C) fake_task_b-opt-0-C",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-0-A",
+        "fake_task_b-opt-0-B",
+        "fake_task_b-opt-0-C"
+      ],
+      "multiple_choice_scores": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 1,
+      "parsed_inputs": "Q: Fake question 1 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-1-A\n(B) fake_task_b-opt-1-B\n(C) fake_task_b-opt-1-C\n(D) fake_task_b-opt-1-D",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-1-A",
+        "fake_task_b-opt-1-B",
+        "fake_task_b-opt-1-C",
+        "fake_task_b-opt-1-D"
+      ],
+      "multiple_choice_scores": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 2,
+      "parsed_inputs": "Q: Fake question 2 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-2-A\n(B) fake_task_b-opt-2-B\n(C) fake_task_b-opt-2-C\n(D) fake_task_b-opt-2-D\n(E) fake_task_b-opt-2-E",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-2-A",
+        "fake_task_b-opt-2-B",
+        "fake_task_b-opt-2-C",
+        "fake_task_b-opt-2-D",
+        "fake_task_b-opt-2-E"
+      ],
+      "multiple_choice_scores": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 3,
+      "parsed_inputs": "Q: Fake question 3 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-3-A\n(B) fake_task_b-opt-3-B\n(C) fake_task_b-opt-3-C",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-3-A",
+        "fake_task_b-opt-3-B",
+        "fake_task_b-opt-3-C"
+      ],
+      "multiple_choice_scores": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 4,
+      "parsed_inputs": "Q: Fake question 4 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-4-A\n(B) fake_task_b-opt-4-B\n(C) fake_task_b-opt-4-C\n(D) fake_task_b-opt-4-D",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-4-A",
+        "fake_task_b-opt-4-B",
+        "fake_task_b-opt-4-C",
+        "fake_task_b-opt-4-D"
+      ],
+      "multiple_choice_scores": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 5,
+      "parsed_inputs": "Q: Fake question 5 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-5-A\n(B) fake_task_b-opt-5-B\n(C) fake_task_b-opt-5-C\n(D) fake_task_b-opt-5-D\n(E) fake_task_b-opt-5-E",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-5-A",
+        "fake_task_b-opt-5-B",
+        "fake_task_b-opt-5-C",
+        "fake_task_b-opt-5-D",
+        "fake_task_b-opt-5-E"
+      ],
+      "multiple_choice_scores": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 6,
+      "parsed_inputs": "Q: Fake question 6 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-6-A\n(B) fake_task_b-opt-6-B\n(C) fake_task_b-opt-6-C",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-6-A",
+        "fake_task_b-opt-6-B",
+        "fake_task_b-opt-6-C"
+      ],
+      "multiple_choice_scores": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "idx": 7,
+      "parsed_inputs": "Q: Fake question 7 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-7-A\n(B) fake_task_b-opt-7-B\n(C) fake_task_b-opt-7-C\n(D) fake_task_b-opt-7-D",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-7-A",
+        "fake_task_b-opt-7-B",
+        "fake_task_b-opt-7-C",
+        "fake_task_b-opt-7-D"
+      ],
+      "multiple_choice_scores": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "idx": 8,
+      "parsed_inputs": "Q: Fake question 8 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-8-A\n(B) fake_task_b-opt-8-B\n(C) fake_task_b-opt-8-C\n(D) fake_task_b-opt-8-D\n(E) fake_task_b-opt-8-E",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-8-A",
+        "fake_task_b-opt-8-B",
+        "fake_task_b-opt-8-C",
+        "fake_task_b-opt-8-D",
+        "fake_task_b-opt-8-E"
+      ],
+      "multiple_choice_scores": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "idx": 9,
+      "parsed_inputs": "Q: Fake question 9 for fake_task_b?\n\nAnswer choices:\n(A) fake_task_b-opt-9-A\n(B) fake_task_b-opt-9-B\n(C) fake_task_b-opt-9-C",
+      "multiple_choice_targets": [
+        "fake_task_b-opt-9-A",
+        "fake_task_b-opt-9-B",
+        "fake_task_b-opt-9-C"
+      ],
+      "multiple_choice_scores": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}
