@@ -1,0 +1,20 @@
+# Secrets
+.env
+harness/.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Harness run artifacts (raw results can be large/regenerated; keep dirs via .gitkeep)
+harness/results/raw/*.jsonl
+harness/results/summary/*
+!harness/results/summary/.gitkeep
+
+# BBH cache fetched from the Turpin et al. repo: regenerate with `cot-harness fetch-data`.
+# harness/data/selected_questions.json IS committed (it records exactly which questions
+# were used), so this only ignores the per-task raw val_data.json cache.
+harness/data/bbh/
