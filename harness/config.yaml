@@ -1,0 +1,71 @@
+# Group 7 CoT-faithfulness harness config.
+# All group-level methodology choices live here, not hard-coded in code.
+# See harness/README.md for how each field is used.
+
+protocol_version: "2026-10-07-visible-explanation-v1" # change this when the experimental protocol changes
+seed: 20261007 # fixed seed for reproducible question selection and cue-letter choice
+
+questions:
+  # We deliberately focus on one Turpin BBH task so the 30-question sample
+  # is not spread too thinly across heterogeneous task types.
+  tasks:
+    - temporal_sequences
+  total_count: 30
+  pilot_count: 5
+conditions:
+  - original # no cue
+  - cue # Turpin "Suggested Answer" cue, pointing at a deterministically-chosen wrong option
+  - original_repeat # original prompt run again, to estimate baseline answer instability without the cue
+
+n_runs: 1 # runs per (question, condition, model). Increase to measure within-condition variance.
+
+prompt_format:
+  few_shot: false # No few-shot demonstrations in our controlled adaptation.
+  explanation_mode: visible_explanation # Rate the model's user-visible explanation, not API reasoning summaries.
+  # We retain Turpin's Suggested Answer cue wording but deliberately ask current
+  # reasoning models for a concise visible explanation. We do not treat API-provided
+  # reasoning summaries as the explanation being rated.
+
+models:
+  anthropic:
+    display_name: "Claude Sonnet 5.5"
+    # Verified against https://platform.claude.com/docs/en/models/overview (2026-10-07).
+    model_id: "claude-sonnet-5-5"
+    thinking:
+      type: adaptive
+      display: summarized # max visibility Claude Sonnet 5.5 exposes; no setting returns raw CoT.
+    max_tokens: 4096
+    # Claude Sonnet 5.5 rejects any non-default temperature/top_p/top_k with a 400 error
+    # (platform.claude.com/docs/en/build-with-claude/thinking, "Sampling parameters").
+    # Do not set temperature for this model.
+    # Verified against https://platform.claude.com/docs/en/models/overview (2026-10-07).
+    price_per_million_input_tokens: 2.0
+    price_per_million_output_tokens: 10.0
+
+  openai:
+    display_name: "GPT-5.6 Luna"
+    # TODO(group): UNVERIFIED. The journal (journal/2026-10-02.md, journal/2026-09-30.md) names
+    # "GPT-5.6 Luna", but OpenAI's current model docs (developers.openai.com/api/docs/models,
+    # checked 2026-10-07) list no "gpt-5.6-luna" — the lightweight-tier model in the current
+    # flagship family is "GPT-6 Luna" (model_id "gpt-6-luna"); "gpt-5.6" currently only names
+    # "GPT-5.6 Cyber", a different (cybersecurity) model. Confirm which model the group actually
+    # means before any real API call, and fill in model_id below. Left blank deliberately so a
+    # real run fails loudly instead of silently calling the wrong model.
+    model_id: "" # TODO: fill in and remove this comment once confirmed
+    reasoning:
+      effort: medium
+      summary: auto
+    max_output_tokens: 4096
+    # Temperature support for this model's reasoning behaviour is unconfirmed from the docs we
+    # could reach (see harness/README.md). We omit the temperature parameter entirely rather
+    # than guess a value.
+    # TODO(group): UNVERIFIED pricing — depends on which model is actually confirmed above.
+    # `estimate` reports the OpenAI-side cost as unavailable until both of these are filled in.
+    price_per_million_input_tokens: null
+    price_per_million_output_tokens: null
+
+estimate:
+  # Rough token counts per single model call, used only for the `estimate` command's
+  # cost projection. Not measured yet — update after the pilot's real responses.
+  assumed_input_tokens_per_call: 600
+  assumed_output_tokens_per_call: 500
