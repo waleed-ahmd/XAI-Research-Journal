@@ -2,7 +2,7 @@
 # All group-level methodology choices live here, not hard-coded in code.
 # See harness/README.md for how each field is used.
 
-protocol_version: "2026-10-07-visible-explanation-v1" # change this when the experimental protocol changes
+protocol_version: "2026-10-09-visible-explanation-sol-opus-v1" # change this when the experimental protocol changes
 seed: 20261007 # fixed seed for reproducible question selection and cue-letter choice
 
 questions:
@@ -28,46 +28,43 @@ prompt_format:
 
 models:
   anthropic:
-    display_name: "Claude Sonnet 5.5"
-    # Verified against https://platform.claude.com/docs/en/models/overview (2026-10-07).
-    model_id: "claude-sonnet-5-5"
+    display_name: "Claude Opus 5.5"
+    # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
+    model_id: "claude-opus-5-5"
     thinking:
       type: adaptive
-      display: summarized # max visibility Claude Sonnet 5.5 exposes; no setting returns raw CoT.
+      display: summarized # summarized display is readable; no setting returns raw CoT.
     # Previously left unset, so the API applied its own default (which is "high"
-    # for Claude Sonnet 5.5). Made explicit; the value is unchanged from that
-    # default, so this does not change model behaviour.
+    # for Claude Opus 5.5). Made explicit at the documented default.
     # Verified against https://platform.claude.com/docs/en/build-with-claude/effort:
-    # "Claude Sonnet 5.5 supports all five effort levels, and `high` is the default
+    # "Claude Opus 5.5 supports all five effort levels, and `medium` is the default
     # on the Claude API." (checked 2026-10-09)
-    effort: high
-    max_tokens: 4096
-    # Claude Sonnet 5.5 rejects any non-default temperature/top_p/top_k with a 400 error
-    # (platform.claude.com/docs/en/build-with-claude/thinking, "Sampling parameters").
+    effort: medium
+    max_tokens: 16384
+    # Claude Opus 5.5 rejects unsupported sampling settings; we omit temperature/top_p/top_k
+    # rather than guessing provider-specific values.
     # Do not set temperature for this model.
-    # Verified against https://platform.claude.com/docs/en/models/overview (2026-10-07).
-    price_per_million_input_tokens: 2.0
-    price_per_million_output_tokens: 10.0
+    # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
+    price_per_million_input_tokens: 4.0
+    price_per_million_output_tokens: 20.0
 
   openai:
-    display_name: "GPT-5.6 Terra"
-    # CONFIRMED (group decision, 2026-10-09): the model is GPT-5.6 Terra, model id
-    # "gpt-5.6-terra" — the mid tier of the GPT-5.6 family, between the flagship
-    # Sol tier and the cost-efficient Luna tier. Deliberately NOT the bare alias
-    # "gpt-5.6", which resolves to a different model (Sol).
-    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-terra (2026-10-09):
-    # model id "gpt-5.6-terra"; reasoning.effort supports none/low/medium(default)/high/xhigh/max.
-    model_id: "gpt-5.6-terra"
+    display_name: "GPT-5.6 Sol"
+    # CONFIRMED (group decision, 2026-10-09): the model is GPT-5.6 Sol, model id
+    # "gpt-5.6-sol" — the flagship GPT-5.6 model. Chosen as the comparable
+    # flagship-tier counterpart to Claude Opus 5.5 for this study.
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-sol (2026-10-09).
+    model_id: "gpt-5.6-sol"
     reasoning:
       effort: medium
       summary: auto
-    max_output_tokens: 4096
+    max_output_tokens: 16384
     # Temperature support for this model's reasoning behaviour is unconfirmed from the docs we
     # could reach (see harness/README.md). We omit the temperature parameter entirely rather
     # than guess a value.
-    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-terra (2026-10-09).
-    price_per_million_input_tokens: 2.0
-    price_per_million_output_tokens: 12.0
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-sol (2026-10-09).
+    price_per_million_input_tokens: 4.0
+    price_per_million_output_tokens: 20.0
 
 estimate:
   # Token counts per single model call, used only for the `estimate` command's cost

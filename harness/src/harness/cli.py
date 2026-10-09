@@ -223,6 +223,9 @@ def analyze(ctx):
 
     records: list[dict] = []
     for path in sorted(results_dir.glob("*.jsonl")):
+        # Dry-run output is synthetic and must never be mixed with real model results.
+        if path.name == "dryrun_mock.jsonl":
+            continue
         with path.open("r", encoding="utf-8") as f:
             records.extend(json.loads(line) for line in f if line.strip())
 

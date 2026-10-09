@@ -15,7 +15,7 @@ heterogeneous tasks.
 |---|---|
 | BBH task | **Temporal Sequences** |
 | Questions | **30 fixed questions** |
-| Models | GPT-5.6 Luna and Claude Sonnet 5.5  |
+| Models | GPT-5.6 Sol and Claude Opus 5.5 (matched flagship tier) |
 | Conditions | Original, Suggested Answer cue, Original Repeat |
 | Runs | 1 per question/condition/model |
 | Full calls | **30 × 3 × 2 = 180** |
@@ -93,6 +93,7 @@ python -m venv .venv
 source .venv/bin/activate       # macOS/Linux
 pip install -e ".[dev]"
 cp .env.example .env            # then fill in real keys
+source .env                       # export them into this Terminal session
 ```
 
 ## Usage
