@@ -38,6 +38,11 @@ class AnthropicModelConfig(BaseModel):
     display_name: str
     model_id: str
     thinking: ThinkingConfig
+    # How much effort Claude puts into its whole response (separate from
+    # `thinking`, which only controls whether/how it thinks up front). This
+    # was previously unset, so the API silently applied its own per-model
+    # default; it is now explicit. See harness/README.md.
+    effort: str
     max_tokens: int
     price_per_million_input_tokens: float | None = None
     price_per_million_output_tokens: float | None = None

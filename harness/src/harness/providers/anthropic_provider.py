@@ -23,6 +23,26 @@ from .base import ProviderResult, ReasoningVisibility
 from .rate_limit import RateLimiter
 
 
+def build_request(model_cfg: AnthropicModelConfig, prompt: str) -> dict[str, Any]:
+    """Builds the Messages API request params. Pure/offline: no client, no network.
+
+    `effort` is passed via the top-level `output_config` field — see
+    `anthropic.types.output_config_param.OutputConfigParam` in the installed
+    SDK (anthropic==1.11.0). It was previously left unset here, so the API
+    silently applied its own per-model default (see the module docstring).
+    """
+    return {
+        "model": model_cfg.model_id,
+        "max_tokens": model_cfg.max_tokens,
+        "thinking": model_cfg.thinking.model_dump(),
+        "output_config": {"effort": model_cfg.effort},
+        "messages": [{"role": "user", "content": prompt}],
+        # No temperature/top_p/top_k: Claude Sonnet 5.5 rejects any
+        # non-default value with a 400 error (see module docstring's
+        # source doc, "Sampling parameters").
+    }
+
+
 def parse_anthropic_message(message: dict[str, Any]) -> tuple[str, str | None, ReasoningVisibility]:
     content = message.get("content", [])
     thinking_block = next((b for b in content if b.get("type") == "thinking"), None)
@@ -59,15 +79,7 @@ class AnthropicProvider:
     def call(self, prompt: str, *, run_index: int) -> ProviderResult:
         import anthropic
 
-        request_params: dict[str, Any] = {
-            "model": self.model_cfg.model_id,
-            "max_tokens": self.model_cfg.max_tokens,
-            "thinking": self.model_cfg.thinking.model_dump(),
-            "messages": [{"role": "user", "content": prompt}],
-            # No temperature/top_p/top_k: Claude Sonnet 5.5 rejects any
-            # non-default value with a 400 error (see module docstring's
-            # source doc, "Sampling parameters").
-        }
+        request_params = build_request(self.model_cfg, prompt)
 
         @retry(
             retry=retry_if_exception_type(

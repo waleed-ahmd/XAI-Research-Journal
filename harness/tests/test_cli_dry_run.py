@@ -28,6 +28,7 @@ def _write_small_config(path, fixture_data_dir):
                 "display_name": "Fake Claude",
                 "model_id": "fake-claude",
                 "thinking": {"type": "adaptive", "display": "summarized"},
+                "effort": "high",
                 "max_tokens": 1024,
             },
             "openai": {
