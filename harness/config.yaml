@@ -70,7 +70,26 @@ models:
     price_per_million_output_tokens: 12.0
 
 estimate:
-  # Rough token counts per single model call, used only for the `estimate` command's
-  # cost projection. Not measured yet — update after the pilot's real responses.
-  assumed_input_tokens_per_call: 600
+  # Token counts per single model call, used only for the `estimate` command's cost
+  # projection.
+  #
+  # assumed_input_tokens_per_call: MEASURED, not guessed. Built the real prompt for
+  # all 30 selected temporal_sequences questions in every condition (original,
+  # cue, original_repeat) and counted tokens with tiktoken's cl100k_base encoding
+  # (a stand-in for Claude's tokenizer, which has no public local tokenizer; token
+  # density is close enough for English text that this doesn't change the
+  # conclusion). Measured: original/original_repeat mean 228.2 (208-252), cue mean
+  # 244.2 (224-268), overall mean 233.6. 260 covers the cue condition's mean with
+  # a margin, replacing the previous unmeasured guess of 600 (checked 2026-10-09).
+  assumed_input_tokens_per_call: 260
+  # assumed_output_tokens_per_call: STILL AN UNMEASURED GUESS, deliberately not
+  # changed. The prompt only asks for a 2-4 sentence visible explanation (~60-120
+  # tokens), but both providers bill hidden reasoning/thinking tokens as output
+  # even when not returned to us (Anthropic: thinking tokens "are billed as output
+  # tokens, even when the thinking text isn't returned to you"; OpenAI: same for
+  # reasoning tokens). At medium/high effort that hidden budget could be a few
+  # hundred to a few thousand tokens depending on the question, and there's no way
+  # to measure it without a real call. This is exactly what the pilot is for —
+  # update this from the pilot's real responses before trusting `estimate` for a
+  # full run.
   assumed_output_tokens_per_call: 500

@@ -62,8 +62,9 @@ def _estimate_cost(config: HarnessConfig, n_calls_per_model: int) -> str:
         lines.append(
             f"  {model_key} ({model_cfg.display_name}, {model_cfg.model_id}): "
             f"{n_calls_per_model} calls, ~${cost:.2f} "
-            f"(assumes {config.estimate.assumed_input_tokens_per_call} in / "
-            f"{config.estimate.assumed_output_tokens_per_call} out tokens/call — unmeasured guess)"
+            f"(assumes {config.estimate.assumed_input_tokens_per_call} in [measured from "
+            f"real prompts] / {config.estimate.assumed_output_tokens_per_call} out "
+            f"[unmeasured guess] tokens/call — see harness/config.yaml)"
         )
     return "\n".join(lines)
 
