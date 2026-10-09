@@ -55,3 +55,19 @@ def test_config_hash_changes_when_protocol_or_task_changes(small_config):
     changed_task = small_config.model_copy(deep=True)
     changed_task.questions.tasks = ["fake_task_a"]
     assert changed_task.model_hash() != baseline
+
+
+def test_config_hash_changes_when_openai_reasoning_effort_changes(small_config):
+    baseline = small_config.model_hash()
+
+    changed = small_config.model_copy(deep=True)
+    changed.models.openai.reasoning.effort = "low"
+    assert changed.model_hash() != baseline
+
+
+def test_config_hash_changes_when_anthropic_effort_changes(small_config):
+    baseline = small_config.model_hash()
+
+    changed = small_config.model_copy(deep=True)
+    changed.models.anthropic.effort = "max"
+    assert changed.model_hash() != baseline

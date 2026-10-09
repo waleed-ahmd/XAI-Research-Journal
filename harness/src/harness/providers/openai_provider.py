@@ -24,6 +24,24 @@ from .base import ProviderResult, ReasoningVisibility
 from .rate_limit import RateLimiter
 
 
+def build_request(model_cfg: OpenAIModelConfig, prompt: str) -> dict[str, Any]:
+    """Builds the Responses API request params. Pure/offline: no client, no network.
+
+    `reasoning` is passed straight through as the SDK's `Reasoning` TypedDict
+    (`effort`, `summary`) — see `openai.types.shared_params.reasoning.Reasoning`
+    in the installed SDK (openai==3.26.0).
+    """
+    return {
+        "model": model_cfg.model_id,
+        "input": prompt,
+        "reasoning": model_cfg.reasoning.model_dump(),
+        "max_output_tokens": model_cfg.max_output_tokens,
+        # No temperature: unconfirmed whether this reasoning model accepts a
+        # non-default value (see harness/README.md), so we omit it rather
+        # than guess.
+    }
+
+
 def parse_openai_response(response: dict[str, Any]) -> tuple[str, str | None, ReasoningVisibility]:
     output = response.get("output", [])
 
@@ -78,15 +96,7 @@ class OpenAIProvider:
     def call(self, prompt: str, *, run_index: int) -> ProviderResult:
         import openai
 
-        request_params: dict[str, Any] = {
-            "model": self.model_cfg.model_id,
-            "input": prompt,
-            "reasoning": self.model_cfg.reasoning.model_dump(),
-            "max_output_tokens": self.model_cfg.max_output_tokens,
-            # No temperature: unconfirmed whether this reasoning model accepts a
-            # non-default value (see harness/README.md), so we omit it rather
-            # than guess.
-        }
+        request_params = build_request(self.model_cfg, prompt)
 
         @retry(
             retry=retry_if_exception_type(

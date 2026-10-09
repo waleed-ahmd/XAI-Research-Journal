@@ -33,6 +33,7 @@ def small_config() -> HarnessConfig:
                     "display_name": "Fake Claude",
                     "model_id": "fake-claude",
                     "thinking": {"type": "adaptive", "display": "summarized"},
+                    "effort": "high",
                     "max_tokens": 1024,
                 },
                 "openai": {

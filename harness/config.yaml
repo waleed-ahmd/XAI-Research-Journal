@@ -34,6 +34,13 @@ models:
     thinking:
       type: adaptive
       display: summarized # max visibility Claude Sonnet 5.5 exposes; no setting returns raw CoT.
+    # Previously left unset, so the API applied its own default (which is "high"
+    # for Claude Sonnet 5.5). Made explicit; the value is unchanged from that
+    # default, so this does not change model behaviour.
+    # Verified against https://platform.claude.com/docs/en/build-with-claude/effort:
+    # "Claude Sonnet 5.5 supports all five effort levels, and `high` is the default
+    # on the Claude API." (checked 2026-10-09)
+    effort: high
     max_tokens: 4096
     # Claude Sonnet 5.5 rejects any non-default temperature/top_p/top_k with a 400 error
     # (platform.claude.com/docs/en/build-with-claude/thinking, "Sampling parameters").
@@ -43,15 +50,14 @@ models:
     price_per_million_output_tokens: 10.0
 
   openai:
-    display_name: "GPT-5.6 Luna"
-    # TODO(group): UNVERIFIED. The journal (journal/2026-10-02.md, journal/2026-09-30.md) names
-    # "GPT-5.6 Luna", but OpenAI's current model docs (developers.openai.com/api/docs/models,
-    # checked 2026-10-07) list no "gpt-5.6-luna" — the lightweight-tier model in the current
-    # flagship family is "GPT-6 Luna" (model_id "gpt-6-luna"); "gpt-5.6" currently only names
-    # "GPT-5.6 Cyber", a different (cybersecurity) model. Confirm which model the group actually
-    # means before any real API call, and fill in model_id below. Left blank deliberately so a
-    # real run fails loudly instead of silently calling the wrong model.
-    model_id: "" # TODO: fill in and remove this comment once confirmed
+    display_name: "GPT-5.6 Terra"
+    # CONFIRMED (group decision, 2026-10-09): the model is GPT-5.6 Terra, model id
+    # "gpt-5.6-terra" — the mid tier of the GPT-5.6 family, between the flagship
+    # Sol tier and the cost-efficient Luna tier. Deliberately NOT the bare alias
+    # "gpt-5.6", which resolves to a different model (Sol).
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-terra (2026-10-09):
+    # model id "gpt-5.6-terra"; reasoning.effort supports none/low/medium(default)/high/xhigh/max.
+    model_id: "gpt-5.6-terra"
     reasoning:
       effort: medium
       summary: auto
@@ -59,13 +65,31 @@ models:
     # Temperature support for this model's reasoning behaviour is unconfirmed from the docs we
     # could reach (see harness/README.md). We omit the temperature parameter entirely rather
     # than guess a value.
-    # TODO(group): UNVERIFIED pricing — depends on which model is actually confirmed above.
-    # `estimate` reports the OpenAI-side cost as unavailable until both of these are filled in.
-    price_per_million_input_tokens: null
-    price_per_million_output_tokens: null
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-terra (2026-10-09).
+    price_per_million_input_tokens: 2.0
+    price_per_million_output_tokens: 12.0
 
 estimate:
-  # Rough token counts per single model call, used only for the `estimate` command's
-  # cost projection. Not measured yet — update after the pilot's real responses.
-  assumed_input_tokens_per_call: 600
+  # Token counts per single model call, used only for the `estimate` command's cost
+  # projection.
+  #
+  # assumed_input_tokens_per_call: MEASURED, not guessed. Built the real prompt for
+  # all 30 selected temporal_sequences questions in every condition (original,
+  # cue, original_repeat) and counted tokens with tiktoken's cl100k_base encoding
+  # (a stand-in for Claude's tokenizer, which has no public local tokenizer; token
+  # density is close enough for English text that this doesn't change the
+  # conclusion). Measured: original/original_repeat mean 228.2 (208-252), cue mean
+  # 244.2 (224-268), overall mean 233.6. 260 covers the cue condition's mean with
+  # a margin, replacing the previous unmeasured guess of 600 (checked 2026-10-09).
+  assumed_input_tokens_per_call: 260
+  # assumed_output_tokens_per_call: STILL AN UNMEASURED GUESS, deliberately not
+  # changed. The prompt only asks for a 2-4 sentence visible explanation (~60-120
+  # tokens), but both providers bill hidden reasoning/thinking tokens as output
+  # even when not returned to us (Anthropic: thinking tokens "are billed as output
+  # tokens, even when the thinking text isn't returned to you"; OpenAI: same for
+  # reasoning tokens). At medium/high effort that hidden budget could be a few
+  # hundred to a few thousand tokens depending on the question, and there's no way
+  # to measure it without a real call. This is exactly what the pilot is for —
+  # update this from the pilot's real responses before trusting `estimate` for a
+  # full run.
   assumed_output_tokens_per_call: 500
