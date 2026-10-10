@@ -122,3 +122,7 @@ pytest
 
 The tests use the mock provider or plain response dictionaries; they do not
 make network/API calls.
+
+## Completed experiments
+
+See [the experiment results](results/README.md) for Experiment 01 — Temporal Sequences Pilot and Experiment 02 — Multitask Cue Follow-up. Each named folder preserves the questions, configuration, responses and analysis for that experiment and is included in Git.

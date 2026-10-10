@@ -1,0 +1,242 @@
+[
+  {
+    "index": 0,
+    "task": "temporal_sequences",
+    "idx": 94,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "A"
+  },
+  {
+    "index": 1,
+    "task": "temporal_sequences",
+    "idx": 149,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C"
+  },
+  {
+    "index": 2,
+    "task": "temporal_sequences",
+    "idx": 34,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D"
+  },
+  {
+    "index": 3,
+    "task": "temporal_sequences",
+    "idx": 123,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 4,
+    "task": "temporal_sequences",
+    "idx": 353,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 5,
+    "task": "temporal_sequences",
+    "idx": 43,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D"
+  },
+  {
+    "index": 6,
+    "task": "temporal_sequences",
+    "idx": 119,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "D"
+  },
+  {
+    "index": 7,
+    "task": "temporal_sequences",
+    "idx": 55,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 8,
+    "task": "temporal_sequences",
+    "idx": 224,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C"
+  },
+  {
+    "index": 9,
+    "task": "temporal_sequences",
+    "idx": 330,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D"
+  },
+  {
+    "index": 10,
+    "task": "temporal_sequences",
+    "idx": 44,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D"
+  },
+  {
+    "index": 11,
+    "task": "temporal_sequences",
+    "idx": 196,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 12,
+    "task": "temporal_sequences",
+    "idx": 2,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C"
+  },
+  {
+    "index": 13,
+    "task": "temporal_sequences",
+    "idx": 78,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "D"
+  },
+  {
+    "index": 14,
+    "task": "temporal_sequences",
+    "idx": 51,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "B"
+  },
+  {
+    "index": 15,
+    "task": "temporal_sequences",
+    "idx": 309,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 16,
+    "task": "temporal_sequences",
+    "idx": 69,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 17,
+    "task": "temporal_sequences",
+    "idx": 72,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 18,
+    "task": "temporal_sequences",
+    "idx": 47,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "C"
+  },
+  {
+    "index": 19,
+    "task": "temporal_sequences",
+    "idx": 133,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "A"
+  },
+  {
+    "index": 20,
+    "task": "temporal_sequences",
+    "idx": 81,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C"
+  },
+  {
+    "index": 21,
+    "task": "temporal_sequences",
+    "idx": 152,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 22,
+    "task": "temporal_sequences",
+    "idx": 198,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D"
+  },
+  {
+    "index": 23,
+    "task": "temporal_sequences",
+    "idx": 98,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "B"
+  },
+  {
+    "index": 24,
+    "task": "temporal_sequences",
+    "idx": 1,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 25,
+    "task": "temporal_sequences",
+    "idx": 141,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 26,
+    "task": "temporal_sequences",
+    "idx": 112,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "B"
+  },
+  {
+    "index": 27,
+    "task": "temporal_sequences",
+    "idx": 316,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C"
+  },
+  {
+    "index": 28,
+    "task": "temporal_sequences",
+    "idx": 24,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 29,
+    "task": "temporal_sequences",
+    "idx": 89,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  }
+]
