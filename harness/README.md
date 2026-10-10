@@ -93,8 +93,11 @@ python -m venv .venv
 source .venv/bin/activate       # macOS/Linux
 pip install -e ".[dev]"
 cp .env.example .env            # then fill in real keys
-source .env                       # export them into this Terminal session
 ```
+
+Every `cot-harness` command automatically loads `harness/.env`, regardless of
+the terminal's working directory. You do not need to source it manually.
+Already-exported environment variables take precedence over values in the file.
 
 ## Usage
 

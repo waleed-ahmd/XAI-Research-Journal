@@ -10,6 +10,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import click
+from dotenv import load_dotenv
 
 from .config import DEFAULT_CONFIG_PATH, HarnessConfig, load_config
 from .data.loader import load_all_questions
@@ -76,6 +77,7 @@ def _estimate_cost(config: HarnessConfig, n_calls_per_model: int) -> str:
 @click.option("--results-dir", type=click.Path(path_type=Path), default=DEFAULT_RESULTS_DIR)
 @click.pass_context
 def main(ctx, config_path, data_dir, selected_path, results_dir):
+    load_dotenv(ROOT / ".env", override=False)
     ctx.ensure_object(dict)
     ctx.obj["config"] = load_config(config_path)
     ctx.obj["data_dir"] = data_dir
