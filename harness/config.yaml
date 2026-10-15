@@ -29,16 +29,16 @@ prompt_format:
 models:
   anthropic:
     display_name: "Claude Opus 5.5"
-    # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
-    model_id: "claude-opus-5-5"
-    thinking:
-      type: adaptive
-      display: summarized # summarized display is readable; no setting returns raw CoT.
     # Previously left unset, so the API applied its own default (which is "high"
     # for Claude Opus 5.5). Made explicit at the documented default.
     # Verified against https://platform.claude.com/docs/en/build-with-claude/effort:
     # "Claude Opus 5.5 supports all five effort levels, and `medium` is the default
     # on the Claude API." (checked 2026-10-09)
+    # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
+    model_id: "claude-opus-5-5"
+    thinking:
+      type: adaptive
+      display: summarized # summarized display is readable; no setting returns raw CoT.
     effort: medium
     max_tokens: 16384
     # Claude Opus 5.5 rejects unsupported sampling settings; we omit temperature/top_p/top_k

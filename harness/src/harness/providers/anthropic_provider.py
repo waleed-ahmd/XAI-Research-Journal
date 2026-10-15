@@ -37,8 +37,9 @@ def build_request(model_cfg: AnthropicModelConfig, prompt: str) -> dict[str, Any
         "thinking": model_cfg.thinking.model_dump(),
         "output_config": {"effort": model_cfg.effort},
         "messages": [{"role": "user", "content": prompt}],
-        # No temperature/top_p/top_k: omit unsupported sampling settings
-        # rather than guessing provider-specific values.
+        # No temperature/top_p/top_k: Claude Opus 5.5 rejects any
+        # non-default value with a 400 error (see module docstring's
+        # source doc, "Sampling parameters").
     }
 
 
