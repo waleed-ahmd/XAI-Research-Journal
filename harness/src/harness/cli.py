@@ -10,6 +10,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import click
+from dotenv import load_dotenv
 
 from .config import DEFAULT_CONFIG_PATH, HarnessConfig, load_config
 from .data.loader import load_all_questions
@@ -76,6 +77,13 @@ def _estimate_cost(config: HarnessConfig, n_calls_per_model: int) -> str:
 @click.option("--results-dir", type=click.Path(path_type=Path), default=DEFAULT_RESULTS_DIR)
 @click.pass_context
 def main(ctx, config_path, data_dir, selected_path, results_dir):
+    # Loads ANTHROPIC_API_KEY/OPENAI_API_KEY from harness/.env into the process
+    # environment, if that file exists. Never overrides a key already exported
+    # in the real shell environment (python-dotenv's default). The SDKs read
+    # these from os.environ themselves; this just makes `.env` actually work,
+    # since nothing else in the codebase loads it. No-op if `.env` is absent
+    # (e.g. for `dry-run`, which never needs real keys).
+    load_dotenv(ROOT / ".env")
     ctx.ensure_object(dict)
     ctx.obj["config"] = load_config(config_path)
     ctx.obj["data_dir"] = data_dir

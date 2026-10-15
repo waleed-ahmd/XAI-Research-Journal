@@ -15,7 +15,7 @@ heterogeneous tasks.
 |---|---|
 | BBH task | **Temporal Sequences** |
 | Questions | **30 fixed questions** |
-| Models | GPT-5.6 Luna and Claude Sonnet 5.5  |
+| Models | GPT-5.6 Sol and Claude Opus 5.5 (both flagship tier, medium effort) |
 | Conditions | Original, Suggested Answer cue, Original Repeat |
 | Runs | 1 per question/condition/model |
 | Full calls | **30 × 3 × 2 = 180** |

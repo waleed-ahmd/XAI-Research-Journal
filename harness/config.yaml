@@ -28,36 +28,37 @@ prompt_format:
 
 models:
   anthropic:
-    display_name: "Claude Sonnet 5.5"
-    # Verified against https://platform.claude.com/docs/en/models/overview (2026-10-07).
-    model_id: "claude-sonnet-5-5"
+    display_name: "Claude Opus 5.5"
+    # CONFIRMED (group decision, 2026-10-09): switched from Claude Sonnet 5.5 to
+    # Claude Opus 5.5 so both providers' models are their flagship tier, matched
+    # by tier, rather than a mid-tier pair. Fable/Mythos sits above Opus and has
+    # no OpenAI equivalent, so it stays out of scope for a like-for-like comparison.
+    # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
+    model_id: "claude-opus-5-5"
     thinking:
       type: adaptive
-      display: summarized # max visibility Claude Sonnet 5.5 exposes; no setting returns raw CoT.
-    # Previously left unset, so the API applied its own default (which is "high"
-    # for Claude Sonnet 5.5). Made explicit; the value is unchanged from that
-    # default, so this does not change model behaviour.
-    # Verified against https://platform.claude.com/docs/en/build-with-claude/effort:
-    # "Claude Sonnet 5.5 supports all five effort levels, and `high` is the default
-    # on the Claude API." (checked 2026-10-09)
-    effort: high
+      display: summarized # max visibility Claude Opus 5.5 exposes; no setting returns raw CoT.
+    # Claude Opus 5.5's own default effort is "medium" (not "high" like Sonnet 5.5) —
+    # verified against the same page ("Default effort: medium"), and matches the
+    # group's medium-effort-for-both decision.
+    effort: medium
     max_tokens: 4096
-    # Claude Sonnet 5.5 rejects any non-default temperature/top_p/top_k with a 400 error
+    # Claude Opus 5.5 rejects any non-default temperature/top_p/top_k with a 400 error
     # (platform.claude.com/docs/en/build-with-claude/thinking, "Sampling parameters").
     # Do not set temperature for this model.
-    # Verified against https://platform.claude.com/docs/en/models/overview (2026-10-07).
-    price_per_million_input_tokens: 2.0
-    price_per_million_output_tokens: 10.0
+    # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
+    price_per_million_input_tokens: 4.0
+    price_per_million_output_tokens: 20.0
 
   openai:
-    display_name: "GPT-5.6 Terra"
-    # CONFIRMED (group decision, 2026-10-09): the model is GPT-5.6 Terra, model id
-    # "gpt-5.6-terra" — the mid tier of the GPT-5.6 family, between the flagship
-    # Sol tier and the cost-efficient Luna tier. Deliberately NOT the bare alias
-    # "gpt-5.6", which resolves to a different model (Sol).
-    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-terra (2026-10-09):
-    # model id "gpt-5.6-terra"; reasoning.effort supports none/low/medium(default)/high/xhigh/max.
-    model_id: "gpt-5.6-terra"
+    display_name: "GPT-5.6 Sol"
+    # CONFIRMED (group decision, 2026-10-09): switched from GPT-5.6 Terra to
+    # GPT-5.6 Sol, model id "gpt-5.6-sol" — the flagship tier of the GPT-5.6
+    # family (the bare alias "gpt-5.6" also resolves here). Pairs with Claude
+    # Opus 5.5 as "each provider's flagship, matched by tier."
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-sol (2026-10-09):
+    # model id "gpt-5.6-sol"; reasoning.effort supports none/low/medium(default)/high/xhigh/max.
+    model_id: "gpt-5.6-sol"
     reasoning:
       effort: medium
       summary: auto
@@ -65,9 +66,9 @@ models:
     # Temperature support for this model's reasoning behaviour is unconfirmed from the docs we
     # could reach (see harness/README.md). We omit the temperature parameter entirely rather
     # than guess a value.
-    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-terra (2026-10-09).
-    price_per_million_input_tokens: 2.0
-    price_per_million_output_tokens: 12.0
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-sol (2026-10-09).
+    price_per_million_input_tokens: 4.0
+    price_per_million_output_tokens: 20.0
 
 estimate:
   # Token counts per single model call, used only for the `estimate` command's cost
