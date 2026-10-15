@@ -11,11 +11,11 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol
 
 from .config import Condition, HarnessConfig
 from .data.models import Question, SelectedQuestion
 from .hashing import call_key
+from .jsonl import read_jsonl
 from .prompts import build_prompt
 from .providers.base import Provider
 
@@ -83,17 +83,7 @@ def build_plan(
 
 
 def load_existing_keys(results_path: Path) -> set[str]:
-    results_path = Path(results_path)
-    if not results_path.exists():
-        return set()
-    keys: set[str] = set()
-    with results_path.open("r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            keys.add(json.loads(line)["key"])
-    return keys
+    return {record["key"] for record in read_jsonl(results_path)}
 
 
 def append_result(results_path: Path, record: dict) -> None:
@@ -101,10 +91,6 @@ def append_result(results_path: Path, record: dict) -> None:
     results_path.parent.mkdir(parents=True, exist_ok=True)
     with results_path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(record) + "\n")
-
-
-class SupportsCall(Protocol):
-    def call(self, prompt: str, *, run_index: int) -> object: ...
 
 
 def run_plan(plan: list[PlannedCall], provider: Provider, results_path: Path) -> dict[str, int]:
