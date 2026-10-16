@@ -123,10 +123,6 @@ pytest
 The tests use the mock provider or plain response dictionaries; they do not
 make network/API calls.
 
-## Completed experiments
-
-See [the experiment results](results/README.md) for Experiment 01 — Temporal Sequences Pilot and Experiment 02 — Multitask Cue Follow-up. Each named folder preserves the questions, configuration, responses and analysis for that experiment and is included in Git.
-
 ## Review fixes: saved selections and cache keys
 
 New selections include a `.metadata.json` sidecar recording seed, tasks and total count. Existing selections are checked against those settings and the current dataset before prompts are built. Legacy list-only selections must match the configured seeded selection. A mismatch stops the command; choose a new `--selected-path` rather than overwriting a completed experiment's selection. Custom historical selections should remain with their original experiment configuration and collection tooling.
