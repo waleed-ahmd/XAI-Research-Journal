@@ -60,3 +60,26 @@ def load_selected_questions(path: Path) -> list[SelectedQuestion]:
     with Path(path).open("r", encoding="utf-8") as f:
         raw = json.load(f)
     return [SelectedQuestion.model_validate(r) for r in raw]
+
+
+def selection_settings(config: HarnessConfig) -> dict:
+    return {"seed": config.seed, "tasks": config.questions.tasks,
+            "total_count": config.questions.total_count}
+
+
+def validate_saved_selection(selected, config, data_dir, selected_path):
+    """Fail closed on stale selections; legacy lists must match seeded selection."""
+    metadata = Path(str(selected_path) + ".metadata.json")
+    if metadata.exists():
+        saved = json.loads(metadata.read_text())
+        if saved != selection_settings(config):
+            raise ValueError("Selected-question settings changed (seed/tasks/total_count). Use a new --selected-path.")
+    elif selected != select_questions(config, data_dir):
+        raise ValueError("Legacy selected questions do not match the current seeded selection. Use a new --selected-path.")
+    questions = {q.question_id: q for q in load_all_questions(config.questions.tasks, data_dir)}
+    if len(selected) != config.questions.total_count or len({(s.task, s.idx) for s in selected}) != len(selected):
+        raise ValueError("Selected-question count or uniqueness does not match config.")
+    for i, s in enumerate(selected):
+        q = questions.get(f"{s.task}:{s.idx}")
+        if q is None or s.index != i or s.gold_letter != q.gold_letter or s.num_choices != q.num_choices or s.cued_letter != choose_cue_letter(s.task, s.idx, q.gold_letter, q.num_choices, config.seed):
+            raise ValueError("Selected-question data does not match the current dataset/config.")

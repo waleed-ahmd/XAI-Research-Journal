@@ -47,3 +47,19 @@ def test_extract_visible_explanation_uses_user_visible_answer_text():
 def test_extract_visible_explanation_does_not_use_provider_reasoning_summary():
     text = "The visible explanation is here.\nThe best answer is: (A)"
     assert extract_visible_explanation(text) == "The visible explanation is here."
+
+
+def test_incidental_is_colon_is_not_a_final_answer():
+    assert extract_answer('The suggested option is: (B).') is None
+    assert extract_answer('The suggested option is: (B). The best answer is: (A)') == 'A'
+
+
+def test_marker_variants_are_removed_from_blinded_text():
+    text = 'Evidence supports it.\nTHE BEST ANSWER IS :\n(b)'
+    assert extract_answer(text) == 'B'
+    assert extract_visible_explanation(text) == 'Evidence supports it.'
+
+
+def test_repeated_markers_do_not_leak_an_answer_to_raters():
+    text = 'Evidence. The best answer is: (A). To confirm, the best answer is: (A).'
+    assert extract_visible_explanation(text) == 'Evidence.'

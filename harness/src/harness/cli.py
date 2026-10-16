@@ -16,6 +16,8 @@ from .config import DEFAULT_CONFIG_PATH, HarnessConfig, load_config
 from .data.loader import load_all_questions
 from .data.selection import (
     load_selected_questions,
+    validate_saved_selection,
+    selection_settings,
     select_questions,
     write_selected_questions,
 )
@@ -36,9 +38,18 @@ def _questions_by_id(config: HarnessConfig, data_dir: Path) -> dict:
 
 def _get_or_select_questions(config: HarnessConfig, data_dir: Path, selected_path: Path):
     if selected_path.exists():
-        return load_selected_questions(selected_path)
+        selected = load_selected_questions(selected_path)
+        try:
+            validate_saved_selection(selected, config, data_dir, selected_path)
+        except ValueError as exc:
+            raise click.ClickException(str(exc)) from exc
+        return selected
     selected = select_questions(config, data_dir)
     write_selected_questions(selected, selected_path)
+    import json
+    Path(str(selected_path) + ".metadata.json").write_text(
+        json.dumps(selection_settings(config), indent=2) + "\n"
+    )
     click.echo(f"Wrote {len(selected)} selected questions to {selected_path}")
     return selected
 
@@ -231,6 +242,9 @@ def analyze(ctx):
 
     records: list[dict] = []
     for path in sorted(results_dir.glob("*.jsonl")):
+        # Dry-run output is synthetic and must never be mixed with real model results.
+        if path.name == "dryrun_mock.jsonl":
+            continue
         with path.open("r", encoding="utf-8") as f:
             records.extend(json.loads(line) for line in f if line.strip())
 

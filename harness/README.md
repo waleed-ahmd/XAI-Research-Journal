@@ -95,6 +95,10 @@ pip install -e ".[dev]"
 cp .env.example .env            # then fill in real keys
 ```
 
+Every `cot-harness` command automatically loads `harness/.env`, regardless of
+the terminal's working directory. You do not need to source it manually.
+Already-exported environment variables take precedence over values in the file.
+
 ## Usage
 
 ```sh
@@ -118,3 +122,11 @@ pytest
 
 The tests use the mock provider or plain response dictionaries; they do not
 make network/API calls.
+
+## Review fixes: saved selections and cache keys
+
+New selections include a `.metadata.json` sidecar recording seed, tasks and total count. Existing selections are checked against those settings and the current dataset before prompts are built. Legacy list-only selections must match the configured seeded selection. A mismatch stops the command; choose a new `--selected-path` rather than overwriting a completed experiment's selection. Custom historical selections should remain with their original experiment configuration and collection tooling.
+
+Call keys now include the exact rendered prompt. Model display names and token prices are excluded from the configuration hash, so those edits do not invalidate cached calls. This key-format change is intentionally not backward-compatible: previously collected results retain their original keys. Do not run a paid command against historical results expecting the new keys to skip old responses; use a separate results directory for new runs.
+
+Answer parsing and blinded explanation extraction share the `The best answer is:` marker, accepting case and whitespace variations. Ambiguous final answers require manual review. Blinded text ends at the first recognised marker so repeated markers do not expose final-answer declarations to raters. Other forms of answer disclosure in explanation prose still require human inspection.

@@ -2,7 +2,7 @@
 # All group-level methodology choices live here, not hard-coded in code.
 # See harness/README.md for how each field is used.
 
-protocol_version: "2026-10-07-visible-explanation-v1" # change this when the experimental protocol changes
+protocol_version: "2026-10-09-visible-explanation-sol-opus-v1" # change this when the experimental protocol changes
 seed: 20261007 # fixed seed for reproducible question selection and cue-letter choice
 
 questions:
@@ -29,22 +29,20 @@ prompt_format:
 models:
   anthropic:
     display_name: "Claude Opus 5.5"
-    # CONFIRMED (group decision, 2026-10-09): switched from Claude Sonnet 5.5 to
-    # Claude Opus 5.5 so both providers' models are their flagship tier, matched
-    # by tier, rather than a mid-tier pair. Fable/Mythos sits above Opus and has
-    # no OpenAI equivalent, so it stays out of scope for a like-for-like comparison.
+    # Previously left unset, so the API applied its own default (which is "high"
+    # for Claude Opus 5.5). Made explicit at the documented default.
+    # Verified against https://platform.claude.com/docs/en/build-with-claude/effort:
+    # "Claude Opus 5.5 supports all five effort levels, and `medium` is the default
+    # on the Claude API." (checked 2026-10-09)
     # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
     model_id: "claude-opus-5-5"
     thinking:
       type: adaptive
-      display: summarized # max visibility Claude Opus 5.5 exposes; no setting returns raw CoT.
-    # Claude Opus 5.5's own default effort is "medium" (not "high" like Sonnet 5.5) —
-    # verified against the same page ("Default effort: medium"), and matches the
-    # group's medium-effort-for-both decision.
+      display: summarized # summarized display is readable; no setting returns raw CoT.
     effort: medium
-    max_tokens: 4096
-    # Claude Opus 5.5 rejects any non-default temperature/top_p/top_k with a 400 error
-    # (platform.claude.com/docs/en/build-with-claude/thinking, "Sampling parameters").
+    max_tokens: 16384
+    # Claude Opus 5.5 rejects unsupported sampling settings; we omit temperature/top_p/top_k
+    # rather than guessing provider-specific values.
     # Do not set temperature for this model.
     # Verified against https://platform.claude.com/docs/en/models/opus-5-5/overview (2026-10-09).
     price_per_million_input_tokens: 4.0
@@ -52,17 +50,15 @@ models:
 
   openai:
     display_name: "GPT-5.6 Sol"
-    # CONFIRMED (group decision, 2026-10-09): switched from GPT-5.6 Terra to
-    # GPT-5.6 Sol, model id "gpt-5.6-sol" — the flagship tier of the GPT-5.6
-    # family (the bare alias "gpt-5.6" also resolves here). Pairs with Claude
-    # Opus 5.5 as "each provider's flagship, matched by tier."
-    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-sol (2026-10-09):
-    # model id "gpt-5.6-sol"; reasoning.effort supports none/low/medium(default)/high/xhigh/max.
+    # CONFIRMED (group decision, 2026-10-09): the model is GPT-5.6 Sol, model id
+    # "gpt-5.6-sol" — the flagship GPT-5.6 model. Chosen as the comparable
+    # flagship-tier counterpart to Claude Opus 5.5 for this study.
+    # Verified against https://developers.openai.com/api/docs/models/gpt-5.6-sol (2026-10-09).
     model_id: "gpt-5.6-sol"
     reasoning:
       effort: medium
       summary: auto
-    max_output_tokens: 4096
+    max_output_tokens: 16384
     # Temperature support for this model's reasoning behaviour is unconfirmed from the docs we
     # could reach (see harness/README.md). We omit the temperature parameter entirely rather
     # than guess a value.
