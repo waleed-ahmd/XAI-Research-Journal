@@ -22,3 +22,5 @@ harness/data/bbh/
 # Vs code files
 
 .DS_Store
+# Unexecuted experiment draft; completed experiment folders remain included.
+harness/results/mixed-tasks-2026-10-10/
