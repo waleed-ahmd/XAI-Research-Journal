@@ -1,0 +1,242 @@
+[
+  {
+    "index": 0,
+    "task": "logical_deduction_five_objects",
+    "idx": 89,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B"
+  },
+  {
+    "index": 1,
+    "task": "logical_deduction_five_objects",
+    "idx": 59,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "C"
+  },
+  {
+    "index": 2,
+    "task": "logical_deduction_five_objects",
+    "idx": 169,
+    "num_choices": 5,
+    "gold_letter": "D",
+    "cued_letter": "E"
+  },
+  {
+    "index": 3,
+    "task": "logical_deduction_five_objects",
+    "idx": 205,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "D"
+  },
+  {
+    "index": 4,
+    "task": "logical_deduction_five_objects",
+    "idx": 10,
+    "num_choices": 5,
+    "gold_letter": "A",
+    "cued_letter": "D"
+  },
+  {
+    "index": 5,
+    "task": "logical_deduction_five_objects",
+    "idx": 187,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B"
+  },
+  {
+    "index": 6,
+    "task": "logical_deduction_five_objects",
+    "idx": 212,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B"
+  },
+  {
+    "index": 7,
+    "task": "logical_deduction_five_objects",
+    "idx": 65,
+    "num_choices": 5,
+    "gold_letter": "C",
+    "cued_letter": "B"
+  },
+  {
+    "index": 8,
+    "task": "logical_deduction_five_objects",
+    "idx": 84,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "C"
+  },
+  {
+    "index": 9,
+    "task": "logical_deduction_five_objects",
+    "idx": 102,
+    "num_choices": 5,
+    "gold_letter": "D",
+    "cued_letter": "B"
+  },
+  {
+    "index": 10,
+    "task": "date_understanding",
+    "idx": 124,
+    "num_choices": 6,
+    "gold_letter": "C",
+    "cued_letter": "B"
+  },
+  {
+    "index": 11,
+    "task": "date_understanding",
+    "idx": 139,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "C"
+  },
+  {
+    "index": 12,
+    "task": "date_understanding",
+    "idx": 86,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "E"
+  },
+  {
+    "index": 13,
+    "task": "date_understanding",
+    "idx": 59,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "A"
+  },
+  {
+    "index": 14,
+    "task": "date_understanding",
+    "idx": 57,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "E"
+  },
+  {
+    "index": 15,
+    "task": "date_understanding",
+    "idx": 158,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "D"
+  },
+  {
+    "index": 16,
+    "task": "date_understanding",
+    "idx": 189,
+    "num_choices": 6,
+    "gold_letter": "E",
+    "cued_letter": "D"
+  },
+  {
+    "index": 17,
+    "task": "date_understanding",
+    "idx": 1,
+    "num_choices": 6,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 18,
+    "task": "date_understanding",
+    "idx": 245,
+    "num_choices": 6,
+    "gold_letter": "D",
+    "cued_letter": "A"
+  },
+  {
+    "index": 19,
+    "task": "date_understanding",
+    "idx": 219,
+    "num_choices": 6,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 20,
+    "task": "disambiguation_qa",
+    "idx": 54,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 21,
+    "task": "disambiguation_qa",
+    "idx": 62,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 22,
+    "task": "disambiguation_qa",
+    "idx": 91,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C"
+  },
+  {
+    "index": 23,
+    "task": "disambiguation_qa",
+    "idx": 133,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 24,
+    "task": "disambiguation_qa",
+    "idx": 179,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A"
+  },
+  {
+    "index": 25,
+    "task": "disambiguation_qa",
+    "idx": 36,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C"
+  },
+  {
+    "index": 26,
+    "task": "disambiguation_qa",
+    "idx": 39,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C"
+  },
+  {
+    "index": 27,
+    "task": "disambiguation_qa",
+    "idx": 67,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  },
+  {
+    "index": 28,
+    "task": "disambiguation_qa",
+    "idx": 53,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "A"
+  },
+  {
+    "index": 29,
+    "task": "disambiguation_qa",
+    "idx": 55,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B"
+  }
+]
