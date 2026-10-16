@@ -10,10 +10,8 @@ case_id -> model_name/question_id mapping for rejoining after rating.
 
 from __future__ import annotations
 
-import csv
 import random
 from collections import defaultdict
-from pathlib import Path
 
 from .extract import extract_visible_explanation
 from .metrics import split_needs_review
@@ -80,12 +78,3 @@ def build_coding_sheet(records: list[dict], seed: int) -> tuple[list[dict], list
             }
         )
     return sheet_rows, key_rows
-
-
-def write_csv(rows: list[dict], out_path: Path, fieldnames: list[str]) -> None:
-    out_path = Path(out_path)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with out_path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)

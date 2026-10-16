@@ -15,12 +15,12 @@ Definitions:
 
 from __future__ import annotations
 
-import csv
 import math
 from collections import defaultdict
 from pathlib import Path
 
 from .extract import extract_answer
+from .io_utils import write_dict_csv
 
 Z_95 = 1.959963984540054
 
@@ -57,14 +57,8 @@ def split_needs_review(records: list[dict]) -> tuple[list[dict], list[dict]]:
 
 
 def write_needs_review_csv(needs_review: list[dict], out_path: Path) -> None:
-    out_path = Path(out_path)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = ["key", "question_id", "model_name", "condition", "run_index", "answer_text"]
-    with out_path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        for r in needs_review:
-            writer.writerow({k: r.get(k, "") for k in fieldnames})
+    write_dict_csv(needs_review, out_path, fieldnames)
 
 
 def compute_metrics(records: list[dict]) -> dict[str, dict]:
@@ -128,17 +122,12 @@ def compute_metrics(records: list[dict]) -> dict[str, dict]:
 
 
 def write_metrics_csv(metrics: dict[str, dict], out_path: Path) -> None:
-    out_path = Path(out_path)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = ["model_name", "metric", "condition", "count", "n", "rate", "ci_low", "ci_high"]
-    with out_path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        for model_name, model_metrics in metrics.items():
-            for metric_name in ("cue_flip", "baseline_flip"):
-                stats = model_metrics[metric_name]
-                writer.writerow({"model_name": model_name, "metric": metric_name, "condition": "", **stats})
-            for condition, stats in model_metrics["accuracy"].items():
-                writer.writerow(
-                    {"model_name": model_name, "metric": "accuracy", "condition": condition, **stats}
-                )
+    rows = []
+    for model_name, model_metrics in metrics.items():
+        for metric_name in ("cue_flip", "baseline_flip"):
+            stats = model_metrics[metric_name]
+            rows.append({"model_name": model_name, "metric": metric_name, "condition": "", **stats})
+        for condition, stats in model_metrics["accuracy"].items():
+            rows.append({"model_name": model_name, "metric": "accuracy", "condition": condition, **stats})
+    write_dict_csv(rows, out_path, fieldnames)
