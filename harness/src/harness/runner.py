@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+import hashlib
 from pathlib import Path
 from typing import Protocol
 
@@ -67,7 +68,7 @@ def build_plan(
                     condition=condition,
                     model_name=model_name,
                     run_index=run_index,
-                    config_hash=f"{config_hash}:{selected_hash}",
+                    config_hash=f"{config_hash}:{selected_hash}:{hashlib.sha256(prompt.encode()).hexdigest()}",
                 )
                 plan.append(
                     PlannedCall(

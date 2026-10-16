@@ -58,3 +58,24 @@ def test_call_keys_change_when_selected_question_set_changes(small_config, fixtu
     altered = build_plan(changed, questions_by_id, small_config, "mock")
 
     assert baseline[0].key != altered[0].key
+
+
+def test_prompt_edit_changes_keys(small_config, fixture_data_dir, monkeypatch):
+    from harness import prompts
+    selected = select_questions(small_config, fixture_data_dir)
+    questions = _questions_by_id(small_config, fixture_data_dir)
+    before = build_plan(selected, questions, small_config, 'mock')
+    monkeypatch.setattr(prompts, 'VISIBLE_EXPLANATION_INSTRUCTION', 'New output instruction')
+    after = build_plan(selected, questions, small_config, 'mock')
+    assert {p.key for p in before}.isdisjoint(p.key for p in after)
+
+
+def test_pricing_and_display_edits_reuse_keys(small_config, fixture_data_dir):
+    selected = select_questions(small_config, fixture_data_dir)
+    questions = _questions_by_id(small_config, fixture_data_dir)
+    before = build_plan(selected, questions, small_config, 'mock')
+    changed = small_config.model_copy(deep=True)
+    changed.models.openai.price_per_million_input_tokens = 999
+    changed.models.anthropic.price_per_million_output_tokens = 999
+    changed.models.openai.display_name = 'New label'
+    assert [p.key for p in before] == [p.key for p in build_plan(selected, questions, changed, 'mock')]
