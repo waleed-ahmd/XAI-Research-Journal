@@ -100,7 +100,16 @@ class HarnessConfig(BaseModel):
                 "conditions": self.conditions,
                 "n_runs": self.n_runs,
                 "prompt_format": self.prompt_format.model_dump(),
-                "models": self.models.model_dump(),
+                "models": {
+                    name: model.model_dump(exclude={
+                        "display_name", "price_per_million_input_tokens",
+                        "price_per_million_output_tokens",
+                    })
+                    for name, model in (
+                        ("anthropic", self.models.anthropic),
+                        ("openai", self.models.openai),
+                    )
+                },
             },
             sort_keys=True,
         )

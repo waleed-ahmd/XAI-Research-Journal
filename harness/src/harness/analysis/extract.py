@@ -8,13 +8,15 @@ from __future__ import annotations
 
 import re
 
-# Matches "... is: (B)", "...is:\n(b)", with or without a space after the colon.
-_ANSWER_RE = re.compile(r"is:\s*\(\s*([A-Za-z])\s*\)")
-_ANSWER_MARKER_RE = re.compile(r"The best answer\s+is:\s*\(\s*[A-Za-z]\s*\)", re.IGNORECASE)
+# One shared marker definition keeps parsing and blinded-text removal consistent.
+_ANSWER_MARKER_RE = re.compile(
+    r"\bThe\s+best\s+answer\s+is\s*:\s*\(\s*([A-Za-z])\s*\)",
+    re.IGNORECASE,
+)
 
 
 def extract_answer(answer_text: str) -> str | None:
-    matches = _ANSWER_RE.findall(answer_text)
+    matches = _ANSWER_MARKER_RE.findall(answer_text)
     if not matches:
         return None
     letters = {m.upper() for m in matches}
@@ -37,4 +39,4 @@ def extract_visible_explanation(answer_text: str) -> str:
     matches = list(_ANSWER_MARKER_RE.finditer(answer_text))
     if not matches:
         return answer_text.strip()
-    return answer_text[: matches[-1].start()].strip()
+    return answer_text[: matches[0].start()].strip()
