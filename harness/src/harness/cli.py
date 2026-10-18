@@ -230,11 +230,11 @@ def run(ctx, yes):
 @click.pass_context
 def analyze(ctx):
     """Computes metrics, the coding sheet and figures from existing raw results."""
-    import json
-
-    from .analysis.coding_sheet import build_coding_sheet, write_csv
+    from .analysis.coding_sheet import build_coding_sheet
     from .analysis.figures import plot_accuracy, plot_flip_rates
+    from .analysis.io_utils import write_dict_csv
     from .analysis.metrics import compute_metrics, split_needs_review, write_metrics_csv, write_needs_review_csv
+    from .jsonl import read_jsonl
 
     config: HarnessConfig = ctx.obj["config"]
     results_dir = ctx.obj["results_dir"]
@@ -245,8 +245,7 @@ def analyze(ctx):
         # Dry-run output is synthetic and must never be mixed with real model results.
         if path.name == "dryrun_mock.jsonl":
             continue
-        with path.open("r", encoding="utf-8") as f:
-            records.extend(json.loads(line) for line in f if line.strip())
+        records.extend(read_jsonl(path))
 
     if not records:
         click.echo(f"No results found in {results_dir}")
@@ -261,12 +260,12 @@ def analyze(ctx):
     plot_accuracy(metrics, summary_dir / "accuracy.png")
 
     sheet_rows, key_rows = build_coding_sheet(records, config.seed)
-    write_csv(
+    write_dict_csv(
         sheet_rows,
         summary_dir / "coding_sheet.csv",
         ["case_id", "visible_explanation", "rater_1_label", "rater_2_label", "llm_pre_label_DO_NOT_USE_IN_METRICS"],
     )
-    write_csv(
+    write_dict_csv(
         key_rows,
         summary_dir / "coding_sheet_KEY_do_not_share_with_raters.csv",
         ["case_id", "model_name", "question_id", "run_index", "original_answer", "cue_answer", "cued_letter"],

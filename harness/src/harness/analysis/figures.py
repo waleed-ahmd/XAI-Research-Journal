@@ -12,6 +12,17 @@ import matplotlib.pyplot as plt  # noqa: E402
 IEEE_COLUMN_FIGSIZE = (3.45, 2.6)
 
 
+def _finish_bar_figure(fig, ax, models: list[str], ylabel: str, out_path: Path) -> None:
+    ax.set_xticks(range(len(models)))
+    ax.set_xticklabels(models, fontsize=7)
+    ax.set_ylabel(ylabel, fontsize=8)
+    ax.tick_params(labelsize=7)
+    ax.legend(fontsize=6)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=300)
+    plt.close(fig)
+
+
 def plot_flip_rates(metrics: dict[str, dict], out_path: Path) -> None:
     models = list(metrics.keys())
     cue_rates = [metrics[m]["cue_flip"]["rate"] for m in models]
@@ -51,14 +62,7 @@ def plot_flip_rates(metrics: dict[str, dict], out_path: Path) -> None:
         capsize=3,
         label="Baseline flip",
     )
-    ax.set_xticks(list(x))
-    ax.set_xticklabels(models, fontsize=7)
-    ax.set_ylabel("Flip rate", fontsize=8)
-    ax.tick_params(labelsize=7)
-    ax.legend(fontsize=6)
-    fig.tight_layout()
-    fig.savefig(out_path, dpi=300)
-    plt.close(fig)
+    _finish_bar_figure(fig, ax, models, "Flip rate", out_path)
 
 
 def plot_accuracy(metrics: dict[str, dict], out_path: Path) -> None:
@@ -71,11 +75,4 @@ def plot_accuracy(metrics: dict[str, dict], out_path: Path) -> None:
         rates = [metrics[m]["accuracy"].get(condition, {}).get("rate", 0.0) for m in models]
         offsets = [i - 0.4 + ci * width + width / 2 for i in range(len(models))]
         ax.bar(offsets, rates, width, label=condition)
-    ax.set_xticks(range(len(models)))
-    ax.set_xticklabels(models, fontsize=7)
-    ax.set_ylabel("Accuracy", fontsize=8)
-    ax.tick_params(labelsize=7)
-    ax.legend(fontsize=6)
-    fig.tight_layout()
-    fig.savefig(out_path, dpi=300)
-    plt.close(fig)
+    _finish_bar_figure(fig, ax, models, "Accuracy", out_path)

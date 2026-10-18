@@ -17,10 +17,8 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from typing import Any
 
-from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
-
 from ..config import OpenAIModelConfig
-from .base import ProviderResult, ReasoningVisibility
+from .base import ProviderResult, ReasoningVisibility, retrying_call
 from .rate_limit import RateLimiter
 
 
@@ -98,19 +96,12 @@ class OpenAIProvider:
 
         request_params = build_request(self.model_cfg, prompt)
 
-        @retry(
-            retry=retry_if_exception_type(
-                (openai.APIStatusError, openai.APIConnectionError)
-            ),
-            stop=stop_after_attempt(self._max_attempts),
-            wait=wait_exponential(multiplier=1, min=1, max=60),
-            reraise=True,
+        response = retrying_call(
+            lambda: self._client.responses.create(**request_params),
+            rate_limiter=self._rate_limiter,
+            exception_types=(openai.APIStatusError, openai.APIConnectionError),
+            max_attempts=self._max_attempts,
         )
-        def _do_call():
-            self._rate_limiter.wait()
-            return self._client.responses.create(**request_params)
-
-        response = _do_call()
         raw_response = response.model_dump()
         answer_text, reasoning_text, visibility = parse_openai_response(raw_response)
 
