@@ -1,0 +1,47 @@
+# Builds the short paper PDF so nobody needs LaTeX installed locally.
+# - Every push/PR touching shortpaper/: the PDF is attached to the run as an
+#   artifact (Actions tab -> run -> Artifacts -> short-paper).
+# - Pushes to main also replace the "latest-draft" pre-release, so the README
+#   can link to a fixed URL for the current draft.
+name: Build short paper
+
+on:
+  push:
+    paths: ["shortpaper/**", ".github/workflows/paper.yml"]
+  pull_request:
+    paths: ["shortpaper/**", ".github/workflows/paper.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: shortpaper
+          root_file: main.tex
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-paper
+          path: shortpaper/main.pdf
+
+      - name: Publish latest-draft release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp shortpaper/main.pdf group7-short-paper.pdf
+          gh release delete latest-draft --cleanup-tag --yes || true
+          gh release create latest-draft group7-short-paper.pdf \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "Short paper: latest draft" \
+            --notes "Built automatically from ${GITHUB_SHA::7}. Not the submitted version."
