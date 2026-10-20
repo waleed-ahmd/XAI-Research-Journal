@@ -1,10 +1,11 @@
-# Group 7 extended BBH evaluation.
+# Group 7 main study: accumulated 270-question BBH evaluation.
 #
-# This is a separate protocol from config.yaml. It preserves the 60 questions
+# Main study configuration (filename retained for command compatibility).
+# It preserves the 60 questions
 # already used in Experiments 01 and 02, then fills the remaining task quotas
 # to create a balanced 270-question set across the 13 BBH tasks used by Turpin.
-# Do not replace the original 30-question config with this file: the original
-# experiment remains a separate, already-completed study.
+# config.yaml retains the original 30-question pilot protocol for provenance.
+# The main study combines both completed pilot cohorts with 210 new questions.
 
 protocol_version: "2026-10-20-balanced-all-turpin-bbh-v1"
 seed: 20261020

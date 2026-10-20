@@ -1,4 +1,4 @@
-# Experiment results and local run state
+# Main-study results and local run state
 
 Keep the two historical experiments separate from new Batch responses. Raw
 responses and Batch manifests are local, gitignored artifacts; preserve backups
@@ -9,9 +9,10 @@ because stochastic model answers cannot be reproduced exactly by rerunning them.
 | `raw/` | Newly collected model responses |
 | `historical/` | Imported historical responses, 180 per provider |
 | `batches/` | Submission reservations, provider IDs, payloads and errors |
-| `extended-summary/` | Suggested location for combined extension analysis |
+| `extended-summary/` | Suggested location for combined main-study analysis |
 
-The historical 60 questions produced 360 responses: 180 from Experiment 01
+The main study targets 270 accumulated questions and 1,620 responses. Its
+historical 60 pilot questions produced 360 responses: 180 from Experiment 01
 (Temporal Sequences) and 180 from Experiment 02 (three task types). The exact
 content fingerprints, old cue letters and generation settings are recorded in
 `harness/data/completed_question_ids.json`.

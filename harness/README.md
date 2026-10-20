@@ -8,8 +8,14 @@ accuracy and stability alone do not prove explanation faithfulness.
 
 ## Protocols and project state
 
-- `config.yaml`: original 30-question Temporal Sequences protocol.
-- `config.extended.yaml`: optional 270-question exploratory extension: 30 Temporal
+The main study now targets 270 accumulated questions. The two earlier experiments
+are pilots that informed the broader design and supply 60 completed questions.
+This pivot and its rationale are recorded in [the research journal](../journal/2026-10-20.md).
+The filename `config.extended.yaml` is retained for compatibility; it is the main
+study configuration, not a supplementary experiment.
+
+- `config.yaml`: historical 30-question Temporal Sequences pilot protocol.
+- `config.extended.yaml`: main 270-question study configuration: 30 Temporal
   Sequences questions and 20 from each of the other 12 released task types.
 - Each question has three conditions and one run per model. Reusing 60 historical
   questions leaves 210 new questions: 630 new requests per provider, 1,260 total.
@@ -21,7 +27,7 @@ accuracy and stability alone do not prove explanation faithfulness.
 Questions come from the [released Turpin dataset](https://github.com/milesaturpin/cot-unfaithfulness/tree/main/data/bbh).
 The correctly spelled task name is `causal_judgment`. Both models use the same
 fixed selection. Historical cue letters are preserved; newly sampled questions
-use deterministic wrong letters from the extension seed.
+use deterministic wrong letters from the main-study seed.
 
 ## Setup
 
@@ -38,7 +44,7 @@ Keep your existing `harness/.env`, or copy `.env.example` if you have not create
 one. The CLI loads it automatically without overriding exported variables. Never
 commit API keys. Updating dependencies does not require deleting the environment.
 
-## Recommended extension workflow
+## Main-study workflow
 
 Run these commands from `harness/` with the virtual environment activated.
 
@@ -61,7 +67,7 @@ Selections contain content fingerprints so duplicate source `idx` values do not
 resolve to the wrong question. A metadata sidecar records selection settings and
 historical cue provenance. Both files belong together and should be committed.
 
-Existing selections are never overwritten. If you generated an extension with
+Existing selections are never overwritten. If you generated a selection with
 the earlier implementation, use a new filename: it did not persist fingerprints.
 Do not change the frozen selection after submitting requests.
 
@@ -77,7 +83,7 @@ The default historical manifest reserves 60 known questions only when their
 fingerprints and recorded provider request settings match this protocol.
 Completed and pending calls are excluded individually, so partial failures do
 not suppress other conditions or the other model. A fresh smoke run plans 60
-calls per provider, 120 total. A fresh full extension plans 630 per provider.
+calls per provider, 120 total. A fresh full main-study submission plans 630 per provider.
 
 The configured 260 input / 500 output tokens are **planning assumptions**, not
 measured bounds for the broader tasks. Missing or invalid pricing blocks paid
