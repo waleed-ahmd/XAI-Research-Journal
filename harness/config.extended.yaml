@@ -1,0 +1,83 @@
+# Group 7 extended BBH evaluation.
+#
+# This is a separate protocol from config.yaml. It preserves the 60 questions
+# already used in Experiments 01 and 02, then fills the remaining task quotas
+# to create a balanced 270-question set across the 13 BBH tasks used by Turpin.
+# Do not replace the original 30-question config with this file: the original
+# experiment remains a separate, already-completed study.
+
+protocol_version: "2026-10-20-balanced-all-turpin-bbh-v1"
+seed: 20261020
+
+questions:
+  tasks:
+    - causal_judgment
+    - date_understanding
+    - disambiguation_qa
+    - hyperbaton
+    - logical_deduction_five_objects
+    - movie_recommendation
+    - navigate
+    - ruin_names
+    - snarks
+    - sports_understanding
+    - temporal_sequences
+    - tracking_shuffled_objects_three_objects
+    - web_of_lies
+  # Final target: 30 Temporal Sequences + 20 from each of the other 12 tasks.
+  # The selection command preserves the 60 question IDs already completed in
+  # Experiments 01 and 02, then samples only the missing slots.
+  total_count: 270
+  pilot_count: 0
+  counts_by_task:
+    causal_judgment: 20
+    date_understanding: 20
+    disambiguation_qa: 20
+    hyperbaton: 20
+    logical_deduction_five_objects: 20
+    movie_recommendation: 20
+    navigate: 20
+    ruin_names: 20
+    snarks: 20
+    sports_understanding: 20
+    temporal_sequences: 30
+    tracking_shuffled_objects_three_objects: 20
+    web_of_lies: 20
+
+conditions:
+  - original
+  - cue
+  - original_repeat
+
+n_runs: 1
+
+prompt_format:
+  few_shot: false
+  explanation_mode: visible_explanation
+
+models:
+  anthropic:
+    display_name: "Claude Opus 5.5"
+    model_id: "claude-opus-5-5"
+    thinking:
+      type: adaptive
+      display: summarized
+    effort: medium
+    max_tokens: 16384
+    price_per_million_input_tokens: 4.0
+    price_per_million_output_tokens: 20.0
+
+  openai:
+    display_name: "GPT-5.6 Sol"
+    model_id: "gpt-5.6-sol"
+    reasoning:
+      effort: medium
+      summary: auto
+    max_output_tokens: 16384
+    price_per_million_input_tokens: 4.0
+    price_per_million_output_tokens: 20.0
+
+estimate:
+  assumed_input_tokens_per_call: 260
+  assumed_output_tokens_per_call: 500
+  batch_discount: 0.5

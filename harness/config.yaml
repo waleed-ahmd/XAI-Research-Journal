@@ -90,3 +90,4 @@ estimate:
   # update this from the pilot's real responses before trusting `estimate` for a
   # full run.
   assumed_output_tokens_per_call: 500
+  batch_discount: 0.5 # official Batch API discount; see harness/README.md

@@ -8,21 +8,39 @@ the caller explicitly confirming (--yes, or an interactive y/N prompt).
 from __future__ import annotations
 
 from pathlib import Path
+from datetime import datetime
+import json
+from functools import wraps
 
 import click
 from dotenv import load_dotenv
 
 from .config import DEFAULT_CONFIG_PATH, HarnessConfig, load_config
-from .data.loader import load_all_questions
+from .data.loader import load_all_questions, question_index
 from .data.selection import (
     load_selected_questions,
     validate_saved_selection,
     selection_settings,
     select_questions,
+    select_questions_balanced,
+    question_ids_from_results,
+    question_fingerprints_from_results,
+    question_ids_from_manifest,
+    question_fingerprints_from_manifest,
     write_selected_questions,
 )
 from .providers.mock import MockProvider
 from .runner import build_plan, load_existing_keys, run_plan
+from .batch import (
+    anthropic_batch_status,
+    collect_anthropic_batch,
+    collect_openai_batch,
+    load_manifest,
+    openai_batch_status,
+    pending_batch_keys,
+    submit_anthropic_batch,
+    submit_openai_batch,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = ROOT / "data" / "bbh"
@@ -33,7 +51,7 @@ DEFAULT_SUMMARY_DIR = ROOT / "results" / "summary"
 
 def _questions_by_id(config: HarnessConfig, data_dir: Path) -> dict:
     questions = load_all_questions(config.questions.tasks, data_dir)
-    return {q.question_id: q for q in questions}
+    return question_index(questions)
 
 
 def _get_or_select_questions(config: HarnessConfig, data_dir: Path, selected_path: Path):
@@ -44,6 +62,11 @@ def _get_or_select_questions(config: HarnessConfig, data_dir: Path, selected_pat
         except ValueError as exc:
             raise click.ClickException(str(exc)) from exc
         return selected
+    if config.questions.counts_by_task is not None:
+        raise click.ClickException(
+            "This config requires a balanced fixed selection. Run `select-extended` first "
+            "with a dedicated --selected-path."
+        )
     selected = select_questions(config, data_dir)
     write_selected_questions(selected, selected_path)
     import json
@@ -54,7 +77,7 @@ def _get_or_select_questions(config: HarnessConfig, data_dir: Path, selected_pat
     return selected
 
 
-def _estimate_cost(config: HarnessConfig, n_calls_per_model: int) -> str:
+def _estimate_cost(config: HarnessConfig, n_calls_per_model: int, *, batch: bool = False) -> str:
     lines = []
     for model_key, model_cfg in (
         ("anthropic", config.models.anthropic),
@@ -71,6 +94,8 @@ def _estimate_cost(config: HarnessConfig, n_calls_per_model: int) -> str:
         in_tok = config.estimate.assumed_input_tokens_per_call * n_calls_per_model
         out_tok = config.estimate.assumed_output_tokens_per_call * n_calls_per_model
         cost = (in_tok / 1_000_000) * in_price + (out_tok / 1_000_000) * out_price
+        if batch:
+            cost *= config.estimate.batch_discount
         lines.append(
             f"  {model_key} ({model_cfg.display_name}, {model_cfg.model_id}): "
             f"{n_calls_per_model} calls, ~${cost:.2f} "
@@ -111,6 +136,46 @@ def fetch_data(ctx):
     config: HarnessConfig = ctx.obj["config"]
     fetch_all(config.questions.tasks, ctx.obj["data_dir"])
     click.echo(f"Fetched data for tasks: {', '.join(config.questions.tasks)}")
+
+
+@main.command("select-extended")
+@click.option("--completed-manifest", type=click.Path(path_type=Path), default=ROOT / "data" / "completed_question_ids.json")
+@click.pass_context
+def select_extended(ctx, completed_manifest):
+    """Create the balanced 270-question extension without duplicating the 60 completed items."""
+    config: HarnessConfig = ctx.obj["config"]
+    if config.questions.counts_by_task is None:
+        raise click.ClickException("select-extended requires questions.counts_by_task in the config")
+    selected_path = ctx.obj["selected_path"]
+    if selected_path.exists():
+        raise click.ClickException(
+            f"{selected_path} already exists. Choose a new --selected-path; existing selections are never overwritten."
+        )
+    existing = question_ids_from_results(ctx.obj["results_dir"])
+    existing |= question_ids_from_manifest(completed_manifest)
+    fingerprints = question_fingerprints_from_results(ctx.obj["results_dir"])
+    fingerprints.update(question_fingerprints_from_manifest(completed_manifest))
+    historical_questions = json.loads(completed_manifest.read_text()).get("questions", {}) if completed_manifest.exists() else {}
+    historical_cues = {qid: row["cued_letter"] for qid, row in historical_questions.items() if row.get("cued_letter")}
+    try:
+        selected = select_questions_balanced(
+            config, ctx.obj["data_dir"], existing_question_ids=existing,
+            existing_question_fingerprints=fingerprints,
+            existing_question_cues=historical_cues,
+        )
+    except (ValueError, FileNotFoundError) as exc:
+        raise click.ClickException(str(exc)) from exc
+    write_selected_questions(selected, selected_path)
+    Path(str(selected_path) + ".metadata.json").write_text(
+        json.dumps({**selection_settings(config), "historical_questions": historical_questions}, indent=2) + "\n", encoding="utf-8"
+    )
+    from collections import Counter
+    counts = Counter(s.task for s in selected)
+    preserved = sum(1 for s in selected if f"{s.task}:{s.idx}" in existing)
+    click.echo(f"Wrote {len(selected)} selected questions to {selected_path}")
+    click.echo(f"Preserved {preserved} previously completed question IDs; filled {len(selected) - preserved} new slots.")
+    for task in config.questions.tasks:
+        click.echo(f"  {task}: {counts[task]}")
 
 
 @main.command("estimate")
@@ -226,9 +291,239 @@ def run(ctx, yes):
     )
 
 
-@main.command("analyze")
+def _batch_lock(callback):
+    @wraps(callback)
+    def locked(ctx, *args, **kwargs):
+        import fcntl
+        directory = ctx.obj["results_dir"].parent / "batches"
+        directory.mkdir(parents=True, exist_ok=True)
+        with (directory / ".operation.lock").open("a") as handle:
+            try:
+                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError as exc:
+                raise click.ClickException("Another batch operation is running; wait for it to finish.") from exc
+            return callback(ctx, *args, **kwargs)
+    return locked
+
+
+def _batch_cost(config, model_name, n_calls):
+    import math
+    cfg = getattr(config.models, model_name)
+    if not n_calls:
+        return 0.0
+    prices = (cfg.price_per_million_input_tokens, cfg.price_per_million_output_tokens)
+    if any(p is None or not math.isfinite(p) or p < 0 for p in prices):
+        raise click.ClickException(f"{model_name}: valid input/output prices are required before estimating or submitting.")
+    estimate = config.estimate
+    return n_calls * (estimate.assumed_input_tokens_per_call * prices[0] + estimate.assumed_output_tokens_per_call * prices[1]) / 1_000_000 * estimate.batch_discount
+
+
+def _build_new_batch_plans(ctx, config, selected, questions_by_id, model_names, completed_manifest, limit_new_questions=None):
+    batch_dir = ctx.obj["results_dir"].parent / "batches"
+    completed_question_ids = question_ids_from_manifest(completed_manifest)
+    historical_fingerprints = question_fingerprints_from_manifest(completed_manifest)
+    historical = json.loads(completed_manifest.read_text()) if completed_manifest.exists() else {}
+    from .prompts import VISIBLE_EXPLANATION_INSTRUCTION, SUGGESTED_ANSWER_TEMPLATE
+    from .providers.openai_provider import build_request as openai_request
+    from .providers.anthropic_provider import build_request as anthropic_request
+    new_plans: dict[str, list] = {}
+    for name in model_names:
+        plan = build_plan(selected, questions_by_id, config, name)
+        existing = load_existing_keys(ctx.obj["results_dir"] / f"{name}.jsonl")
+        builder = openai_request if name == "openai" else anthropic_request
+        request = builder(getattr(config.models, name), "")
+        settings = {k: v for k, v in request.items() if k not in ("input", "messages")}
+        historical_compatible = (settings == historical.get("request_settings", {}).get(name)
+                                 and VISIBLE_EXPLANATION_INSTRUCTION == historical.get("output_instruction")
+                                 and SUGGESTED_ANSWER_TEMPLATE == historical.get("cue_template"))
+        pending = pending_batch_keys(batch_dir, name)
+        new_plan = [
+            pc for pc in plan
+            if pc.key not in existing
+            and pc.key not in pending
+            and not (historical_compatible and pc.question.source_question_id in completed_question_ids
+                     and pc.question.fingerprint == historical_fingerprints.get(pc.question.source_question_id)
+                     and pc.condition in historical.get("conditions", []) and pc.run_index in historical.get("run_indices", []))
+        ]
+        if limit_new_questions is not None:
+            allowed_ids = []
+            seen_ids = set()
+            for pc in new_plan:
+                qid = pc.question.question_id
+                if qid not in seen_ids:
+                    seen_ids.add(qid)
+                    allowed_ids.append(qid)
+                if len(allowed_ids) >= limit_new_questions:
+                    break
+            allowed = set(allowed_ids)
+            new_plan = [pc for pc in new_plan if pc.question.question_id in allowed]
+        new_plans[name] = new_plan
+    return new_plans
+
+
+@main.command("batch-estimate")
+@click.option("--model", "model_name", type=click.Choice(["both", "anthropic", "openai"]), default="both", show_default=True)
+@click.option("--completed-manifest", type=click.Path(path_type=Path), default=ROOT / "data" / "completed_question_ids.json", help="Question IDs from earlier completed experiments to exclude.")
+@click.option("--limit-new-questions", type=click.IntRange(min=1), default=None, help="Estimate only the first N new question groups.")
+@click.option("--openai-budget", type=click.FloatRange(min=0), default=None)
+@click.option("--anthropic-budget", type=click.FloatRange(min=0), default=None)
 @click.pass_context
-def analyze(ctx):
+def batch_estimate(ctx, model_name, completed_manifest, limit_new_questions, openai_budget, anthropic_budget):
+    """Estimate a Batch submission without contacting either provider."""
+    config: HarnessConfig = ctx.obj["config"]
+    selected = _get_or_select_questions(config, ctx.obj["data_dir"], ctx.obj["selected_path"])
+    questions_by_id = _questions_by_id(config, ctx.obj["data_dir"])
+    model_names = ["anthropic", "openai"] if model_name == "both" else [model_name]
+    new_plans = _build_new_batch_plans(
+        ctx, config, selected, questions_by_id, model_names, completed_manifest, limit_new_questions
+    )
+    for name in model_names:
+        cost = _batch_cost(config, name, len(new_plans[name]))
+        budget = anthropic_budget if name == "anthropic" else openai_budget
+        budget_text = f" vs estimated-spend limit ${budget:.2f}" if budget is not None else ""
+        click.echo(f"{name}: {len(new_plans[name])} new calls, estimated Batch cost ${cost:.2f}{budget_text}")
+    click.echo("Token assumptions are not a maximum-spend guarantee; calibrate with a small batch.")
+    click.echo("No provider batch was submitted.")
+
+
+@main.command("batch-submit")
+@click.option("--model", "model_name", type=click.Choice(["both", "anthropic", "openai"]), default="both", show_default=True)
+@click.option("--openai-budget", type=click.FloatRange(min=0), default=None, help="Maximum estimated OpenAI spend for this submission.")
+@click.option("--anthropic-budget", type=click.FloatRange(min=0), default=None, help="Maximum estimated Anthropic spend for this submission.")
+@click.option("--completed-manifest", type=click.Path(path_type=Path), default=ROOT / "data" / "completed_question_ids.json", help="Question IDs from earlier completed experiments to exclude from new paid batches.")
+@click.option("--limit-new-questions", type=click.IntRange(min=1), default=None, help="Submit at most this many new question groups in this batch. Useful for a small smoke batch.")
+@click.option("--yes", is_flag=True, help="Skip the interactive confirmation prompt.")
+@click.pass_context
+@_batch_lock
+def batch_submit(ctx, model_name, openai_budget, anthropic_budget, completed_manifest, limit_new_questions, yes):
+    """Submit missing calls, excluding completed and reserved request keys."""
+    config: HarnessConfig = ctx.obj["config"]
+    data_dir = ctx.obj["data_dir"]
+    selected = _get_or_select_questions(config, data_dir, ctx.obj["selected_path"])
+    questions_by_id = _questions_by_id(config, data_dir)
+    model_names = ["anthropic", "openai"] if model_name == "both" else [model_name]
+    new_plans = _build_new_batch_plans(
+        ctx, config, selected, questions_by_id, model_names, completed_manifest, limit_new_questions
+    )
+    batch_dir = ctx.obj["results_dir"].parent / "batches"
+    total_new_calls = 0
+    for name in model_names:
+        new_plan = new_plans[name]
+        total_new_calls += len(new_plan)
+        click.echo(f"{name}: {len(new_plan)} new calls (completed, submitted, or reserved earlier calls are excluded)")
+
+        budget = anthropic_budget if name == "anthropic" else openai_budget
+        est = _batch_cost(config, name, len(new_plan))
+        click.echo(f"  estimated Batch cost: ${est:.2f}")
+        if budget is not None and est > budget:
+            raise click.ClickException(f"{name} estimate ${est:.2f} exceeds estimated-spend limit ${budget:.2f}. No batches submitted.")
+
+    if total_new_calls == 0:
+        click.echo("Nothing new to submit.")
+        return
+    click.echo("\nBatch API estimate (per provider):")
+    click.echo("Based on configured token assumptions, not a maximum-spend guarantee.")
+    if not yes and not click.confirm(
+        f"\nSubmit {total_new_calls} real requests as asynchronous batches?", default=False
+    ):
+        click.echo("Aborted. No batches submitted.")
+        return
+
+    for name in model_names:
+        plan = new_plans[name]
+        if not plan:
+            continue
+        results_path = ctx.obj["results_dir"] / f"{name}.jsonl"
+        if name == "anthropic":
+            manifest = submit_anthropic_batch(
+                plan, config.models.anthropic, batch_dir=batch_dir, results_path=results_path,
+                protocol_version=config.protocol_version,
+            )
+            click.echo(f"anthropic batch submitted: {manifest['batch_id']} ({len(plan)} requests)")
+        else:
+            manifest = submit_openai_batch(
+                plan, config.models.openai, batch_dir=batch_dir, results_path=results_path,
+                protocol_version=config.protocol_version,
+            )
+            click.echo(f"openai batch submitted: {manifest['batch_id']} ({len(plan)} requests)")
+
+
+@main.command("batch-status")
+@click.option("--model", "model_name", type=click.Choice(["both", "anthropic", "openai"]), default="both", show_default=True)
+@click.pass_context
+@_batch_lock
+def batch_status(ctx, model_name):
+    """Refresh and print local batch manifest statuses."""
+    batch_dir = ctx.obj["results_dir"].parent / "batches"
+    providers = ["anthropic", "openai"] if model_name == "both" else [model_name]
+    manifests = []
+    for provider in providers:
+        manifests.extend(sorted(batch_dir.glob(f"{provider}-*.json")))
+    if not manifests:
+        click.echo(f"No batch manifests found in {batch_dir}")
+        return
+    for path in manifests:
+        manifest = load_manifest(path)
+        if not manifest.get("batch_id"):
+            click.echo(f"{path.name}: submission outcome unknown; reconcile with the provider before retrying.")
+            continue
+        try:
+            status = (
+                anthropic_batch_status(manifest["batch_id"]) if manifest["provider"] == "anthropic"
+                else openai_batch_status(manifest["batch_id"])
+            )
+            manifest["status"] = status.get("processing_status", status.get("status", "unknown"))
+            if status.get("request_counts") is not None:
+                manifest["request_counts"] = status["request_counts"]
+            manifest["last_checked_at"] = datetime.now().astimezone().isoformat()
+            path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+        except Exception as exc:
+            click.echo(f"{manifest['provider']} {manifest['batch_id']}: status lookup failed: {exc}")
+            continue
+        counts = manifest.get("request_counts", {})
+        progress = ""
+        if counts:
+            progress = f" completed={counts.get('completed', counts.get('succeeded', '?'))} failed={counts.get('failed', counts.get('errored', '?'))} total={counts.get('total', '?')}"
+        click.echo(f"{manifest['provider']} {manifest['batch_id']}: {manifest['status']}{progress}")
+
+
+@main.command("batch-collect")
+@click.option("--model", "model_name", type=click.Choice(["both", "anthropic", "openai"]), default="both", show_default=True)
+@click.option("--batch-id", default=None, help="Collect one specific provider batch; otherwise collect every completed local batch.")
+@click.pass_context
+@_batch_lock
+def batch_collect(ctx, model_name, batch_id):
+    """Collect completed batch results into the normal raw JSONL files."""
+    batch_dir = ctx.obj["results_dir"].parent / "batches"
+    providers = ["anthropic", "openai"] if model_name == "both" else [model_name]
+    manifests = []
+    for provider in providers:
+        manifests.extend(sorted(batch_dir.glob(f"{provider}-*.json")))
+    if batch_id:
+        manifests = [p for p in manifests if load_manifest(p).get("batch_id") == batch_id]
+    if not manifests:
+        click.echo("No matching local batch manifests found.")
+        return
+    for path in manifests:
+        manifest = load_manifest(path)
+        if not manifest.get("batch_id"):
+            click.echo(f"{path.name}: submission outcome unknown; reconcile with the provider before retrying.")
+            continue
+        if manifest.get("collected_at"):
+            click.echo(f"{manifest['provider']} {manifest['batch_id']}: already collected")
+            continue
+        if manifest["provider"] == "anthropic":
+            summary = collect_anthropic_batch(manifest)
+        else:
+            summary = collect_openai_batch(manifest)
+        click.echo(f"{manifest['provider']} {manifest['batch_id']}: {summary}")
+
+
+@main.command("analyze")
+@click.option("--historical-dir", type=click.Path(path_type=Path, exists=True, file_okay=False), default=None, help="Combine a separate historical response directory with this run.")
+@click.option("--summary-dir", type=click.Path(path_type=Path), default=None, help="Separate destination for this experiment’s analysis outputs.")
+@click.pass_context
+def analyze(ctx, historical_dir, summary_dir):
     """Computes metrics, the coding sheet and figures from existing raw results."""
     from .analysis.coding_sheet import build_coding_sheet
     from .analysis.figures import plot_accuracy, plot_flip_rates
@@ -238,14 +533,30 @@ def analyze(ctx):
 
     config: HarnessConfig = ctx.obj["config"]
     results_dir = ctx.obj["results_dir"]
-    summary_dir = DEFAULT_SUMMARY_DIR
+    summary_dir = summary_dir or DEFAULT_SUMMARY_DIR
 
-    records: list[dict] = []
-    for path in sorted(results_dir.glob("*.jsonl")):
-        # Dry-run output is synthetic and must never be mixed with real model results.
-        if path.name == "dryrun_mock.jsonl":
-            continue
-        records.extend(read_jsonl(path))
+    records_by_key = {}
+    identities = {}
+    directories = [results_dir] + ([historical_dir] if historical_dir else [])
+    for directory in directories:
+        for path in sorted(directory.glob("*.jsonl")):
+            if path.name == "dryrun_mock.jsonl":
+                continue
+            for record in read_jsonl(path):
+                key = record.get("key")
+                if key is None:
+                    # Legacy fixtures without a key still get duplicate identity checks.
+                    key = (record["model_name"], record["question_id"], record["condition"], record["run_index"])
+                if key in records_by_key:
+                    if records_by_key[key] != record:
+                        raise click.ClickException(f"Conflicting saved response key in {path}")
+                    continue
+                identity = (record["model_name"], record["question_id"], record["condition"], record["run_index"])
+                if identity in identities:
+                    raise click.ClickException(f"Duplicate response identity in {path}: {identity}")
+                identities[identity] = key
+                records_by_key[key] = record
+    records = list(records_by_key.values())
 
     if not records:
         click.echo(f"No results found in {results_dir}")

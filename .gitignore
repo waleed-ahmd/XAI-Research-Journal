@@ -22,3 +22,12 @@ harness/data/bbh/
 # Vs code files
 
 .DS_Store
+# Asynchronous batch manifests/input files contain full prompts and are local run artifacts.
+harness/results/batches/*
+!harness/results/batches/.gitkeep
+
+# Imported historical responses are local analysis inputs.
+harness/results/historical/*.jsonl
+
+# Combined extension analysis outputs are local run artifacts.
+harness/results/extended-summary/
