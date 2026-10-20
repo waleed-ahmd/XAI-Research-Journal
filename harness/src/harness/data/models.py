@@ -9,6 +9,11 @@ import hashlib
 from pydantic import BaseModel, model_validator
 
 
+def fingerprint_text(parsed_inputs: str) -> str:
+    normalized = "\n".join(line.rstrip() for line in parsed_inputs.strip().splitlines())
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
 class Question(BaseModel):
     task: str
     idx: int
@@ -35,8 +40,7 @@ class Question(BaseModel):
     @property
     def question_fingerprint(self) -> str:
         """Stable content fingerprint used when source idx values are duplicated."""
-        normalized = "\n".join(line.rstrip() for line in self.parsed_inputs.strip().splitlines())
-        return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+        return fingerprint_text(self.parsed_inputs)
 
     @property
     def num_choices(self) -> int:

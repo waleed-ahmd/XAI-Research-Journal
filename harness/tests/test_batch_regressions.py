@@ -230,3 +230,30 @@ def test_anthropic_submission_timeout_also_stays_reserved(tmp_path,small_config,
     with pytest.raises(TimeoutError):
         submit_anthropic_batch(plan,small_config.models.anthropic,batch_dir=tmp_path,results_path=tmp_path/'raw/results.jsonl',protocol_version='v1',client=stub)
     assert pending_batch_keys(tmp_path,'anthropic')=={plan[0].key}
+
+
+def test_analysis_rejects_historical_and_fingerprinted_duplicate(tmp_path):
+    from harness.analysis.records import load_analysis_records
+    from harness.data.models import fingerprint_text
+    from harness.prompts import VISIBLE_EXPLANATION_INSTRUCTION
+    q='The question and choices'
+    fingerprint=fingerprint_text(q)
+    original=dict(key='old',model_name='openai',task='task',question_id='task:0',condition='original',run_index=0,gold_letter='A',cued_letter='B',prompt=q+'\n\n'+VISIBLE_EXPLANATION_INSTRUCTION,answer_text='The best answer is: (A)')
+    duplicate={**original,'key':'new','question_id':'task:0:'+fingerprint,'question_fingerprint':fingerprint}
+    (tmp_path/'openai.jsonl').write_text(json.dumps(original)+'\n'+json.dumps(duplicate)+'\n')
+    with pytest.raises(ValueError,match='Duplicate response identity'):
+        load_analysis_records([tmp_path])
+
+
+def test_analysis_pairs_historical_and_content_ids_without_touching_raw(tmp_path):
+    from harness.analysis.records import load_analysis_records
+    from harness.analysis.metrics import compute_metrics
+    from harness.data.models import fingerprint_text
+    from harness.prompts import VISIBLE_EXPLANATION_INSTRUCTION
+    q='The question and choices'; fingerprint=fingerprint_text(q)
+    original=dict(key='old',model_name='openai',task='task',question_id='task:0',condition='original',run_index=0,gold_letter='A',cued_letter='B',prompt=q+'\n\n'+VISIBLE_EXPLANATION_INSTRUCTION,answer_text='The best answer is: (A)')
+    cue={**original,'key':'new','question_id':'task:0:'+fingerprint,'question_fingerprint':fingerprint,'condition':'cue','answer_text':'The best answer is: (B)'}
+    path=tmp_path/'openai.jsonl'; text=json.dumps(original)+'\n'+json.dumps(cue)+'\n'; path.write_text(text)
+    records=load_analysis_records([tmp_path])
+    assert compute_metrics(records)['openai']['cue_flip']['count']==1
+    assert path.read_text()==text

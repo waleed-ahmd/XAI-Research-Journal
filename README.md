@@ -29,7 +29,7 @@ The motivation is broader evidence: the first pilot had perfect accuracy and
 no cue flips; the second produced one GPT cue flip. Expanding the task coverage
 allows us to examine whether that limited cue sensitivity holds across different
 reasoning tasks. The pivot was informed by pilot outcomes and is documented in
-the [20 October journal entry](journal/2026-10-20.md). Report the pilot cohorts
+the [20 October journal entry](Journal/2026-10-20.md). Report the pilot cohorts
 and new questions separately as well as in the accumulated results, so the
 change in scope remains transparent.
 
@@ -50,6 +50,13 @@ Use [the historical import script](harness/scripts/restore_historical_results.sh
 to recover the existing 360 responses into a separate local directory. The
 [results guide](harness/results/README.md) describes the live, historical and
 analysis outputs. Raw data and Batch manifests should be backed up locally.
+
+## Project organisation
+
+Experiment code, configuration, selections, tests and run outputs live under
+`harness/`. Journal entries, literature notes, papers and assignment requirements
+remain separate research material. The [architecture guide](harness/ARCHITECTURE.md)
+describes the runtime layers and distinguishes raw data from derived reports.
 
 ## Research record
 

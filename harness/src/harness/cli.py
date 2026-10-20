@@ -37,7 +37,6 @@ from .batch import (
     collect_openai_batch,
     load_manifest,
     openai_batch_status,
-    pending_batch_keys,
     submit_anthropic_batch,
     submit_openai_batch,
 )
@@ -69,7 +68,6 @@ def _get_or_select_questions(config: HarnessConfig, data_dir: Path, selected_pat
         )
     selected = select_questions(config, data_dir)
     write_selected_questions(selected, selected_path)
-    import json
     Path(str(selected_path) + ".metadata.json").write_text(
         json.dumps(selection_settings(config), indent=2) + "\n"
     )
@@ -99,9 +97,9 @@ def _estimate_cost(config: HarnessConfig, n_calls_per_model: int, *, batch: bool
         lines.append(
             f"  {model_key} ({model_cfg.display_name}, {model_cfg.model_id}): "
             f"{n_calls_per_model} calls, ~${cost:.2f} "
-            f"(assumes {config.estimate.assumed_input_tokens_per_call} in [measured from "
-            f"real prompts] / {config.estimate.assumed_output_tokens_per_call} out "
-            f"[unmeasured guess] tokens/call — see harness/config.yaml)"
+            f"(assumes {config.estimate.assumed_input_tokens_per_call} input / "
+            f"{config.estimate.assumed_output_tokens_per_call} output tokens/call; "
+            f"planning assumptions, not guaranteed charges)"
         )
     return "\n".join(lines)
 
@@ -307,58 +305,19 @@ def _batch_lock(callback):
 
 
 def _batch_cost(config, model_name, n_calls):
-    import math
-    cfg = getattr(config.models, model_name)
-    if not n_calls:
-        return 0.0
-    prices = (cfg.price_per_million_input_tokens, cfg.price_per_million_output_tokens)
-    if any(p is None or not math.isfinite(p) or p < 0 for p in prices):
-        raise click.ClickException(f"{model_name}: valid input/output prices are required before estimating or submitting.")
-    estimate = config.estimate
-    return n_calls * (estimate.assumed_input_tokens_per_call * prices[0] + estimate.assumed_output_tokens_per_call * prices[1]) / 1_000_000 * estimate.batch_discount
+    from .batch_planning import estimate_batch_cost
+    try:
+        return estimate_batch_cost(config, model_name, n_calls)
+    except ValueError as exc:
+        raise click.ClickException(str(exc)) from exc
 
 
 def _build_new_batch_plans(ctx, config, selected, questions_by_id, model_names, completed_manifest, limit_new_questions=None):
-    batch_dir = ctx.obj["results_dir"].parent / "batches"
-    completed_question_ids = question_ids_from_manifest(completed_manifest)
-    historical_fingerprints = question_fingerprints_from_manifest(completed_manifest)
-    historical = json.loads(completed_manifest.read_text()) if completed_manifest.exists() else {}
-    from .prompts import VISIBLE_EXPLANATION_INSTRUCTION, SUGGESTED_ANSWER_TEMPLATE
-    from .providers.openai_provider import build_request as openai_request
-    from .providers.anthropic_provider import build_request as anthropic_request
-    new_plans: dict[str, list] = {}
-    for name in model_names:
-        plan = build_plan(selected, questions_by_id, config, name)
-        existing = load_existing_keys(ctx.obj["results_dir"] / f"{name}.jsonl")
-        builder = openai_request if name == "openai" else anthropic_request
-        request = builder(getattr(config.models, name), "")
-        settings = {k: v for k, v in request.items() if k not in ("input", "messages")}
-        historical_compatible = (settings == historical.get("request_settings", {}).get(name)
-                                 and VISIBLE_EXPLANATION_INSTRUCTION == historical.get("output_instruction")
-                                 and SUGGESTED_ANSWER_TEMPLATE == historical.get("cue_template"))
-        pending = pending_batch_keys(batch_dir, name)
-        new_plan = [
-            pc for pc in plan
-            if pc.key not in existing
-            and pc.key not in pending
-            and not (historical_compatible and pc.question.source_question_id in completed_question_ids
-                     and pc.question.fingerprint == historical_fingerprints.get(pc.question.source_question_id)
-                     and pc.condition in historical.get("conditions", []) and pc.run_index in historical.get("run_indices", []))
-        ]
-        if limit_new_questions is not None:
-            allowed_ids = []
-            seen_ids = set()
-            for pc in new_plan:
-                qid = pc.question.question_id
-                if qid not in seen_ids:
-                    seen_ids.add(qid)
-                    allowed_ids.append(qid)
-                if len(allowed_ids) >= limit_new_questions:
-                    break
-            allowed = set(allowed_ids)
-            new_plan = [pc for pc in new_plan if pc.question.question_id in allowed]
-        new_plans[name] = new_plan
-    return new_plans
+    from .batch_planning import build_new_batch_plans
+    return build_new_batch_plans(
+        ctx.obj["results_dir"], config, selected, questions_by_id,
+        model_names, completed_manifest, limit_new_questions,
+    )
 
 
 @main.command("batch-estimate")
@@ -529,34 +488,17 @@ def analyze(ctx, historical_dir, summary_dir):
     from .analysis.figures import plot_accuracy, plot_flip_rates
     from .analysis.io_utils import write_dict_csv
     from .analysis.metrics import compute_metrics, split_needs_review, write_metrics_csv, write_needs_review_csv
-    from .jsonl import read_jsonl
 
     config: HarnessConfig = ctx.obj["config"]
     results_dir = ctx.obj["results_dir"]
     summary_dir = summary_dir or DEFAULT_SUMMARY_DIR
 
-    records_by_key = {}
-    identities = {}
+    from .analysis.records import load_analysis_records
     directories = [results_dir] + ([historical_dir] if historical_dir else [])
-    for directory in directories:
-        for path in sorted(directory.glob("*.jsonl")):
-            if path.name == "dryrun_mock.jsonl":
-                continue
-            for record in read_jsonl(path):
-                key = record.get("key")
-                if key is None:
-                    # Legacy fixtures without a key still get duplicate identity checks.
-                    key = (record["model_name"], record["question_id"], record["condition"], record["run_index"])
-                if key in records_by_key:
-                    if records_by_key[key] != record:
-                        raise click.ClickException(f"Conflicting saved response key in {path}")
-                    continue
-                identity = (record["model_name"], record["question_id"], record["condition"], record["run_index"])
-                if identity in identities:
-                    raise click.ClickException(f"Duplicate response identity in {path}: {identity}")
-                identities[identity] = key
-                records_by_key[key] = record
-    records = list(records_by_key.values())
+    try:
+        records = load_analysis_records(directories)
+    except ValueError as exc:
+        raise click.ClickException(str(exc)) from exc
 
     if not records:
         click.echo(f"No results found in {results_dir}")

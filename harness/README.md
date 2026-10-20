@@ -10,7 +10,7 @@ accuracy and stability alone do not prove explanation faithfulness.
 
 The main study now targets 270 accumulated questions. The two earlier experiments
 are pilots that informed the broader design and supply 60 completed questions.
-This pivot and its rationale are recorded in [the research journal](../journal/2026-10-20.md).
+This pivot and its rationale are recorded in [the research journal](../Journal/2026-10-20.md).
 The filename `config.extended.yaml` is retained for compatibility; it is the main
 study configuration, not a supplementary experiment.
 
@@ -223,3 +223,10 @@ pytest tests -q
 Tests use fixtures and fake clients only. They cover request formatting, real CLI
 submission paths, per-call retries, duplicate IDs, failed/partial collection,
 reservation recovery, historical imports and analysis deduplication.
+
+## Project structure
+
+See [the architecture guide](ARCHITECTURE.md) for module responsibilities and
+the separation between experiment inputs, raw responses, historical records,
+Batch state, derived analysis and research-journal material. The Batch process
+lock is supported on macOS/Linux.
