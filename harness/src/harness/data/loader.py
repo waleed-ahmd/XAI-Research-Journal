@@ -38,3 +38,30 @@ def load_all_questions(tasks: list[str], data_dir: Path) -> list[Question]:
     for task in tasks:
         questions.extend(load_task_questions(task, data_dir))
     return questions
+
+
+def question_index(questions: list[Question]) -> dict[str, Question]:
+    """Index exact content identities; expose legacy IDs only when unambiguous."""
+    from collections import defaultdict
+
+    index = {}
+    grouped = defaultdict(dict)
+    for q in questions:
+        identity = f"{q.question_id}:{q.question_fingerprint}"
+        if identity in index and index[identity] != q:
+            raise ValueError(f"Conflicting labels for question {identity}")
+        index[identity] = q
+        grouped[q.question_id][q.question_fingerprint] = q
+    for legacy_id, variants in grouped.items():
+        if len(variants) == 1:
+            index[legacy_id] = next(iter(variants.values()))
+    return index
+
+
+def resolve_question(selected, index: dict[str, Question]) -> Question:
+    q = index.get(selected.question_id)
+    if q is None and selected.fingerprint:
+        q = index.get(selected.source_question_id)
+    if q is None or (selected.fingerprint and q.question_fingerprint != selected.fingerprint):
+        raise ValueError(f"Question {selected.question_id} is missing or ambiguous; create a fingerprinted selection.")
+    return q

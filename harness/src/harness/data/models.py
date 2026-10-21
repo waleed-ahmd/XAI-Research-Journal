@@ -4,8 +4,14 @@ val_data.json files (github.com/milesaturpin/cot-unfaithfulness)."""
 from __future__ import annotations
 
 from string import ascii_uppercase
+import hashlib
 
 from pydantic import BaseModel, model_validator
+
+
+def fingerprint_text(parsed_inputs: str) -> str:
+    normalized = "\n".join(line.rstrip() for line in parsed_inputs.strip().splitlines())
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
 class Question(BaseModel):
@@ -32,6 +38,11 @@ class Question(BaseModel):
         return f"{self.task}:{self.idx}"
 
     @property
+    def question_fingerprint(self) -> str:
+        """Stable content fingerprint used when source idx values are duplicated."""
+        return fingerprint_text(self.parsed_inputs)
+
+    @property
     def num_choices(self) -> int:
         return len(self.multiple_choice_targets)
 
@@ -46,7 +57,7 @@ class Question(BaseModel):
 
 
 class SelectedQuestion(BaseModel):
-    """One question from the fixed, seeded 30-question (or pilot) set."""
+    """One question from a fixed, seeded study selection."""
 
     index: int
     task: str
@@ -54,3 +65,14 @@ class SelectedQuestion(BaseModel):
     num_choices: int
     gold_letter: str
     cued_letter: str
+
+    # Optional for backwards compatibility with historical list-only selections.
+    fingerprint: str | None = None
+
+    @property
+    def source_question_id(self) -> str:
+        return f"{self.task}:{self.idx}"
+
+    @property
+    def question_id(self) -> str:
+        return f"{self.source_question_id}:{self.fingerprint}" if self.fingerprint else self.source_question_id
