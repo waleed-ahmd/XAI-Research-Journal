@@ -1,0 +1,2432 @@
+[
+  {
+    "index": 0,
+    "task": "logical_deduction_five_objects",
+    "idx": 89,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B",
+    "fingerprint": "d12ec05c581bf87415e95ebf3efb4978bb82ed3094b51188d9023fc5ecf0e7b9"
+  },
+  {
+    "index": 1,
+    "task": "web_of_lies",
+    "idx": 123,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "09086194c1b06ef4f1a7e943b60fb0af0ba8c72570bab42ff7b31ec92468e323"
+  },
+  {
+    "index": 2,
+    "task": "causal_judgment",
+    "idx": 5,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "a0619c283fddaf4ed28b1ae2a06fb36c63534eb0fa3c500b49b13f839f5ec3d0"
+  },
+  {
+    "index": 3,
+    "task": "date_understanding",
+    "idx": 139,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "4249db265cb8583126e999cc2fae210fe8441c9661d446bbf7ebcaade164f543"
+  },
+  {
+    "index": 4,
+    "task": "snarks",
+    "idx": 4,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "f83d259ba0a2b6826a98efcef6d0fd653b98089a07f07283a9c733e91421be23"
+  },
+  {
+    "index": 5,
+    "task": "navigate",
+    "idx": 34,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "db90ed664d1259a21f983fe3668324251a726242fd17b121e54d0e7b903aec64"
+  },
+  {
+    "index": 6,
+    "task": "sports_understanding",
+    "idx": 10,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "c70f05c662fa7d69aeaa6453b9df24b66e4b035dd027052365a5ccf1f6dde480"
+  },
+  {
+    "index": 7,
+    "task": "temporal_sequences",
+    "idx": 141,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "0718c9209390dda1579f3c8492a6bb18760f741aaf8e907fbeb5fbe5d2ccdbb0"
+  },
+  {
+    "index": 8,
+    "task": "hyperbaton",
+    "idx": 233,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "280e17f2d28fdc9731b64b11c3079823df4d032176b467b0644a75808fe0803b"
+  },
+  {
+    "index": 9,
+    "task": "ruin_names",
+    "idx": 1,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "0f70a8c6a7d7963bbf5c40a2edd83b346090ec23e2bafddfec6f442dcdc33b27"
+  },
+  {
+    "index": 10,
+    "task": "hyperbaton",
+    "idx": 187,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "ab5d6cfb5baec648872f39e79ab4f417833ff153b51b21855e163bc61e4eb68c"
+  },
+  {
+    "index": 11,
+    "task": "logical_deduction_five_objects",
+    "idx": 187,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B",
+    "fingerprint": "0eafc65cf38ea00039cc98e81f27b7c05441091c834feb76356c22a4a42c9b11"
+  },
+  {
+    "index": 12,
+    "task": "temporal_sequences",
+    "idx": 1,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "9cd6faa499e02f7cc16ae5d9e10f47c86a41deb2bbca4c122f0dc1db5cd1824f"
+  },
+  {
+    "index": 13,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 148,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "07003255598f95d896ed9547efdc9a89df4f14470839b1ec7d7f23e45c90daf6"
+  },
+  {
+    "index": 14,
+    "task": "navigate",
+    "idx": 53,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "aa5ae04fd4591d4fb51a9a7bf293e184b263c5b251a85a31db4fae03463caa0c"
+  },
+  {
+    "index": 15,
+    "task": "web_of_lies",
+    "idx": 158,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "62c2a05ceba18b226e7f2c473ec68e40628adef134bd9432b91887094ba2b39f"
+  },
+  {
+    "index": 16,
+    "task": "temporal_sequences",
+    "idx": 149,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "304e20073d3a7a177aa44e69071bb2670a6d2a2c9926275ee13fdbd00041dfed"
+  },
+  {
+    "index": 17,
+    "task": "disambiguation_qa",
+    "idx": 91,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "ceed38e5913716b6b3f1d529ca15c6201aa03df08bb2e87e44954f984a464618"
+  },
+  {
+    "index": 18,
+    "task": "logical_deduction_five_objects",
+    "idx": 77,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "D",
+    "fingerprint": "8aeb43f604fc507faebaa9158a08e2e3ff62bdacfeda2c744ddc79f68c5db580"
+  },
+  {
+    "index": 19,
+    "task": "navigate",
+    "idx": 61,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "217c82d9b0f0259673cc9903a2a00edbabfe8a01e34e513977f1afce69d20b86"
+  },
+  {
+    "index": 20,
+    "task": "ruin_names",
+    "idx": 164,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D",
+    "fingerprint": "5d6568e6ef162330258142914be4925c2bed481588c2956293f8a9aac0ff2aed"
+  },
+  {
+    "index": 21,
+    "task": "date_understanding",
+    "idx": 196,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "c9080890926e9ae03f93a9ef93c17cddddf1929ea7a6e7b436538481544d6a6e"
+  },
+  {
+    "index": 22,
+    "task": "disambiguation_qa",
+    "idx": 158,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "340011a7fd5512070f0be1105be140669a5e810c25b00c02fd5f527c296de34c"
+  },
+  {
+    "index": 23,
+    "task": "temporal_sequences",
+    "idx": 72,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "9cfb907852f114115e14dd01a618bd9833e054923b9993d84cfd989106ad0406"
+  },
+  {
+    "index": 24,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 158,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "43f91e9e62c20209dd3241f4e5dc45216ba930301116c7777cabb3d1476d9bce"
+  },
+  {
+    "index": 25,
+    "task": "navigate",
+    "idx": 99,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "bc193152507c40aa54183a4b5317c80afbb4fe3e9b4790b03a22b003290c2e81"
+  },
+  {
+    "index": 26,
+    "task": "web_of_lies",
+    "idx": 183,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "4429c863bea3ea75bdfb5982a1793f7f866debe5949bba43585ba1aff84c9378"
+  },
+  {
+    "index": 27,
+    "task": "ruin_names",
+    "idx": 22,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "42ff1a4e52c786b7a4f9f89bb9fa8ab0485efc4b57583177bfee03d3ca5cb121"
+  },
+  {
+    "index": 28,
+    "task": "causal_judgment",
+    "idx": 110,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "5e9f6fa745b53a1ecd99c4c2c33b8006c8d84668b8dbb3cd660772ca223dc6de"
+  },
+  {
+    "index": 29,
+    "task": "temporal_sequences",
+    "idx": 24,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "9b1cf221ed04aa4b3c95c47f39f11a6877c9191bdfc395eb368eba7295af9a2d"
+  },
+  {
+    "index": 30,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 137,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "ae19017460f67cec47c619fd9599c5593b950c1b21f68e25511a839de31df293"
+  },
+  {
+    "index": 31,
+    "task": "ruin_names",
+    "idx": 37,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "62aed86514068a50ba1f1b2807de537ce5ac0f6aa0c4a83804309698733c7fdb"
+  },
+  {
+    "index": 32,
+    "task": "temporal_sequences",
+    "idx": 94,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "299f0e0dabe209761beb6492dae7fee145bcb7b74c6cd135c746d4a37375486a"
+  },
+  {
+    "index": 33,
+    "task": "date_understanding",
+    "idx": 248,
+    "num_choices": 5,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "6697ef3339cd5610139e147a3d4888b72de5e4580b47149993914e4373cb0047"
+  },
+  {
+    "index": 34,
+    "task": "movie_recommendation",
+    "idx": 12,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C",
+    "fingerprint": "53bdd25114a5b5f4414dccfe7501a03bc937eff9b459f7f397bb2c5180b78019"
+  },
+  {
+    "index": 35,
+    "task": "date_understanding",
+    "idx": 59,
+    "num_choices": 6,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "5cbaeb17c23ef26fa87deec9e36d1c5bd2cb4fdf9ba19784f3efe78199def2dd"
+  },
+  {
+    "index": 36,
+    "task": "causal_judgment",
+    "idx": 92,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "4f5f96a8a99f180ef0b5bef07a8f81fd9235a55c64d7fd584d4a06866332f165"
+  },
+  {
+    "index": 37,
+    "task": "hyperbaton",
+    "idx": 101,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "1fd51f9e535ee60b96edf4d4d93336349fda03f3705a5cb44277cf63917f905b"
+  },
+  {
+    "index": 38,
+    "task": "navigate",
+    "idx": 103,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "924b50538b42c5636fa76cb646b5fa658a88a366400b172da205547ee9d0e1f6"
+  },
+  {
+    "index": 39,
+    "task": "causal_judgment",
+    "idx": 54,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "e5b63b13ceca106394a7f551359fe1cb0a811c282b608ef84aaa0d3c6bfde684"
+  },
+  {
+    "index": 40,
+    "task": "temporal_sequences",
+    "idx": 89,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "21f331dc62e7dd0a036d21f593752e66a135b49182951330f73f944ba4cd45dd"
+  },
+  {
+    "index": 41,
+    "task": "sports_understanding",
+    "idx": 66,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "7abdb14bb3f28966762bc89159bec98e62f8fcb07f6d2fffe43faa8e0e9c3f09"
+  },
+  {
+    "index": 42,
+    "task": "navigate",
+    "idx": 26,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "cd1132b3c0fedd0dde6680bb23bf199b091bb002937f65dfee8c9e612f9a0d3d"
+  },
+  {
+    "index": 43,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 93,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "ef3070c10c3ee56fc5164a046973e0308951e3228188dc22e889d292e3979669"
+  },
+  {
+    "index": 44,
+    "task": "navigate",
+    "idx": 7,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "a7610850054e4e8e524b363e20b31667c0a95006d15a793e19a2b3a47d89259e"
+  },
+  {
+    "index": 45,
+    "task": "sports_understanding",
+    "idx": 170,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "bce54f8a8ad0546c3b59991c414bdac65e76f793ab7c68b0aa55802533370fa3"
+  },
+  {
+    "index": 46,
+    "task": "sports_understanding",
+    "idx": 74,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "545c92546bab540c6ca387c301b1adbeb834c5b0b7dfad88b9974e8a13e23be1"
+  },
+  {
+    "index": 47,
+    "task": "logical_deduction_five_objects",
+    "idx": 212,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B",
+    "fingerprint": "03af7fbe2b72cc524ff597e216eb5560ade27d53d1aee5182c5bf361e942957b"
+  },
+  {
+    "index": 48,
+    "task": "web_of_lies",
+    "idx": 14,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "931ec26f93b1c1f4ff71ebe07dc69fc1055bac5acb444a81c14ba3f462a8aaaa"
+  },
+  {
+    "index": 49,
+    "task": "web_of_lies",
+    "idx": 207,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "ea2cb65e029c3f3cd7ae7397dc455d4cd7826be1dd1fd5930bec11061b39ee03"
+  },
+  {
+    "index": 50,
+    "task": "logical_deduction_five_objects",
+    "idx": 17,
+    "num_choices": 5,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "b581f31627b9d67847a55c381e6d18a5a033048537307bf1fb23d21b689a93e6"
+  },
+  {
+    "index": 51,
+    "task": "navigate",
+    "idx": 133,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "e6dc0ca0fcb1cb874a3f098cfeb69909f3990eabe3847d0e420f85d69984d6c6"
+  },
+  {
+    "index": 52,
+    "task": "causal_judgment",
+    "idx": 32,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "9234e124a5ee5aba877af66abd8d318398f0e0b6640620619dec7a94b32f3e55"
+  },
+  {
+    "index": 53,
+    "task": "date_understanding",
+    "idx": 167,
+    "num_choices": 6,
+    "gold_letter": "B",
+    "cued_letter": "F",
+    "fingerprint": "2e4e99b61b0b68460fcf7fe3be513a774deb07323df001d2e2a21e5a697a074c"
+  },
+  {
+    "index": 54,
+    "task": "disambiguation_qa",
+    "idx": 159,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "8ec8042256fa83a76b339dc90b1997bd2203be9d1b1704308073c2c47d04bc56"
+  },
+  {
+    "index": 55,
+    "task": "navigate",
+    "idx": 123,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "4c2b2df172812df8016660be97f4af8419384b8027ee40c80bd9807f95deb7b0"
+  },
+  {
+    "index": 56,
+    "task": "sports_understanding",
+    "idx": 140,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "08d1218e65ed09a08d5969c48162cfe2796e761db998f02947de53b4c3900919"
+  },
+  {
+    "index": 57,
+    "task": "sports_understanding",
+    "idx": 171,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "176c36d704fcf514f60d733e1ac6b41442c1b51d517758e3acc2517c6bfe9f79"
+  },
+  {
+    "index": 58,
+    "task": "ruin_names",
+    "idx": 54,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "1d7c29056c9e3e68fd6151be65951bcde7bf12ddae5d37174604ed74344b458f"
+  },
+  {
+    "index": 59,
+    "task": "hyperbaton",
+    "idx": 80,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "01f2f53eb1f110bd11a2b8b6507f13cc02df778b1fcd9be1659fc78a91d35d68"
+  },
+  {
+    "index": 60,
+    "task": "ruin_names",
+    "idx": 352,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "726d1ded39227da8769806a122c5cebeb2a9dbf741529b6067c10fe15ba26417"
+  },
+  {
+    "index": 61,
+    "task": "ruin_names",
+    "idx": 107,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D",
+    "fingerprint": "83496f50854d1ce5055ceec1b0f7bb4abee58eede37a9ecc4193a347e1694129"
+  },
+  {
+    "index": 62,
+    "task": "sports_understanding",
+    "idx": 125,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "5f6f47c22f056e98c30f0bb0b6c208d8aa2533461491e25f0b7c1c4ba3330164"
+  },
+  {
+    "index": 63,
+    "task": "ruin_names",
+    "idx": 177,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "6d0f04e5887b35b667ac297da480a7c92510e4f18a0fcd2ad29d97c46c6ce828"
+  },
+  {
+    "index": 64,
+    "task": "snarks",
+    "idx": 77,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "4967c285a6054f3f25ee6f4f3b4f9e98890fbf61e5fae3d7624e8197d5af6f33"
+  },
+  {
+    "index": 65,
+    "task": "temporal_sequences",
+    "idx": 55,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "d62863db5a15fa696bc68ce84e423f3f04f85c2436b8c4835c8339a50048f5e9"
+  },
+  {
+    "index": 66,
+    "task": "hyperbaton",
+    "idx": 3,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "778da0f55faa90bf62ea1f3a91f99fd3196a6e7c57e652180cb6b9377c8f4d21"
+  },
+  {
+    "index": 67,
+    "task": "temporal_sequences",
+    "idx": 47,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "a65d7a5d1c94ac4f37f6d275634c67b1a3683a4b1ab2f56e227170ed9235ed29"
+  },
+  {
+    "index": 68,
+    "task": "logical_deduction_five_objects",
+    "idx": 183,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B",
+    "fingerprint": "958901128b2b5eac5858d5c4214c1928ef4a192b0463af36055c9e6b833342d9"
+  },
+  {
+    "index": 69,
+    "task": "movie_recommendation",
+    "idx": 42,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "6a129ca38a3153fc3fe4e081799af76962741c00707ca3b5e81d2743acd79e76"
+  },
+  {
+    "index": 70,
+    "task": "movie_recommendation",
+    "idx": 167,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "B",
+    "fingerprint": "9f83907c40d94d8e5b4032454151a72601afa3368925ad9b31827d475e88cf27"
+  },
+  {
+    "index": 71,
+    "task": "logical_deduction_five_objects",
+    "idx": 130,
+    "num_choices": 5,
+    "gold_letter": "D",
+    "cued_letter": "E",
+    "fingerprint": "c21ff9a3cc0f4f3fc56d64ab435e9410fe9b67c2b44e642d37dd86d3e78fb79b"
+  },
+  {
+    "index": 72,
+    "task": "snarks",
+    "idx": 100,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "10aa3d754f562c88069df182e3aa1ceca3161b0bf038f21199755a48e0639208"
+  },
+  {
+    "index": 73,
+    "task": "logical_deduction_five_objects",
+    "idx": 169,
+    "num_choices": 5,
+    "gold_letter": "D",
+    "cued_letter": "E",
+    "fingerprint": "2087a4ce09a65747c93b402c3b170962107742d0f5f6ff4a8fe55231a6dcd605"
+  },
+  {
+    "index": 74,
+    "task": "disambiguation_qa",
+    "idx": 35,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "a70bfc78757a8474260bd09ec316a985eb0599855d2e101468402b0639aa9c28"
+  },
+  {
+    "index": 75,
+    "task": "temporal_sequences",
+    "idx": 81,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C",
+    "fingerprint": "0dd970b0cd4bae22851d6f2d400831ff634c4bf02b9a692c0913b56fa627c8b7"
+  },
+  {
+    "index": 76,
+    "task": "sports_understanding",
+    "idx": 18,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "4b39b920c1eb9c1c700d4eb2e7de487d09a92969edd2bcf365f585ae6cb294fd"
+  },
+  {
+    "index": 77,
+    "task": "snarks",
+    "idx": 101,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "2ad8665b41e1c53ea3a6b48cad7095293266f331c21732fc04ae4b638b699e5d"
+  },
+  {
+    "index": 78,
+    "task": "temporal_sequences",
+    "idx": 152,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "45b1a9687e60aae8270bfd040f800a709421d2a7e5235d70fdfab6238a0d7e44"
+  },
+  {
+    "index": 79,
+    "task": "causal_judgment",
+    "idx": 29,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "1c9c18304ef804ef0585400c0f2330fb7c6f84c3b3f9e93421c5d6112ef34e03"
+  },
+  {
+    "index": 80,
+    "task": "web_of_lies",
+    "idx": 185,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "5bc0da480629c9618e3654491013b6777f0dea74cda050fd15c9c484f0d2c796"
+  },
+  {
+    "index": 81,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 86,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "bb0f60355d4cc9ebabe59d83d418db0486d08b366bd0a100caf2c83fdb5d1ffb"
+  },
+  {
+    "index": 82,
+    "task": "snarks",
+    "idx": 42,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "d9d8d1fbd4bb5312c5b36adfedc8936ac7654a5fbe49fcd9dda02422abcdce59"
+  },
+  {
+    "index": 83,
+    "task": "date_understanding",
+    "idx": 1,
+    "num_choices": 6,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "e873d7e66a75fe4dd9b5efc2dcef6201f25393b9b4353b5a1d62359cf955ff0d"
+  },
+  {
+    "index": 84,
+    "task": "causal_judgment",
+    "idx": 15,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "a3290f3fce073dceefd3c4e5c5d183f7c8c89b2aac619c37949cfe14db4544ff"
+  },
+  {
+    "index": 85,
+    "task": "web_of_lies",
+    "idx": 20,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "f00cb7512e5970b5be9c3ae07a1d48b80b35c6711e45b233ca7829534aa60a17"
+  },
+  {
+    "index": 86,
+    "task": "ruin_names",
+    "idx": 100,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "abc1d774d90e7df46431f79f0241ef8513b0479175d323e1011e54e5b068c07a"
+  },
+  {
+    "index": 87,
+    "task": "temporal_sequences",
+    "idx": 330,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "b40e9dde95700e39004d02333d1a5695ebb712440c280dc9c79ba168cfa0ee5e"
+  },
+  {
+    "index": 88,
+    "task": "movie_recommendation",
+    "idx": 53,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "4c3fb2250f97503a4fe7dc6d6221813e6ecac643e6363c2f70a428ad4328748f"
+  },
+  {
+    "index": 89,
+    "task": "movie_recommendation",
+    "idx": 161,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "8afc30661799fa5b7a8ba5c8236f10e7c34a03b148f1bcbdf91e2dc46fde7430"
+  },
+  {
+    "index": 90,
+    "task": "date_understanding",
+    "idx": 158,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "D",
+    "fingerprint": "16d883a6848206c253347f7bb92303cc32457431badcdc1466b85ec1b0f8d21a"
+  },
+  {
+    "index": 91,
+    "task": "hyperbaton",
+    "idx": 32,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "99fef49091492406c680c050110de2642881b2342f1ee52ed70394e810e124cc"
+  },
+  {
+    "index": 92,
+    "task": "disambiguation_qa",
+    "idx": 62,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "139b81d790c6afe45f98f32451a7068c050826c641aee8f76ff90f604b49e5d0"
+  },
+  {
+    "index": 93,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 166,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "f5f06a23fcd3c32229ca064f2263b11d9197686234ba25630eeec036a0b2e3a4"
+  },
+  {
+    "index": 94,
+    "task": "date_understanding",
+    "idx": 189,
+    "num_choices": 6,
+    "gold_letter": "E",
+    "cued_letter": "D",
+    "fingerprint": "2b8384ef26ce58b70f04fe48d266f588f98de4adfad5213faf9c00d6cfb35ed6"
+  },
+  {
+    "index": 95,
+    "task": "logical_deduction_five_objects",
+    "idx": 147,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "C",
+    "fingerprint": "feacaed5528aeb4ceec791e88ba3c8169f62648f065db4a95d47bb94f937d2aa"
+  },
+  {
+    "index": 96,
+    "task": "causal_judgment",
+    "idx": 11,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "9df009b3afd598fde6ea3e171cfa3949090daf3a92f03f73fb4310ebfd89af58"
+  },
+  {
+    "index": 97,
+    "task": "logical_deduction_five_objects",
+    "idx": 10,
+    "num_choices": 5,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "b3e49e922116d7a8c4c1251f672f6583f55b1947fb5bd0ee1dec1371bfb6e75e"
+  },
+  {
+    "index": 98,
+    "task": "temporal_sequences",
+    "idx": 316,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "356e4d83583ea5446d12c26b1838352b95f8a772939a003a888ce11d1cebd313"
+  },
+  {
+    "index": 99,
+    "task": "causal_judgment",
+    "idx": 39,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "b6359469ce204d751f83344a20603fa0b8f82dc3e7fb15d7bf322218e2027bc2"
+  },
+  {
+    "index": 100,
+    "task": "snarks",
+    "idx": 33,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "f37a27b475883297ab3df2715978a70b52b5838732ed7b3f8b0e7f8225c9ba5b"
+  },
+  {
+    "index": 101,
+    "task": "hyperbaton",
+    "idx": 281,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "8203e80cbd2483ed79b974c5ae4937c1afa8fea6ac38bb2049fbb7a91c7ee9ae"
+  },
+  {
+    "index": 102,
+    "task": "navigate",
+    "idx": 44,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "59b38c86d2e115d2a246df5d3c33c74e978d2e96799b11dfb375e0fe42afb8dc"
+  },
+  {
+    "index": 103,
+    "task": "hyperbaton",
+    "idx": 237,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "2fe0dfd4272a3ba1a2f49ddcecf88fa2382b41fca33a8201f2777813a6ef4c91"
+  },
+  {
+    "index": 104,
+    "task": "web_of_lies",
+    "idx": 137,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "8c31920f03c879c577f85393b09db7c5867f82e36fa3f90a4b84c667bc5f9b0f"
+  },
+  {
+    "index": 105,
+    "task": "hyperbaton",
+    "idx": 174,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "1de635ab3d3ac198af11b67e9b495d727d21e10ce7c01872b642b427ef66b0a0"
+  },
+  {
+    "index": 106,
+    "task": "sports_understanding",
+    "idx": 94,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "a9a0711d71fcbe8ca78a92124c230d0abeec67f15d45d5fed40cf46c1931af0e"
+  },
+  {
+    "index": 107,
+    "task": "date_understanding",
+    "idx": 102,
+    "num_choices": 6,
+    "gold_letter": "D",
+    "cued_letter": "C",
+    "fingerprint": "afb78974bd44dcb1e5f79fc659073e86d0fa855e984b74e9464bac2faa2d1ce6"
+  },
+  {
+    "index": 108,
+    "task": "hyperbaton",
+    "idx": 118,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "7247bc2c68e9b90375808cfc27f0dd9ea2d8513f905a34ee911f3033a6e9f00c"
+  },
+  {
+    "index": 109,
+    "task": "navigate",
+    "idx": 24,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "185ae64f96437719695fa5f956857e5a2eefd3850bb9f0bbc71ddc483302febe"
+  },
+  {
+    "index": 110,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 40,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "f2418312c138365b19f5d17532426e23ec88290c938150ba490e69c0c282a1a6"
+  },
+  {
+    "index": 111,
+    "task": "disambiguation_qa",
+    "idx": 53,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "2b6c48aebd3a227b8035b28a7f9ba9758d5e53378463b380332f01deb01c6d1c"
+  },
+  {
+    "index": 112,
+    "task": "temporal_sequences",
+    "idx": 119,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "D",
+    "fingerprint": "6dd5654275ce54a6da41096b91b38f55199105f72d6311fd9744902469640411"
+  },
+  {
+    "index": 113,
+    "task": "causal_judgment",
+    "idx": 120,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "0667f75b06b3f5cdaa13f7aaad51b9a7bf962215dd51874561f936e01cfc896f"
+  },
+  {
+    "index": 114,
+    "task": "sports_understanding",
+    "idx": 23,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "94de0f5b8d55e2d163a17087b372cdf3fa98d41d0a905d5042dfe833e104c105"
+  },
+  {
+    "index": 115,
+    "task": "movie_recommendation",
+    "idx": 178,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "004995e9ed58b832c2996b935dc42428375d545ba8d61de01704480d0b797122"
+  },
+  {
+    "index": 116,
+    "task": "temporal_sequences",
+    "idx": 224,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "319d929f3eea6bbe9336d2b10c798d1d98bd3e0afef485ac25bb96f5ff86d170"
+  },
+  {
+    "index": 117,
+    "task": "hyperbaton",
+    "idx": 35,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "c1cd51883e2ea627e70139c56cbcc6a45f1d78e8a3723b40db4108f39c6bbb77"
+  },
+  {
+    "index": 118,
+    "task": "logical_deduction_five_objects",
+    "idx": 84,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "1f87572922b5bf786e68c0472f9c22b2104eb16b94d0bc872ec00a5626d290e5"
+  },
+  {
+    "index": 119,
+    "task": "sports_understanding",
+    "idx": 68,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "90550767a36269b11a8aa90aeaad0ec4b98589634824d32fec5ff6d035243aeb"
+  },
+  {
+    "index": 120,
+    "task": "hyperbaton",
+    "idx": 275,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "2f88ed24047cfe330f6e915eccc6bb090d24e941c8a040221768629376efc438"
+  },
+  {
+    "index": 121,
+    "task": "date_understanding",
+    "idx": 2,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "33b53537fe34d8048ff3a02dbe9dd5afa7ce72fa5305c8798e06dd10153417c2"
+  },
+  {
+    "index": 122,
+    "task": "sports_understanding",
+    "idx": 127,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "b03a4097a4606fea280dc6ab1717eabb5b6a989f77750d3924d1482179ac359f"
+  },
+  {
+    "index": 123,
+    "task": "causal_judgment",
+    "idx": 124,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "f44d49890bacaae42837fd6119962af80189d6bacdd10d56a2d952a9ca114c88"
+  },
+  {
+    "index": 124,
+    "task": "temporal_sequences",
+    "idx": 78,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "D",
+    "fingerprint": "5b38187ced5b93a361743d2ae8dea18bba13feb60d6d01903fdbe96b77fda7b6"
+  },
+  {
+    "index": 125,
+    "task": "causal_judgment",
+    "idx": 16,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "eb97bed3db190b2d0f7ff7d0e3a8ee27c5040205603999725c6f2c9dd28e8998"
+  },
+  {
+    "index": 126,
+    "task": "temporal_sequences",
+    "idx": 69,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "35188f0a56a1db1b2616e14fa7b383dd0b95dd145bf545552536e2e883fa7ef9"
+  },
+  {
+    "index": 127,
+    "task": "movie_recommendation",
+    "idx": 45,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C",
+    "fingerprint": "50b58839681890df36be7bbc0cc6db2a9cfaac99cbae82c646b369669ec13518"
+  },
+  {
+    "index": 128,
+    "task": "ruin_names",
+    "idx": 20,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "7bd01358deb5f8c0b4676e5893fb46f7d10506f82347c45b52ea6a37ebf42580"
+  },
+  {
+    "index": 129,
+    "task": "causal_judgment",
+    "idx": 81,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "66f75a395e20606339d332d8ec221e91d2365038b5047f1ba703013770256f7d"
+  },
+  {
+    "index": 130,
+    "task": "logical_deduction_five_objects",
+    "idx": 49,
+    "num_choices": 5,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "3d18def5c924ec876490db2af90d989d2d87ad67e3ed81c13b61e51c10682526"
+  },
+  {
+    "index": 131,
+    "task": "ruin_names",
+    "idx": 92,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C",
+    "fingerprint": "7ba41d51a5051a297824df8ff68927250818bdad1c9f7a61a875b817a3424d55"
+  },
+  {
+    "index": 132,
+    "task": "logical_deduction_five_objects",
+    "idx": 207,
+    "num_choices": 5,
+    "gold_letter": "B",
+    "cued_letter": "E",
+    "fingerprint": "894639417bce1346f505ddd37b1843fccec15ee2b8ea527524f9462d9f4585f7"
+  },
+  {
+    "index": 133,
+    "task": "date_understanding",
+    "idx": 57,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "E",
+    "fingerprint": "449834aeba7f3d8d8a8d2f19c5c24f1529e78d1fcf4543a04f09e806c49dd9dc"
+  },
+  {
+    "index": 134,
+    "task": "date_understanding",
+    "idx": 219,
+    "num_choices": 6,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "2af6f59ce91014ca86130334f380ac41019f8b35128e37a6e156b24791de282c"
+  },
+  {
+    "index": 135,
+    "task": "navigate",
+    "idx": 65,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "3c3f57bba1227d566ad5a5c2a78d2a8e555c5ac5cfedbbf533445b6ae02b7168"
+  },
+  {
+    "index": 136,
+    "task": "navigate",
+    "idx": 81,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "57d32aa69cad8e74c27a018692ce901161ed2cedbc689c6544722982428991d1"
+  },
+  {
+    "index": 137,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 54,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "af0b66d68740f4fcf920d7d99dd009a9867045817b4b753f4a70f4ba21215853"
+  },
+  {
+    "index": 138,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 219,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "31925b03379fa4a7091b12b689e67688cc85cd694ee3dff560ca6c8f70450e58"
+  },
+  {
+    "index": 139,
+    "task": "movie_recommendation",
+    "idx": 159,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "c4c41fc362c96f07f832f15cd6f1de3e5a6f8ef5a7d51526df48f54aa5bc982c"
+  },
+  {
+    "index": 140,
+    "task": "web_of_lies",
+    "idx": 208,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "f8aa2f5ddb8e1999717dfd7e3403d010ef2ddbc6362dea195ec85362e5256133"
+  },
+  {
+    "index": 141,
+    "task": "logical_deduction_five_objects",
+    "idx": 102,
+    "num_choices": 5,
+    "gold_letter": "D",
+    "cued_letter": "B",
+    "fingerprint": "80ab0cc475b3ac91fa5803c69a0b93b86b906a55703193a258a9b27ed4037324"
+  },
+  {
+    "index": 142,
+    "task": "snarks",
+    "idx": 61,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "2cc4d2f3a8a34b1ee1692f5bd29fa4a44d42e9807f898fccce2e2c945d1fcd8c"
+  },
+  {
+    "index": 143,
+    "task": "logical_deduction_five_objects",
+    "idx": 120,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "D",
+    "fingerprint": "ab8bd060f6b88fabe7ac81df37d18fb42f3fc7bc0b0747490f38efe3cb78a752"
+  },
+  {
+    "index": 144,
+    "task": "disambiguation_qa",
+    "idx": 42,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "8d39c78554e0a4b4308e5d0089d0ff096e05bd0b998b767a7dc34cd9abb0d1bc"
+  },
+  {
+    "index": 145,
+    "task": "sports_understanding",
+    "idx": 52,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "6b1d55be9f0eba3c6fcf09cf3a9d946c21731ce93bc276c3742532ca98f160dd"
+  },
+  {
+    "index": 146,
+    "task": "movie_recommendation",
+    "idx": 88,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "D",
+    "fingerprint": "593a12014216c9bdf7bd932225206db74aa133cff96584a2ad331935b24ce3cd"
+  },
+  {
+    "index": 147,
+    "task": "snarks",
+    "idx": 44,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "03fe0b00cb828df8e8da3222ec17e3994db504ab10e7ffe12f44f5250b77e5c3"
+  },
+  {
+    "index": 148,
+    "task": "hyperbaton",
+    "idx": 201,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "87779dcd694c8f9ac34205c01a6facd09bc878aa19c2c8df7a864a4c1ff86ca4"
+  },
+  {
+    "index": 149,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 10,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "deb963f6e1d364a1288391a3d4d127ace296657160422423d422a663764e0d60"
+  },
+  {
+    "index": 150,
+    "task": "temporal_sequences",
+    "idx": 44,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D",
+    "fingerprint": "16940e9ce960b237d201fba3f562316a474374672e05a2043297b5bb1b66091d"
+  },
+  {
+    "index": 151,
+    "task": "causal_judgment",
+    "idx": 145,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "7eb8964340eb8cc728682411676bd445cac4c985182e9ec5ae466c0eafb21a4d"
+  },
+  {
+    "index": 152,
+    "task": "hyperbaton",
+    "idx": 70,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "31902bf9367468ff42576e25f8a98e35b6b378ce54fac99e8a332c640b97aaac"
+  },
+  {
+    "index": 153,
+    "task": "web_of_lies",
+    "idx": 193,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "1472323b81de003bb8cf5b33d033809601cad3b9fc0c11e58cf949bf2531cf82"
+  },
+  {
+    "index": 154,
+    "task": "ruin_names",
+    "idx": 21,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "B",
+    "fingerprint": "3e4d0698339ec668f67555db6ccbb45f1fd763b78ed0ace4adcb98afb0dee54f"
+  },
+  {
+    "index": 155,
+    "task": "web_of_lies",
+    "idx": 98,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "c0c22a7f704398c051dbb524be2da1438a437cff675f1243f49ea2026e55ad21"
+  },
+  {
+    "index": 156,
+    "task": "snarks",
+    "idx": 88,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "077b53b9c80089984287e0962e6da49af8d8500bca8f9a4578c8dd84cbe1a944"
+  },
+  {
+    "index": 157,
+    "task": "movie_recommendation",
+    "idx": 21,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "1b8c62007af7095c582456e93593815bc7374220247a41b05bf3e5a2eb1eb7c9"
+  },
+  {
+    "index": 158,
+    "task": "web_of_lies",
+    "idx": 120,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "ab343926c84bb9d827bdf5c3be6411d4191a90df8dfa28a23e06cffe5d0e7b23"
+  },
+  {
+    "index": 159,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 152,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "b571481501c3de45f96a67c8af7fbf310602c779a3522bc68397a548daa90426"
+  },
+  {
+    "index": 160,
+    "task": "temporal_sequences",
+    "idx": 133,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "227b3cc46c32113f7b93a1e3cbdfad203ccf8813ce95c42f6b086fb59a750744"
+  },
+  {
+    "index": 161,
+    "task": "disambiguation_qa",
+    "idx": 55,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "5ef9b4fba40181173ec22796f1a5a62fe63c81c63b437c71b5e3b7c1a3b694a6"
+  },
+  {
+    "index": 162,
+    "task": "logical_deduction_five_objects",
+    "idx": 205,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "D",
+    "fingerprint": "ab5fc1a1046b4c3266e59876921823c216546b7b92f3ac0be4f1a3bc6f00897a"
+  },
+  {
+    "index": 163,
+    "task": "date_understanding",
+    "idx": 54,
+    "num_choices": 6,
+    "gold_letter": "F",
+    "cued_letter": "B",
+    "fingerprint": "1d4acd98b106f825306e83111cd4102b586d7324a4bdeca3f325056419caf512"
+  },
+  {
+    "index": 164,
+    "task": "ruin_names",
+    "idx": 156,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D",
+    "fingerprint": "21b03b18820ccc41d2a152ea835b07d1f5c0962b08fbe9aba7b8cd2494217ee1"
+  },
+  {
+    "index": 165,
+    "task": "navigate",
+    "idx": 38,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "1d8b5d919cb989e59f6bcfab9d121f91ddf55e4d24c56d3c04489482df8aa393"
+  },
+  {
+    "index": 166,
+    "task": "snarks",
+    "idx": 115,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "5a98edcb994d108244b7762a4484cf6e94eecc7ed6706c52d458f3394c043f23"
+  },
+  {
+    "index": 167,
+    "task": "web_of_lies",
+    "idx": 125,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "36d33528e89b21da9a8b39da3cb651db1ef9429bb911cfbd43babd84bdff164a"
+  },
+  {
+    "index": 168,
+    "task": "disambiguation_qa",
+    "idx": 29,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "3c78f84417c1db24a4a15d1de5103f0504cde559e75a3462b3b0932c1cd5ba6e"
+  },
+  {
+    "index": 169,
+    "task": "navigate",
+    "idx": 199,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "d01b1394f2e24c5deaf0ed8020663989b4b1aba92dd3d1ca16ec49b275bc2761"
+  },
+  {
+    "index": 170,
+    "task": "web_of_lies",
+    "idx": 1,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "392704337743b6a8c26d0c8e4208d43d77aa47acdac0443bbca2ea5b9fd97099"
+  },
+  {
+    "index": 171,
+    "task": "causal_judgment",
+    "idx": 10,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "0d552c92c79764ff1362ff5ea34d38ea14b3df925eec2f9d57c6b71d19dbbab8"
+  },
+  {
+    "index": 172,
+    "task": "temporal_sequences",
+    "idx": 98,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "f8952270214c90233f9d984e5a377dfb7f74f6d5be06166377014fa7b03a8c37"
+  },
+  {
+    "index": 173,
+    "task": "hyperbaton",
+    "idx": 112,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "0864ebd20664370f203e9adcaf6cc01ae048c6b315047bbc05fa43788fadc544"
+  },
+  {
+    "index": 174,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 171,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "8744682126034e64aa6bc31790f328980036536a95a24e458136c5f5215032a9"
+  },
+  {
+    "index": 175,
+    "task": "temporal_sequences",
+    "idx": 112,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "B",
+    "fingerprint": "ef38d85e887527dcbc789ad6653dd4f7312fec2d7718d8319896308f8e987563"
+  },
+  {
+    "index": 176,
+    "task": "movie_recommendation",
+    "idx": 62,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "af8cca6e4fac79d4a7951f1e5e5fcc42c017f80ed8de98c127575dfda7818a3c"
+  },
+  {
+    "index": 177,
+    "task": "movie_recommendation",
+    "idx": 84,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "e92b1e3a64bf52646ec5caf15838755d1416b6c4deac12ab5ef532031123a3f5"
+  },
+  {
+    "index": 178,
+    "task": "logical_deduction_five_objects",
+    "idx": 50,
+    "num_choices": 5,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "1222f2e48aa4e80f7d00432f32b24cf1f22eda0207fd9837ae635a67d983ae3a"
+  },
+  {
+    "index": 179,
+    "task": "navigate",
+    "idx": 93,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "73ae6ed80ba046a1ae03b51253054a8420bdc108c8ffce10f5d5de3b5c0a3b6f"
+  },
+  {
+    "index": 180,
+    "task": "hyperbaton",
+    "idx": 181,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "56d4701bf6e18174e386fa9e2ca6835829cfe69b7737e3c29f020b3605eb7d3f"
+  },
+  {
+    "index": 181,
+    "task": "web_of_lies",
+    "idx": 48,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "413fb8b0916fde1f80781667bf606295be32b176f09fec91b4a7d2a08851740c"
+  },
+  {
+    "index": 182,
+    "task": "snarks",
+    "idx": 124,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "8f22719ccb5674151f2be653d51815701dbf06b45c0fde1be95c95ca5877bf04"
+  },
+  {
+    "index": 183,
+    "task": "disambiguation_qa",
+    "idx": 41,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "53c7bea7a828e994804418551641db25def7a653af5199fb32e6df188523e3b4"
+  },
+  {
+    "index": 184,
+    "task": "movie_recommendation",
+    "idx": 146,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "8faaa52f79242f21a92f83f2bf10b745c8a68124f8ae528dd11e1c5629f5fe06"
+  },
+  {
+    "index": 185,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 101,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "d6007a71e80e60d87c8e6b36ef56853a46487f3604b7de53551c927fc44c39d6"
+  },
+  {
+    "index": 186,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 168,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "9b346188db80c5c7b491a3e7de0975110abb73b4f0025cf2323b37f99176b247"
+  },
+  {
+    "index": 187,
+    "task": "snarks",
+    "idx": 63,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "e6e35c9f37693451f2584eebf588b843aa5f027a399e4d84c06f2d8775c1ab9c"
+  },
+  {
+    "index": 188,
+    "task": "web_of_lies",
+    "idx": 96,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "aae5722a029a95b43b1a527ceadf157afc0667ebba56911cf9d8e8689ef8b946"
+  },
+  {
+    "index": 189,
+    "task": "ruin_names",
+    "idx": 191,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "1420bf141b6c897137e59f7a3492762488a833dc7c8c2f32273c60fcae4d6c35"
+  },
+  {
+    "index": 190,
+    "task": "sports_understanding",
+    "idx": 52,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "d72c10d99f080c04eb3b75800804ab0db6cf21d1174381f16e05117e1b747980"
+  },
+  {
+    "index": 191,
+    "task": "web_of_lies",
+    "idx": 56,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "00ff3ddff65d724c9935ecfd0dd1f837db21518e58e6600f9f88cb73e873f832"
+  },
+  {
+    "index": 192,
+    "task": "snarks",
+    "idx": 116,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "d7a4384384f008233e7c43e07f9642cf5878870ee394b249aa11e3526f7d2814"
+  },
+  {
+    "index": 193,
+    "task": "navigate",
+    "idx": 94,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "1b74a7a85523d3c833bdc2d85b633cdd2b312fe16d2c1346e9b8652a7db61d26"
+  },
+  {
+    "index": 194,
+    "task": "movie_recommendation",
+    "idx": 36,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "84d1d66ab7ffe9010d6f8a367ae7b7317c4309d6a3a764214a897fbddc5e3ddb"
+  },
+  {
+    "index": 195,
+    "task": "sports_understanding",
+    "idx": 168,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "e1cac64ee744e93cc6de584d08528bd2ea3b0af53faba33c5f6b480f09845909"
+  },
+  {
+    "index": 196,
+    "task": "ruin_names",
+    "idx": 90,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "780f542e3e080ca71569ba05c9a024a0c517417b558cba3d6e5a425c4e7e411a"
+  },
+  {
+    "index": 197,
+    "task": "causal_judgment",
+    "idx": 23,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "dacdc2e1b7156c39d8cac052f814dcbd4a89e9b770ab2a9bd1168ed5d8520be2"
+  },
+  {
+    "index": 198,
+    "task": "disambiguation_qa",
+    "idx": 133,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "883db2d9f4d86d8709c078de660b15e6d1d7e0b417c8ec8eefbe5f8cb2c27c8f"
+  },
+  {
+    "index": 199,
+    "task": "snarks",
+    "idx": 109,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "2a409ec9469c048c7bb85c5898d0efc8e008752a0520d9782db0003fd1945d87"
+  },
+  {
+    "index": 200,
+    "task": "movie_recommendation",
+    "idx": 170,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "bafdb1e6c001a2da987c488ffa075a70e1d973ba10252e46b54e1d416d1092e7"
+  },
+  {
+    "index": 201,
+    "task": "temporal_sequences",
+    "idx": 51,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "12c1c17580763add24b1222ff385afd33be5e50f39a22ed25cfd89b19182f119"
+  },
+  {
+    "index": 202,
+    "task": "snarks",
+    "idx": 38,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "d376934fe0d1a2c2961cd0a3d3791e2606395d228ceef1137bc3de97aca3391b"
+  },
+  {
+    "index": 203,
+    "task": "disambiguation_qa",
+    "idx": 179,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "7aa3cc3e953fa1db7b4fbd0d570cb75432c76a3447da42d8be3839daa2fc477a"
+  },
+  {
+    "index": 204,
+    "task": "date_understanding",
+    "idx": 124,
+    "num_choices": 6,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "69bffa43b9ff4392dce889b6d1e2adf3633d4f1a835b106b1b4779f3a476535b"
+  },
+  {
+    "index": 205,
+    "task": "logical_deduction_five_objects",
+    "idx": 52,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "C",
+    "fingerprint": "40c8a67e78d8b4914dafd556f279942c5200de5c93ffc24fa4a7b969b7e0bac2"
+  },
+  {
+    "index": 206,
+    "task": "causal_judgment",
+    "idx": 108,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "7b01d8cadaa42a1bb985515cb9cb79785e3ec10701a0065209485126e724d769"
+  },
+  {
+    "index": 207,
+    "task": "temporal_sequences",
+    "idx": 196,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "446d2a3e0cd25221ab8677cd11d7f4890f74ee2f06342ac316daa6a41017cf88"
+  },
+  {
+    "index": 208,
+    "task": "date_understanding",
+    "idx": 53,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "B",
+    "fingerprint": "6445921213cb0b0b948d5ac96dc0e2c1ac2b9ab4c6e1f01ba32ea6bd0e187d42"
+  },
+  {
+    "index": 209,
+    "task": "ruin_names",
+    "idx": 94,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "B",
+    "fingerprint": "f4ad70a1eaa71d9f7a6a27738783b3c0cd087a813151d989612d926c11e92eda"
+  },
+  {
+    "index": 210,
+    "task": "ruin_names",
+    "idx": 212,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "3f072f88de55cdc51b4b4970fa038a7108883701ccad4f8d79b78aca1cf83ffc"
+  },
+  {
+    "index": 211,
+    "task": "hyperbaton",
+    "idx": 290,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "9485918bdc77afb35daf1ac980b60dd0c417c7a97f33a2ff6bc27ad7ef84a0be"
+  },
+  {
+    "index": 212,
+    "task": "disambiguation_qa",
+    "idx": 54,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "2cd055f5429cec352caf0df188f60d383e88fe48798a8e0f3f0eb5380810a906"
+  },
+  {
+    "index": 213,
+    "task": "logical_deduction_five_objects",
+    "idx": 65,
+    "num_choices": 5,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "55837b83f7ba9e79d7b23442a0071dcb7618dc0905b572485cb88fc996c4ce14"
+  },
+  {
+    "index": 214,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 75,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "303f993cb905ea905a5e0141435206e1266fd7f43596bae55782b50fc32dda48"
+  },
+  {
+    "index": 215,
+    "task": "disambiguation_qa",
+    "idx": 9,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "10d4a349e8b35f7099f6a1a052294504686c8d7b6f44e7617e9afe997fd01952"
+  },
+  {
+    "index": 216,
+    "task": "movie_recommendation",
+    "idx": 62,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "59213229fd2014383bc5375fb67604badc824b5ff238611ce8bb70e2afc4f3a1"
+  },
+  {
+    "index": 217,
+    "task": "temporal_sequences",
+    "idx": 309,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "d014bd457fd8e715049570a0fbf7bf0cd4e126796e665bb2264b60dacb4ed8d0"
+  },
+  {
+    "index": 218,
+    "task": "navigate",
+    "idx": 70,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "179180cd4bc4ff4e2635544ad45127fa223f6b4cda5b08812048ee614e8dbd47"
+  },
+  {
+    "index": 219,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 186,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "A",
+    "fingerprint": "f03a8b1b3078493c231168fe162ee6b22622e0d18504f1cb2d30f869b27608ce"
+  },
+  {
+    "index": 220,
+    "task": "ruin_names",
+    "idx": 278,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "6a19aa2a5d540303d23950551262a9ecf41c483783b4021581c6ceeb81bdbb31"
+  },
+  {
+    "index": 221,
+    "task": "ruin_names",
+    "idx": 163,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "B",
+    "fingerprint": "adcb486b9f7d431997ddd5ea692a1293bbd4f01f2cf40ff2b5db57b7a47c4347"
+  },
+  {
+    "index": 222,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 59,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "3d8e453f8bc49cde99a5b64765e33d6a10fa0dca8056b41491bfefdfa63381d6"
+  },
+  {
+    "index": 223,
+    "task": "temporal_sequences",
+    "idx": 353,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "d0ec6ba2ec9f7434bc7ce481693451b18b2c6cc4988d230a57baf70eb26b9f4f"
+  },
+  {
+    "index": 224,
+    "task": "web_of_lies",
+    "idx": 175,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "b2a37762c56e6436eaefa49dd1595e7bd8c4a0531fd6b7177a69ef5b1c011356"
+  },
+  {
+    "index": 225,
+    "task": "temporal_sequences",
+    "idx": 34,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "D",
+    "fingerprint": "dcaf52d0651b00f66bc20cdf2af096912b387df89b6c1315449d8c18898cb047"
+  },
+  {
+    "index": 226,
+    "task": "temporal_sequences",
+    "idx": 198,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "7cec9dbe3bf8aaab1d7730865017b3f5839be1f98cd38957bc658fd0692d0938"
+  },
+  {
+    "index": 227,
+    "task": "temporal_sequences",
+    "idx": 43,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "c78db18ba073c42a4ae1dde6a4cac91dd805958365e22c40860643964d73bb27"
+  },
+  {
+    "index": 228,
+    "task": "logical_deduction_five_objects",
+    "idx": 59,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "C",
+    "fingerprint": "0c745ab4c0da75922e7ab387fd82bf4a4290744ed25bfe2949c63591ba413b25"
+  },
+  {
+    "index": 229,
+    "task": "date_understanding",
+    "idx": 86,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "E",
+    "fingerprint": "2d3d70555fc74e00a4a5a43dd613d265a4b583492629c87cfc2a96e283fa2917"
+  },
+  {
+    "index": 230,
+    "task": "sports_understanding",
+    "idx": 187,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "5c104409c67b82118720390460bca4b5fd5fb92de0f6a6c6d25deb0c2dbfa8dc"
+  },
+  {
+    "index": 231,
+    "task": "sports_understanding",
+    "idx": 57,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "2f8c4527da9ffc769c58d38cb3e192fb89e2f62623fc9e5c930757856e0b9749"
+  },
+  {
+    "index": 232,
+    "task": "movie_recommendation",
+    "idx": 49,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "D",
+    "fingerprint": "6560cbddc836778580a4263dd5d51b039ee1e3be584b7ae73a25ffd55240bead"
+  },
+  {
+    "index": 233,
+    "task": "snarks",
+    "idx": 84,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "3eafa455edb26bc6eb35d2cab39cf70234cb6289b237728a5f9e8d81340b1695"
+  },
+  {
+    "index": 234,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 51,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "2a35be24d07bb5b43eee0643a9a5e38e08f31daec8f5f12abf8d6bccee9d1ce1"
+  },
+  {
+    "index": 235,
+    "task": "disambiguation_qa",
+    "idx": 38,
+    "num_choices": 3,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "1191d3c0bd34e83580b08e7e99c4422fcfa0cba2ea70ef951a15e9854f884696"
+  },
+  {
+    "index": 236,
+    "task": "temporal_sequences",
+    "idx": 2,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "7cf03d9cfff3d3e07b51ffff47cdf77ff2ba3d5423d5bca77d34e407e14fc339"
+  },
+  {
+    "index": 237,
+    "task": "sports_understanding",
+    "idx": 176,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "489033fcc8cbc2467982e2b5e63ef0fe649772ba103f9c7ff85edc748125353a"
+  },
+  {
+    "index": 238,
+    "task": "hyperbaton",
+    "idx": 256,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "0cbe7de6aab1882d91194bff52f7d084b4294b57b4c8b3387c7e9a2590d144df"
+  },
+  {
+    "index": 239,
+    "task": "web_of_lies",
+    "idx": 40,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "77e80405ecc3b4c69041d7ef9102bed94c05f12c97bd98849a240bf63484d0cb"
+  },
+  {
+    "index": 240,
+    "task": "movie_recommendation",
+    "idx": 34,
+    "num_choices": 4,
+    "gold_letter": "C",
+    "cued_letter": "B",
+    "fingerprint": "22e9eb5d53d2bcd2fc614a1939ece6c27e4236b09d98aa7716d7777cb0b95b8c"
+  },
+  {
+    "index": 241,
+    "task": "hyperbaton",
+    "idx": 273,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "298d8546e83b3bd22a5dafb35825a7d50cbd92dbf8f772f20352fa4a555b1ec4"
+  },
+  {
+    "index": 242,
+    "task": "sports_understanding",
+    "idx": 186,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "6419f582e177dfa5c9ab67179a8a6c55b87aa1d0457ffb9f71edccd428e9c82c"
+  },
+  {
+    "index": 243,
+    "task": "sports_understanding",
+    "idx": 41,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "10ada61ac8ddc86577d141148babfd3333e17ab876c35f1d2908328f49ead26c"
+  },
+  {
+    "index": 244,
+    "task": "date_understanding",
+    "idx": 245,
+    "num_choices": 6,
+    "gold_letter": "D",
+    "cued_letter": "A",
+    "fingerprint": "da0063e321f75776425a7f802e90438a0b656212711501d190cc4997eaddde18"
+  },
+  {
+    "index": 245,
+    "task": "disambiguation_qa",
+    "idx": 36,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "d175914d5fa741722bab922ef661761ee8c57cada56a29cc5f1e55b7e63ff13e"
+  },
+  {
+    "index": 246,
+    "task": "causal_judgment",
+    "idx": 138,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "44e9cdc40dc07fbe28f7412eda6668b2a6ed86de564cc04c7e067741ae1b8786"
+  },
+  {
+    "index": 247,
+    "task": "causal_judgment",
+    "idx": 107,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "20c98e418b1ebddb9316655c1e5107c405c7f514fd3cc2a4289bbef659f5dc52"
+  },
+  {
+    "index": 248,
+    "task": "date_understanding",
+    "idx": 18,
+    "num_choices": 6,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "c233611c3f39832ecd2db5ed2eb2ff1b96562ad7b389689cdffee7ac46637903"
+  },
+  {
+    "index": 249,
+    "task": "disambiguation_qa",
+    "idx": 132,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "6986d466637882ea3ec459dc50ed38315048ba4a632ab28fb09619f9cf6f4411"
+  },
+  {
+    "index": 250,
+    "task": "navigate",
+    "idx": 112,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "a9e2a002a288000f9229c85617de381fdfa32f92a6380c50e37cff3838586e7b"
+  },
+  {
+    "index": 251,
+    "task": "snarks",
+    "idx": 28,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "5001fd42c50178c770552413ddd2e44cd44641d7663e8d02ec74ffcc11b0f2e4"
+  },
+  {
+    "index": 252,
+    "task": "snarks",
+    "idx": 112,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "a9243f05c92a6ff071dbd205536de9ec8621fe42ca7f0214b93b5d0dd906f6ac"
+  },
+  {
+    "index": 253,
+    "task": "disambiguation_qa",
+    "idx": 163,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "a42a77a0278205a4daac03c54655775592774ad1227a9f7f311c6abb8780abc9"
+  },
+  {
+    "index": 254,
+    "task": "ruin_names",
+    "idx": 293,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "01c1e903d49792c58635dca480a77f24e88c81f460ac4210b1c8919db104c89e"
+  },
+  {
+    "index": 255,
+    "task": "disambiguation_qa",
+    "idx": 67,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "0f2091f978bdfbfcf80660654e8b399690b59d71709e402caac69d2a86b90513"
+  },
+  {
+    "index": 256,
+    "task": "temporal_sequences",
+    "idx": 123,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "9c42d1d47036c9b3ba6cea55554b1af83cbcc838382d3898fc0c5b450ca18402"
+  },
+  {
+    "index": 257,
+    "task": "navigate",
+    "idx": 74,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "bc63e5f5f6e72e5731b5141a9e871afc9eb5892dfafeafc04f556de87a4373ce"
+  },
+  {
+    "index": 258,
+    "task": "date_understanding",
+    "idx": 239,
+    "num_choices": 6,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "d4265e39e16ea2b4083dbf972935befa085e1f65c2b1ab4e99fa19708a5ce233"
+  },
+  {
+    "index": 259,
+    "task": "movie_recommendation",
+    "idx": 177,
+    "num_choices": 4,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "ce7eda770320aad67a3be0ca6909658e209bd201b7961a3e6f269d7d492c3962"
+  },
+  {
+    "index": 260,
+    "task": "snarks",
+    "idx": 27,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "152e1524d46a766678e5e7f9b7dfd026925f640fa2ee126c7dd9290b77756231"
+  },
+  {
+    "index": 261,
+    "task": "causal_judgment",
+    "idx": 79,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "47dd87d772c80fe86d480a50535161319b8b4dc88b7e8a978dec8cbe4420d414"
+  },
+  {
+    "index": 262,
+    "task": "hyperbaton",
+    "idx": 56,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "f9970adf20cdb3976938ef29d6b5a344f7a076ea97e65a297f88816e379fc83d"
+  },
+  {
+    "index": 263,
+    "task": "disambiguation_qa",
+    "idx": 39,
+    "num_choices": 4,
+    "gold_letter": "D",
+    "cued_letter": "C",
+    "fingerprint": "7dd11d6943fa7a5113154729e14a56bb0c404098947045ffb44ec538af0aa104"
+  },
+  {
+    "index": 264,
+    "task": "web_of_lies",
+    "idx": 177,
+    "num_choices": 2,
+    "gold_letter": "B",
+    "cued_letter": "A",
+    "fingerprint": "62c2acd589775921cda93ba1808951e0f1a21b7b547f6fb6987fd421da286372"
+  },
+  {
+    "index": 265,
+    "task": "date_understanding",
+    "idx": 138,
+    "num_choices": 5,
+    "gold_letter": "E",
+    "cued_letter": "A",
+    "fingerprint": "18c6a31b0252a1e23cb5314d160b7e88a29dcc271af5092811052291dcd91e93"
+  },
+  {
+    "index": 266,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 0,
+    "num_choices": 3,
+    "gold_letter": "A",
+    "cued_letter": "C",
+    "fingerprint": "ab1a235b13d7b7ae7201d3a3ff25bd169e0d04b80ea0497c06502327017887ac"
+  },
+  {
+    "index": 267,
+    "task": "movie_recommendation",
+    "idx": 82,
+    "num_choices": 4,
+    "gold_letter": "A",
+    "cued_letter": "D",
+    "fingerprint": "5747ff9c5e198ab74a903f36a7bc86a7a60f06bd532ca95c9a2c9a916b88fb10"
+  },
+  {
+    "index": 268,
+    "task": "snarks",
+    "idx": 40,
+    "num_choices": 2,
+    "gold_letter": "A",
+    "cued_letter": "B",
+    "fingerprint": "b0fdac5e137578f8bf6f46b4dc244c106a0c4a0f66b0b163bab8ab3ae1aaafd7"
+  },
+  {
+    "index": 269,
+    "task": "tracking_shuffled_objects_three_objects",
+    "idx": 100,
+    "num_choices": 3,
+    "gold_letter": "B",
+    "cued_letter": "C",
+    "fingerprint": "900cd20ff4f4ca07ddcd1ef62011e6bb14f566ed4b8541111d490a550761bded"
+  }
+]
