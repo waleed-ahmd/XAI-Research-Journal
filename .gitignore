@@ -9,8 +9,12 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 
-# Harness run artifacts (raw results can be large/regenerated; keep dirs via .gitkeep)
+# Original model responses: ignored by default; preserve and explicitly include reviewed
+# datasets for publication. Paid reruns cannot reproduce these responses exactly.
 harness/results/raw/*.jsonl
+!harness/results/raw/anthropic.jsonl
+!harness/results/raw/openai.jsonl
+# Derived summaries can be regenerated from saved responses; retain the empty directory.
 harness/results/summary/*
 !harness/results/summary/.gitkeep
 
@@ -33,3 +37,15 @@ shortpaper/*.log
 shortpaper/*.out
 shortpaper/*.synctex.gz
 shortpaper/main.pdf
+
+# Asynchronous batch manifests/input files contain full prompts and are local run artifacts.
+harness/results/batches/*
+!harness/results/batches/.gitkeep
+
+# Publish the historical responses used in the combined study.
+harness/results/historical/*.jsonl
+!harness/results/historical/anthropic.jsonl
+!harness/results/historical/openai.jsonl
+
+# Combined extension analysis outputs are local run artifacts.
+harness/results/extended-summary/
