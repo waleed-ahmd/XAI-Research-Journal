@@ -15,6 +15,7 @@ from pathlib import Path
 
 from .config import Condition, HarnessConfig
 from .data.models import Question, SelectedQuestion
+from .data.loader import resolve_question
 from .hashing import call_key
 from .jsonl import read_jsonl
 from .prompts import build_prompt
@@ -54,7 +55,7 @@ def build_plan(
     selected_hash = _selected_questions_hash(selected)
     plan: list[PlannedCall] = []
     for sq in selected:
-        question = questions_by_id[f"{sq.task}:{sq.idx}"]
+        question = resolve_question(sq, questions_by_id)
         for condition in config.conditions:
             prompt = build_prompt(
                 question,
@@ -64,7 +65,7 @@ def build_plan(
             )
             for run_index in range(config.n_runs):
                 key = call_key(
-                    question_id=question.question_id,
+                    question_id=sq.question_id,
                     condition=condition,
                     model_name=model_name,
                     run_index=run_index,
@@ -109,7 +110,9 @@ def run_plan(plan: list[PlannedCall], provider: Provider, results_path: Path) ->
         result = provider.call(pc.prompt, run_index=pc.run_index)
         record = {
             "key": pc.key,
-            "question_id": f"{pc.question.task}:{pc.question.idx}",
+            "question_id": pc.question.question_id,
+            "source_question_id": pc.question.source_question_id,
+            "question_fingerprint": pc.question.fingerprint,
             "task": pc.question.task,
             "idx": pc.question.idx,
             "condition": pc.condition,

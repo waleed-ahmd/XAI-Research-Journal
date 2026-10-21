@@ -22,6 +22,19 @@ class QuestionsConfig(BaseModel):
     tasks: list[str]
     total_count: int
     pilot_count: int
+    # Optional per-task quotas for a balanced extension. When present, the
+    # quotas must cover exactly the configured task list and sum to total_count.
+    counts_by_task: dict[str, int] | None = None
+
+    def validate_counts_by_task(self) -> None:
+        if self.counts_by_task is None:
+            return
+        if set(self.counts_by_task) != set(self.tasks):
+            raise ValueError("counts_by_task must contain exactly the configured tasks")
+        if any(count < 0 for count in self.counts_by_task.values()):
+            raise ValueError("counts_by_task values must be non-negative")
+        if sum(self.counts_by_task.values()) != self.total_count:
+            raise ValueError("counts_by_task must sum to total_count")
 
 
 class ThinkingConfig(BaseModel):
@@ -68,8 +81,9 @@ class PromptFormatConfig(BaseModel):
 
 
 class EstimateConfig(BaseModel):
-    assumed_input_tokens_per_call: int
-    assumed_output_tokens_per_call: int
+    assumed_input_tokens_per_call: int = Field(gt=0)
+    assumed_output_tokens_per_call: int = Field(gt=0)
+    batch_discount: float = Field(default=0.5, gt=0, le=1)
 
 
 class HarnessConfig(BaseModel):
@@ -81,6 +95,9 @@ class HarnessConfig(BaseModel):
     prompt_format: PromptFormatConfig
     models: ModelsConfig
     estimate: EstimateConfig
+
+    def model_post_init(self, __context: object) -> None:
+        self.questions.validate_counts_by_task()
 
     def model_hash(self) -> str:
         """A short hash of the fields that affect prompts/call identity.
