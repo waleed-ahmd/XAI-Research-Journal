@@ -8,7 +8,8 @@ accuracy and stability alone do not prove explanation faithfulness.
 
 ## Protocols and project state
 
-The main study now targets 270 accumulated questions. The two earlier experiments
+The main study contains 270 accumulated questions; collection finished on
+21 October 2026. The two earlier experiments
 are pilots that informed the broader design and supply 60 completed questions.
 This pivot and its rationale are recorded in [the research journal](../Journal/2026-10-20.md).
 The filename `config.extended.yaml` is retained for compatibility; it is the main
@@ -19,10 +20,11 @@ study configuration, not a supplementary experiment.
   Sequences questions and 20 from each of the other 12 released task types.
 - Each question has three conditions and one run per model. Reusing 60 historical
   questions leaves 210 new questions: 630 new requests per provider, 1,260 total.
-  Combined with the 360 historical responses, the target is 1,620 responses.
-- Batch transport and recovery have offline regression tests. No real batch is
-  submitted by setup, selection, estimation, historical import or tests. Provider
-  acceptance and actual costs still need a small real smoke batch.
+  Combined with the 360 historical responses, there are 1,620 saved responses.
+- Both providers completed a 20-question smoke batch and the remaining
+  190-question batch without failed or missing requests. All responses are saved.
+- Combined analysis and human ratings are pending. Setup, selection, estimation,
+  historical import and tests do not submit paid requests.
 
 Questions come from the [released Turpin dataset](https://github.com/milesaturpin/cot-unfaithfulness/tree/main/data/bbh).
 The correctly spelled task name is `causal_judgment`. Both models use the same
@@ -41,10 +43,15 @@ pip install -e ".[dev]"
 ```
 
 Keep your existing `harness/.env`, or copy `.env.example` if you have not created
-one. The CLI loads it automatically without overriding exported variables. Never
-commit API keys. Updating dependencies does not require deleting the environment.
+one and configure the provider credentials there. The CLI loads it automatically
+without overriding exported variables.
 
 ## Main-study workflow
+
+The selection and response data already exist. To analyse the completed study,
+go to step 7. Steps 1–6 document collection and recovery; paid submission is not
+needed to inspect the saved results. Keep the existing selection and metadata
+sidecar together.
 
 Run these commands from `harness/` with the virtual environment activated.
 
@@ -142,7 +149,7 @@ The importer reads the two completed experiments from pinned Git commit
 before or after new batches. Repeating the import is idempotent; conflicting
 records fail instead of being overwritten. `--output-dir PATH` and `--commit SHA`
 are available for deliberate recovery; the expected source has 180 responses
-per provider. The importer needs local Git history, not network or API keys.
+per provider. The importer reads local Git history.
 
 ### 7. Analyse the combined dataset
 
@@ -192,6 +199,10 @@ by synchronous `run`. Do not switch transports into the same run while batches
 are pending or expect synchronous calls to reuse old historical keys.
 
 ## Analysis and human rating
+
+Analysis combines the response datasets in `results/raw/` and
+`results/historical/`. Reports in `results/extended-summary/` are derived from
+these saved responses.
 
 Outputs include `metrics_summary.csv`, `needs_review.csv`, accuracy/flip charts,
 a blinded coding sheet and its separate model key. Metrics contain counts,

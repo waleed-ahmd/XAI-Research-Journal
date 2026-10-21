@@ -6,6 +6,13 @@ The project compares Claude Opus 5.5 and GPT-5.6 Sol using original, cued and
 original-repeat prompts. It does not claim to expose private chain-of-thought or
 prove explanation faithfulness from answer accuracy alone.
 
+## Current state — 21 October 2026
+
+Collection is complete: **1,620 saved responses**, with 810 per model. Each model
+has 270 original, 270 cue and 270 original-repeat responses. The submitted batches
+finished without failed or missing requests. Combined analysis outputs and human
+ratings have not yet been produced.
+
 ## Main study: 270 questions across 13 BBH task types
 
 The project has pivoted from an initial 30-question Temporal Sequences sample
@@ -16,8 +23,8 @@ contribute their existing responses to the accumulated dataset.
 |---|---:|---:|---|
 | Pilot 01 — Temporal Sequences | 30 | 180 | Completed |
 | Pilot 02 — Logical Deduction, Date Understanding and Disambiguation QA | 30 | 180 | Completed |
-| Main-study expansion — remaining task quotas | 210 | 1,260 | Planned; Batch workflow verified offline |
-| **Accumulated main-study target** | **270** | **1,620** | **60 questions completed; 210 to collect** |
+| Main-study expansion — remaining task quotas | 210 | 1,260 | Collected |
+| **Accumulated main study** | **270** | **1,620** | **Collection complete** |
 
 The final selection contains 30 Temporal Sequences questions and 20 from each
 of the other 12 released task types. Each question has three conditions and is
@@ -42,14 +49,17 @@ selections retain the original pilot protocol for provenance.
 See the [harness runbook](harness/README.md) for setup, frozen selection, estimated
 costs, smoke batches, collection, recovery and combined analysis. Batch safeguards
 include fingerprinted question identities, per-call resumability, durable
-submission reservations and collection of successful partial batches. Tests and
-full-pipeline verification use fake clients; the new paid collection has not yet
-been submitted. Budget options check estimated spend, not guaranteed charges.
+submission reservations and collection of successful partial batches. Tests use fake clients and do not incur API charges. Paid collection used a
+20-question smoke batch followed by the remaining 190 new questions per model.
+Budget options check estimated spend, not guaranteed charges.
 
-Use [the historical import script](harness/scripts/restore_historical_results.sh)
-to recover the existing 360 responses into a separate local directory. The
-[results guide](harness/results/README.md) describes the live, historical and
-analysis outputs. Raw data and Batch manifests should be backed up locally.
+The saved datasets are in [`harness/results/raw/`](harness/results/raw/)
+(630 new responses per model) and
+[`harness/results/historical/`](harness/results/historical/)
+(180 pilot responses per model). The
+[results guide](harness/results/README.md) explains the files and analysis command.
+The [historical import script](harness/scripts/restore_historical_results.sh) can
+recover the pilot data from pinned local Git history if needed.
 
 ## Project organisation
 
@@ -66,5 +76,19 @@ describes the runtime layers and distinguishes raw data from derived reports.
   independent cue-acknowledgement rating of visible explanations.
 - [Short-paper specification](spec/Xai-ShortPaper.md): report requirements.
 
-Final accuracy, cue-flip rates, baseline instability and human acknowledgement
-ratings for the 270-question study remain to be established after collection.
+Accuracy, cue-flip rates and baseline instability still need to be calculated
+for the combined dataset. Human acknowledgement ratings require independent
+review of the eligible visible explanations. Collection success does not imply
+answer correctness.
+
+## What the comparison measures
+
+- **Original:** the question without a suggested answer.
+- **Cue:** the same question plus a deterministic incorrect suggestion.
+- **Original-repeat:** a separate call with the original prompt, to measure
+  answer variation without the cue.
+
+A switch to the cued answer is compared with variation between the two original
+calls. Human raters then assess whether the visible explanation acknowledges the
+suggestion. A single switch cannot establish its cause, and an explanation that
+sounds correct does not establish that it describes the model’s internal reasoning.

@@ -1,37 +1,64 @@
-# Main-study results and local run state
+# Experiment results
 
-Keep the two historical experiments separate from new Batch responses. Raw
-responses and Batch manifests are local, gitignored artifacts; preserve backups
-because stochastic model answers cannot be reproduced exactly by rerunning them.
+Collection finished on **21 October 2026**. There are **1,620 saved responses**:
+270 questions × three conditions × two models. Each provider has 810 responses,
+with 270 each for `original`, `cue` and `original_repeat`. The Batch collections
+reported no failed or missing requests. This describes collection completeness,
+not answer accuracy.
 
-| Directory | Purpose |
-|---|---|
-| `raw/` | Newly collected model responses |
-| `historical/` | Imported historical responses, 180 per provider |
-| `batches/` | Submission reservations, provider IDs, payloads and errors |
-| `extended-summary/` | Suggested location for combined main-study analysis |
+## Saved data
 
-The main study targets 270 accumulated questions and 1,620 responses. Its
-historical 60 pilot questions produced 360 responses: 180 from Experiment 01
-(Temporal Sequences) and 180 from Experiment 02 (three task types). The exact
-content fingerprints, old cue letters and generation settings are recorded in
-`harness/data/completed_question_ids.json`.
+| File | Responses | Contents |
+|---|---:|---|
+| [raw/anthropic.jsonl](raw/anthropic.jsonl) | 630 | New Claude responses for 210 questions |
+| [raw/openai.jsonl](raw/openai.jsonl) | 630 | New OpenAI responses for the same questions |
+| [historical/anthropic.jsonl](historical/anthropic.jsonl) | 180 | Claude responses for the 60 pilot questions |
+| [historical/openai.jsonl](historical/openai.jsonl) | 180 | OpenAI responses for the same pilot questions |
 
-From the repository root, restore the historical data from pinned local Git
-history without touching live raw responses:
+Each JSONL line is one response record. It contains the question identity,
+condition, prompt, gold and cued answer letters, visible answer text, model and
+request settings, and the provider response with usage metadata. Reasoning
+summaries, when returned, are distinct from the visible explanations being rated.
 
-```sh
-./harness/scripts/restore_historical_results.sh
-```
+The frozen selection and its metadata live in `../data/selected_questions_extended.json` and the
+adjacent `.metadata.json` file. `../data/completed_question_ids.json` records
+historical content fingerprints, cue letters and request settings.
 
-The import is idempotent and rejects conflicting records. Then, from `harness/`:
+## Supporting files
+
+- `batches/`: provider batch IDs, submitted calls, OpenAI input JSONL payloads,
+  collection state and any errors used to reconcile submissions with responses.
+- `extended-summary/`: combined metrics, charts and rating sheets generated
+  from the saved responses; these outputs have not yet been generated.
+
+## Generate the combined analysis
+
+From `harness/`, with the virtual environment activated:
 
 ```sh
 cot-harness --config config.extended.yaml --results-dir results/raw analyze \
   --historical-dir results/historical --summary-dir results/extended-summary
 ```
 
-The complete target is 270 questions and 1,620 responses. Analyse partial runs
-as partial runs, and report the historical and new cohorts separately as well.
-The [harness runbook](../README.md) explains selection, estimated-spend checks,
-smoke batches, status, collection and recovery after ambiguous submissions.
+This creates `metrics_summary.csv`, `needs_review.csv`, `accuracy.png`,
+`flip_rates.png`, `coding_sheet.csv` and
+`coding_sheet_KEY_do_not_share_with_raters.csv`. Keep the model-identity key
+separate from the sheets supplied to human raters. Metrics and charts do not
+complete the human acknowledgement ratings.
+
+Report historical and new cohorts separately as well as together: pilot outcomes
+informed the expanded selection. Do not treat repeated conditions as independent
+questions or interpret accuracy alone as proof of explanation faithfulness.
+
+## Recover historical responses
+
+The historical files are already present. If they are lost, run this from the
+repository root with the pinned Git history available:
+
+```sh
+./harness/scripts/restore_historical_results.sh
+```
+
+The importer validates the source data, rejects conflicts and leaves `raw/`
+untouched. Repeated imports do not duplicate responses. See the
+[harness runbook](../README.md) for setup and Batch recovery.
