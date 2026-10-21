@@ -1,8 +1,10 @@
 # Builds the short paper PDF so nobody needs LaTeX installed locally.
 # - Every push/PR touching shortpaper/: the PDF is attached to the run as an
 #   artifact (Actions tab -> run -> Artifacts -> short-paper).
-# - Pushes to main also replace the "latest-draft" pre-release, so the README
-#   can link to a fixed URL for the current draft.
+# - Pushes to main also update the "latest-draft" pre-release, so the README
+#   can link to a fixed URL for the current draft. Publishing runs one at a
+#   time and only for the current tip of main, so an older build can never
+#   replace a newer draft.
 name: Build short paper
 
 on:
@@ -13,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -33,15 +35,44 @@ jobs:
           name: short-paper
           path: shortpaper/main.pdf
 
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    # Serialize publishing. A newer queued run replaces an older queued one.
+    concurrency:
+      group: paper-latest-draft
+      cancel-in-progress: false
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: short-paper
+
       - name: Publish latest-draft release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          cp shortpaper/main.pdf group7-short-paper.pdf
-          gh release delete latest-draft --cleanup-tag --yes || true
-          gh release create latest-draft group7-short-paper.pdf \
-            --prerelease \
-            --target "$GITHUB_SHA" \
-            --title "Short paper: latest draft" \
-            --notes "Built automatically from ${GITHUB_SHA::7}. Not the submitted version."
+          # If main has moved on, a newer run will publish its own build.
+          head=$(gh api "repos/$GH_REPO/commits/main" --jq .sha)
+          if [ "$head" != "$GITHUB_SHA" ]; then
+            echo "main is at ${head::7}, this build is ${GITHUB_SHA::7}; skipping publish."
+            exit 0
+          fi
+
+          mv main.pdf group7-short-paper.pdf
+          notes="Built automatically from ${GITHUB_SHA::7}. Not the submitted version."
+          if gh release view latest-draft >/dev/null 2>&1; then
+            gh api -X PATCH "repos/$GH_REPO/git/refs/tags/latest-draft" \
+              -f sha="$GITHUB_SHA" -F force=true >/dev/null
+            gh release upload latest-draft group7-short-paper.pdf --clobber
+            gh release edit latest-draft --notes "$notes"
+          else
+            gh release create latest-draft group7-short-paper.pdf \
+              --prerelease \
+              --target "$GITHUB_SHA" \
+              --title "Short paper: latest draft" \
+              --notes "$notes"
+          fi
