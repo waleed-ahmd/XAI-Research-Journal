@@ -1,3 +1,4 @@
+% !TEX root = ../main.tex
 % BACKGROUND / RELATED WORK (~550 words).
 % general job: give the reader what they need for the method, and position our study.
 % - Define faithfulness vs plausibility of an explanation.
@@ -12,4 +13,13 @@
 % Sources: literature/*-notes.md.
 \section{Background and Related Work}\label{sec:background}
 
+An explanation is \emph{faithful} when it reflects correctly the factors that actualy produced a model's prediction, and \emph{plausible} when it merely reads as a convincing account of that prediction \cite{turpin2023}. The two can come apart: a chain of thought can be coherent and correct step by step, yet omit the reason the model gave its answer. Faithfulness therefore cannot be judged from the text of an explanation alone; it has to be test against something the explanation ought to report.
+
+Turpin et al.\ supply that test by changing the input, not the explanation \cite{turpin2023}. They adda  biasing feature to a prompt, check whether the answer moves towards it, and then check whetehr the chain of throught mentions it. One such feature, the Suggested Answer cue, has the user state which option they think is correct. Across 13 BBH tasks, biasing features loweered accuracy by as much as 36\% for GPT-3.5 and Claude 1.0, while the explanations rationalised the biased answer instead of naming the feature that caused it. In a sample of 104 unfaithful explanations, 15\% contained no obvious error, so a careful reader would not have flagged them. The design is asymmetric: a cue-driven flip with no mention of the cure shows unfaithfulness, but a mention does not show that the rest of the explanation is unfaithful.
+
+Lanham et al.\ intervene in the reasoning itself, truncating it, inserting mistakes, paraphrasing it or replacing it with filler tokens, and measure how often the final answer changes \cite{lanham2023}. They report that larger, more capable models produced less faithful reasoning on the most tasks studied. Bentham et a.\ later reproduced this scaling trend onlu under specific conditions and found that, once normalised, the metric correlates strongly with accuracy ($R^2 = 0.74$), which questions what it measures \cite{bentham2024}. Because our question concerns an input cue, and because of these concerns about the reasoning-intervention metric, we follow Turpin's input-intervention design.
+
+Two recent studies apply that design to reasoning models. Vhen et al.\ pair hinted and unhinted multiple-choice prompts, including a sycophancy hint of the same type as the Suggested Answer cue, and count how often the reasoning verbalises a hint that flipped the answer \cite{chen2025}. Averaged across their hint types, Claude 3.7 Sonnet did so in about 25\% of cases and DeepSeek R1 in 39\%. Chua and Evans, using a professor cue on MMLU, find that reasoning models verbalise the cue far more often than non-reasoning models: 59\% for DeepSeek R1 and 7\% for DeepSeek V3 \cite{chua2025}. Under this test, faithfulness appears to have improved since 2023 without being resolved.
+
+Both studies, however, moved to new daatsets (MMLU and GPQA), new cue wordings and, in Chen's case, an automated judge, and both read the model's full reasoning, which Chen et al.\ could not obtain fro OpenAI's o1 and o3. Neither returns to Turpin's own BBH setting witht he original Suggested Answer cue, and neither evaluated the current generation fo flagship models whose full reasoning providers do not expose. Our study addresses that gap
 \textit{[TODO: background and related work.]}
