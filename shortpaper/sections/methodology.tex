@@ -17,63 +17,62 @@
 %   Journal/2026-10-20.md (main-study pivot), journal/2026-10-07-harness-build.md.
 \section{Methodology}\label{sec:method}
 
-We evaluate 270 questions drawn from Big-Bench Hard (BBH). The questions
-themselves are not ours: we use the data Turpin et al. released alongside
-their original study, rather than writing new items, so our sample stays
-directly comparable to theirs \cite{turpin2023,turpin2023code}. The 270
-questions span all 13 BBH tasks Turpin used, 30 Temporal Sequences questions
-and 20 from each of the other 12, a fixed split drawn under a recorded seed.
-Sixty of these questions survive from two earlier pilots: one 30-question run
-on a single task, then a second 30-question run spread across all 13. The
-remaining 210 were sampled afterwards to fill out the balanced quota. Why the
-expansion? Both pilots produced too few cue-induced answer flips on one task
-alone to say anything meaningful about acknowledgement. We report that
-sequence honestly, rather than presenting the full 270-question design as
-though it had been fixed from the outset.
+We evaluate 270 questions drawn from Big-Bench Hard (BBH), using the data
+Turpin et al. released alongside their original study instead of writing new
+items, so our sample stays directly comparable to theirs
+\cite{turpin2023,turpin2023code}. The 270 questions span all 13 BBH tasks
+Turpin used: 30 Temporal Sequences questions and 20 from each of the other
+12, a balanced, fixed split drawn under a recorded seed. Sixty of these
+questions survive from two earlier pilots, one 30-question run on a single
+task and a second 30-question run spread across all 13. The remaining 210
+were sampled afterwards to complete the balanced quota. Both pilots produced
+too few cue-induced answer flips on one task alone to support a meaningful
+acknowledgement analysis, which is why the sample was expanded. We report
+that sequence as it happened, not as though the full 270-question design had
+been fixed from the outset.
 
-Each question meets each model under three conditions. \textit{Original} is
-the bare question. \textit{Cue} adds a ``Suggested Answer'' sentence naming a
-wrong option, following Turpin's construction \cite{turpin2023}.
-\textit{Original\_repeat} asks the same bare question again, in a fresh call.
-Comparing \textit{original} against \textit{cue} shows how far the cue pulls
-an answer; comparing \textit{original} against \textit{original\_repeat}
-shows how much an answer wobbles with no cue at all. That second comparison
-matters: without it, any shift seen under cue could just be noise rather
-than the cue's doing. Every question, condition, model and run is answered
-once, keyed against its own configuration, so an interrupted collection
-picks back up where it stopped instead of re-asking, and re-paying, for work
-already done.
+Each question is presented to each model under three conditions.
+\textit{Original} is the bare question. \textit{Cue} adds a ``Suggested
+Answer'' sentence naming a wrong option, following Turpin's construction
+\cite{turpin2023}. \textit{Original\_repeat} asks the same bare question a
+second time, in a separate call: a single repeat per question, giving a thin
+baseline for how much an answer varies with no cue present. Comparing
+\textit{original} against \textit{cue} shows how far the cue shifts an
+answer; comparing \textit{original} against \textit{original\_repeat}
+isolates that baseline variation, so a shift under cue is not mistaken for
+ordinary noise. Each question, condition, model and run is answered once and
+keyed against its own configuration, so an interrupted collection resumes
+without re-asking, or re-paying, for completed work.
 
-Two models are compared: Claude Opus 5.5 and GPT-5.6 Sol. Each is the current
-flagship of its provider, chosen to match by tier rather than by price or
-speed. Both run at the same \texttt{medium} reasoning-effort setting, fixed
-explicitly in configuration rather than left at whatever each provider
-defaults to. Otherwise, the model comparison would really be a comparison of
-effort budgets instead.
+Two models are compared: Claude Opus 5.5 and GPT-5.6 Sol, each provider's
+current flagship model, matched by tier. Both run at the same, explicitly
+configured \texttt{medium} reasoning-effort setting, controlling effort as a
+variable separate from model choice.
 
 We rate only the explanation text a model gives as part of its ordinary,
-user-visible answer. We do not use any separate internal reasoning or
-``thinking'' summary an API might expose. Neither provider ever hands back
-the literal chain of thought behind an answer, only a summary or nothing, and
-we record which one for every single response rather than assuming. This
-caps, honestly, what the study can claim about why a model answered as it
-did. Following Chen et al.'s practice of filtering on cases where a hint
-actually changed the answer \cite{chen2025}, we restrict acknowledgement
-rating to responses where the cue flipped the answer to the suggested, wrong
-option. For each of those, two human raters work blind to model identity, on
-a shuffled case order, and independently label the explanation as
-\emph{explicit}, \emph{mentions}, or \emph{none}: does it, in its own words,
-admit the suggestion changed its mind? Agreement between the two raters is
-scored with Cohen's kappa. We kept this judgement with humans. Asking a model
-to judge another model's faithfulness would hand the question straight back
-to the kind of system this study doubts.
+user-visible answer, not any separate internal reasoning or ``thinking''
+summary an API might expose. Neither provider returns the literal chain of
+thought behind an answer, only a summary or nothing; which of the two
+applies is recorded for every response. This limits what the study can claim
+about why a model answered as it did. Following Chen et al.'s practice of
+filtering on cases where a hint changed the answer \cite{chen2025}, we
+restrict acknowledgement rating to responses where the cue flipped the
+answer to the suggested, wrong option. For each of those, two human raters
+work blind to model identity, on a shuffled case order, and independently
+label the explanation using one of three categories: \emph{explicit}, where
+the explanation states that it is going with the suggested answer or that
+the suggestion changed its mind; \emph{mentions}, where the explanation
+refers to the suggestion without crediting it as the reason for the final
+answer; and \emph{none}, where the explanation does not refer to the
+suggestion at all. Agreement between the two raters is scored with Cohen's
+kappa. Human raters make this judgement, since model-generated explanations
+of influence are precisely what the study evaluates.
 
 This is a controlled adaptation of Turpin et al.'s Suggested Answer
-experiment \cite{turpin2023}, not a strict replication. The models are
-2026's flagship tier, not 2023's; reasoning effort is fixed to a shared level
-neither provider defaults to; and the sample now spans 13 BBH tasks unevenly,
-rather than one task in depth. All 1{,}620 responses (270 questions $\times$
-three conditions $\times$ two models) were collected by 21 October 2026, with
-no failed or missing requests. That figure describes collection completeness
-only. Accuracy and explanation faithfulness are reported in
-Section~\ref{sec:results}.
+experiment \cite{turpin2023}, not a strict replication: the models are
+2026's flagship tier, not 2023's, and reasoning effort is fixed to a shared
+level that neither provider defaults to. All 1{,}620 responses (270
+questions $\times$ three conditions $\times$ two models) were collected by
+21 October 2026, with no failed or missing requests, describing collection
+completeness, not answer accuracy or explanation faithfulness, which are
+reported in Section~\ref{sec:results}.
