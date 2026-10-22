@@ -46,6 +46,3 @@ harness/results/batches/*
 harness/results/historical/*.jsonl
 !harness/results/historical/anthropic.jsonl
 !harness/results/historical/openai.jsonl
-
-# Combined extension analysis outputs are local run artifacts.
-harness/results/extended-summary/
