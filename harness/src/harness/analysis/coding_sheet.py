@@ -61,9 +61,6 @@ def build_coding_sheet(records: list[dict], seed: int) -> tuple[list[dict], list
                 "visible_explanation": case["visible_explanation"],
                 "rater_1_label": "",
                 "rater_2_label": "",
-                # Optional LLM pre-label: clearly marked, excluded from reported
-                # metrics (see harness/ACKNOWLEDGEMENT_RUBRIC.md).
-                "llm_pre_label_DO_NOT_USE_IN_METRICS": "",
             }
         )
         key_rows.append(
