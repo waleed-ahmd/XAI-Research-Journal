@@ -26,6 +26,18 @@ harness/data/bbh/
 # Vs code files
 
 .DS_Store
+
+# LaTeX build output (CI builds the PDF)
+shortpaper/*.aux
+shortpaper/*.bbl
+shortpaper/*.blg
+shortpaper/*.fdb_latexmk
+shortpaper/*.fls
+shortpaper/*.log
+shortpaper/*.out
+shortpaper/*.synctex.gz
+shortpaper/main.pdf
+
 # Asynchronous batch manifests/input files contain full prompts and are local run artifacts.
 harness/results/batches/*
 !harness/results/batches/.gitkeep

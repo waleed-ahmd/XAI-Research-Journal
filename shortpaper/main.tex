@@ -1,0 +1,58 @@
+% XAI Assignment 03: Short Paper (Group 7)
+% Based on IEEE's official conference template (version 6/27/2024), with its
+% guidance text removed. IEEEtran.cls (v1.8b) and IEEEtran.bst (v1.12) in this
+% folder are IEEE's own copies, so the build uses them over any installed ones.
+% Do not change margins, font size or spacing: the class handles all of it
+% (spec: "no manually adjusted margins").
+% Each section lives in sections/ so members can edit and commit separately.
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\graphicspath{{figures/}}
+
+\begin{document}
+% Applies the reference-list settings at the top of refs.bib.
+\bstctlcite{IEEEtran:BSTcontrol}
+
+
+\title{Do Current LLMs Still Hide What Influenced Them? A Controlled
+Re-evaluation of Chain-of-Thought Unfaithfulness}
+
+% One shared affiliation block, since all four authors have the same
+% affiliation (saves space over four separate blocks).
+% TODO(group): check names; replace each TODO with your student number, in the
+% same order as the names. Anyone using a non-studentmail address: list it on
+% its own line instead.
+\author{
+\IEEEauthorblockN{Timothy Josh Lazo, Luca Knierim, Waleed Ahmad, Peter Kennedy}
+\IEEEauthorblockA{\textit{Dept. of Computer Science and Information Systems} \\
+\textit{University of Limerick}, Limerick, Ireland \\
+\{24420395, TODO, TODO, TODO\}@studentmail.ul.ie}
+}
+
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/conclusion}
+
+% Spec: references must be on their own page.
+\clearpage
+% TODO(before submission): remove \nocite{*}. It lists every refs.bib entry so
+% BibTeX doesn't fail while the stubs cite nothing; the final list should hold
+% only sources the text actually cites.
+\nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}
