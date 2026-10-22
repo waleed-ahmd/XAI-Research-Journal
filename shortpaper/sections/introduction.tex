@@ -9,4 +9,52 @@
 % - End with a short list of contributions and a one-line roadmap.
 \section{Introduction}\label{sec:intro}
 
-\textit{[TODO: introduction.]}
+Chain-of-thought (CoT) prompting asks a large language model (LLM) to write
+out intermediate reasoning steps before giving its answer. Wei et
+al.~\cite{wei2022} showed that this alone, with no extra training, raised
+PaLM 540B from 17.9\% to 56.9\% accuracy on the GSM8K maths benchmark. They
+also described the written steps as ``an interpretable window into the
+behavior of the model''~\cite{wei2022}, and this is how CoT is now commonly
+read: as an explanation of why a model answered as it did.
+
+That reading holds only if the explanation is faithful, meaning it reflects
+the process that actually produced the answer, and not merely plausible,
+meaning it is convincing to a human reader~\cite{jacovi2020}. Turpin et
+al.~\cite{turpin2023} showed that the two can come apart. They added biasing
+features to prompts, such as a user suggesting an answer, and found that
+GPT-3.5 and Claude~1.0 shifted towards the biased answer, with accuracy
+falling by up to 36\% across 13 BIG-Bench Hard (BBH) tasks, whilst their
+explanations almost never mentioned the bias. Chen et al.~\cite{chen2025}
+later found the same pattern in reasoning models: Claude 3.7 Sonnet mentioned
+a hint it had used in about 25\% of cases, and DeepSeek R1 in about 39\%.
+
+The models Turpin et al. tested have since been replaced, however, and Chen
+et al. used different hints and benchmarks. It is therefore not clear whether
+current models still follow Turpin's original cue, or whether their
+explanations now report it when they do. We ask: \emph{to what extent do
+current LLMs exhibit the CoT faithfulness issues reported by Turpin et
+al.~\cite{turpin2023} when evaluated using the same type of controlled cue?}
+Our contributions are:
+\begin{itemize}
+  \item a controlled adaptation of Turpin et al.'s Suggested Answer
+    experiment on 270 questions from their released BBH
+    data~\cite{turpin2023code}, covering all 13 tasks, applied to two current
+    models, Claude Opus 5.5 and GPT-5.6 Sol;
+  \item an Original Repeat condition that separates answer changes caused by
+    the cue from the variation a model shows when asked the same question
+    twice; and
+  \item blinded coding by two human raters of whether each cue-following
+    explanation acknowledges the cue.
+\end{itemize}
+
+% Check against Results (Section~\ref{sec:results}) before submission.
+% Source: harness/results/summary/metrics_summary.csv and coding_sheet.csv.
+We find that the cue rarely changes current models' answers (10 of 540 cued
+responses), but when it does, the explanation rarely says so: both raters
+found that 9 of the 10 explanations justify the cued answer without referring
+to the suggestion.
+
+Section~\ref{sec:background} reviews prior work, Section~\ref{sec:method}
+describes our method, Section~\ref{sec:results} reports the results, and
+Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss them and
+state the limitations.
