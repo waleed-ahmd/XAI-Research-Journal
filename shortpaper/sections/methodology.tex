@@ -37,10 +37,11 @@ incorrect option chosen reproducibly from a fixed seed (20261020)
 same suggested letter is used for both models. \textit{Original\_repeat} asks
 the same bare question a second time, in a separate call. Comparing
 \textit{original} against \textit{cue} shows how far the cue shifts an
-answer; comparing \textit{original} against \textit{original\_repeat} gives a
-baseline for ordinary response variability. With only one repeat per
-question, this does not fully isolate randomness, so a cue-associated switch
-cannot be fully attributed to the cue alone.
+answer. A cue-following switch is a change from the original answer to the
+incorrect option suggested by the cue. Baseline answer variability is
+measured by comparing the original and uncued repeat responses; with only
+one repeat per question, this gives a reference for ordinary variation
+without establishing the cause of any individual switch.
 
 Two models are compared: Claude Opus 5.5 and GPT-5.6 Sol, each provider's
 current flagship model, matched by tier. Both models were evaluated using
@@ -73,12 +74,8 @@ This is a controlled adaptation of Turpin et al.'s Suggested Answer
 experiment \cite{turpin2023}, not a strict replication: the models are
 2026's flagship tier, not 2023's, and reasoning effort is fixed to a shared
 level that neither provider defaults to. Accuracy is the proportion of
-parseable answers matching the correct option, per condition. The
-cue-following rate is the proportion of question/run pairs, among those with
-parseable answers in both the original and cue conditions, where the
-cue-condition answer switches to the suggested wrong option; the
-repeat-switch rate is the analogous proportion where the original and
-uncued repeat answers differ. All 1{,}620 responses (270
+parseable answers matching the correct option, per condition. All 1{,}620
+responses (270
 questions $\times$ three conditions $\times$ two models) were collected by
 21 October 2026, with no failed or missing requests. Outcomes on these
 measures are reported in Section~\ref{sec:results}.
