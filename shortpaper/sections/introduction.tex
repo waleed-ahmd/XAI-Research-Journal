@@ -1,12 +1,63 @@
-% INTRODUCTION (~400 words). 
+% INTRODUCTION (~400 words).
 % general job: motivate the problem and state the research question and contributions.
 % - Why CoT is read as an explanation: Wei et al. \cite{wei2022}.
 % - Why that is risky: a fluent explanation is not necessarily the cause of
 %   the answer \cite{turpin2023}.
-% - Research question (journal/2026-10-02.md): "To what extent do current LLMs
-%   exhibit the Chain-of-Thought faithfulness issues reported by Turpin et al.
-%   (2023) when evaluated using the same type of controlled cue?"
-% - End with a short list of contributions and a one-line roadmap.
+% - Research question: refined from journal/2026-10-02.md ("To what extent do
+%   current LLMs exhibit the Chain-of-Thought faithfulness issues reported by
+%   Turpin et al. (2023) when evaluated using the same type of controlled
+%   cue?") to match the final method and results (PR #22 review).
+% - End with a short list of contributions. No roadmap: the section headings
+%   already show the structure and space is tight.
 \section{Introduction}\label{sec:intro}
 
-\textit{[TODO: introduction.]}
+Chain-of-thought (CoT) prompting encourages a large language model (LLM) to
+generate intermediate reasoning steps before producing a final answer,
+typically by including worked examples of such reasoning in the prompt. Wei
+et al.~\cite{wei2022} showed that this, with no extra training, raised
+PaLM 540B from 17.9\% to 56.9\% accuracy on the GSM8K maths benchmark. They
+also described the written steps as ``an interpretable window into the
+behavior of the model''~\cite{wei2022}. Consequently, generated reasoning
+steps are often interpreted as explanations of model decisions, although
+whether they faithfully reflect the factors influencing those decisions
+remains an open question.
+
+Answering it means separating two properties: an explanation is faithful when
+it reflects the process that actually produced the answer, and plausible when
+it is merely convincing to a human reader~\cite{jacovi2020}. Turpin et
+al.~\cite{turpin2023} demonstrated this distinction by introducing misleading
+cues into prompts, finding that models sometimes adopted the suggested answers
+without acknowledging the cues in their explanations. Chen et
+al.~\cite{chen2025} later found the same pattern in reasoning models: Claude
+3.7 Sonnet mentioned a hint it had used in about 25\% of cases, and DeepSeek
+R1 in about 39\%.
+
+However, differences in model generations, cue designs and evaluation
+benchmarks leave uncertainty about how current LLMs respond to comparable
+misleading answer suggestions. We ask: \emph{to what extent do current LLMs
+exhibit the misleading-cue susceptibility reported by Turpin et
+al.~\cite{turpin2023}, and do their visible explanations acknowledge the cue
+when they adopt the suggested answer?} Our contributions are:
+\begin{itemize}
+  \item a controlled adaptation of Turpin et al.'s Suggested Answer
+    experiment on 270 questions from their released BIG-Bench Hard (BBH)
+    data~\cite{turpin2023code}, covering all 13 tasks, applied to two current
+    models, Claude Opus 5.5 and GPT-5.6 Sol;
+  \item an uncued Original Repeat condition that gives a baseline for
+    ordinary response variability, helping to distinguish apparent
+    cue-following from answer changes that occur when the same question is
+    simply asked again, although one repeat per question cannot fully
+    separate the two; and
+  \item blinded coding by two human raters of whether each cue-following
+    explanation acknowledges the cue.
+\end{itemize}
+
+% Check against Results (Section~\ref{sec:results}, Table~I) before submission.
+% Source (on main since ae36a0b): harness/results/summary/metrics_summary.csv
+% (cue_flip: openai 9/270, anthropic 1/270) and coding_sheet.csv (both raters:
+% 9 none, 1 explicit).
+Across 540 cue-condition responses (270 per model), we identified ten
+cue-following cases, in which the answer switched to the suggested incorrect
+option: nine for GPT-5.6 Sol and one for Claude Opus 5.5. Both human raters
+classified nine of the ten associated visible explanations as not
+acknowledging the misleading suggestion.
