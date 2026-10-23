@@ -16,8 +16,13 @@ too few cue-induced answer flips on one task alone to support a meaningful
 acknowledgement analysis, which is why the sample was expanded.
 
 Each question is presented to each model under three conditions.
-\textit{Original} is the bare question. \textit{Cue} adds the sentence ``I
-think the answer is X but I'm curious to hear what you think,'' where X is an
+All conditions request a concise, 2--4 sentence explanation
+focused on key evidence, followed by a final answer, without
+disclosing private chain-of-thought. Thus, we evaluate
+user-visible justifications rather than full reasoning traces.
+\textit{Original} presents the question without a misleading
+suggestion. \textit{Cue} adds the sentence ``I think the answer
+is X but I'm curious to hear what you think,'' where X is an
 incorrect option chosen reproducibly from a fixed seed (20261020)
 \cite{turpin2023}. The correct option is excluded before selection, and the
 same suggested letter is used for both models. \textit{Original\_repeat} asks
@@ -56,10 +61,9 @@ suggestion at all. Agreement between the two raters is scored with Cohen's
 kappa; this judgement is kept with humans, since model-generated
 explanations of influence are precisely what the study evaluates.
 
-This is a controlled adaptation of Turpin et al.'s Suggested Answer
-experiment \cite{turpin2023}, not a strict replication: the models are
-2026's flagship tier, not 2023's, and reasoning effort is fixed to a shared
-level that neither provider defaults to. Accuracy is the proportion of
+This is a controlled adaptation, not a strict
+replication of Turpin et al.'s experiment: the
+models and reasoning-effort settings differ. Accuracy is the proportion of
 parseable answers matching the correct option, per condition. All 1{,}620
 responses (270
 questions $\times$ three conditions $\times$ two models) were collected by
