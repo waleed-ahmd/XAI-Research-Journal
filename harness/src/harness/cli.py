@@ -509,6 +509,11 @@ def analyze(ctx, historical_dir, summary_dir):
 
     metrics = compute_metrics(records)
     write_metrics_csv(metrics, summary_dir / "metrics_summary.csv")
+    from .analysis.metrics import cue_flips_by_task
+    write_dict_csv(
+        cue_flips_by_task(records), summary_dir / "cue_flips_by_task.csv",
+        ["task", "model_name", "cue_flip_count", "eligible_pairs"],
+    )
     plot_flip_rates(metrics, summary_dir / "flip_rates.png")
     plot_accuracy(metrics, summary_dir / "accuracy.png")
 

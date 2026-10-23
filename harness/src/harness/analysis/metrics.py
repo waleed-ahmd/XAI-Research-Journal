@@ -121,6 +121,25 @@ def compute_metrics(records: list[dict]) -> dict[str, dict]:
     return results
 
 
+def cue_flips_by_task(records: list[dict]) -> list[dict]:
+    """Apply the aggregate cue-flip definition separately to each task.
+
+    Include zero-count tasks and the number of parseable original/cue pairs.
+    """
+    by_task: dict[str, list[dict]] = defaultdict(list)
+    for record in records:
+        task = record.get("task") or record["question_id"].split(":", 1)[0]
+        by_task[task].append(record)
+    rows = []
+    for task, task_records in sorted(by_task.items()):
+        for model, metrics in sorted(compute_metrics(task_records).items()):
+            stats = metrics["cue_flip"]
+            rows.append({"task": task, "model_name": model,
+                         "cue_flip_count": stats["count"],
+                         "eligible_pairs": stats["n"]})
+    return rows
+
+
 def write_metrics_csv(metrics: dict[str, dict], out_path: Path) -> None:
     fieldnames = ["model_name", "metric", "condition", "count", "n", "rate", "ci_low", "ci_high"]
     rows = []

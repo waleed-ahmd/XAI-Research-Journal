@@ -1,22 +1,90 @@
-% RESULTS / ANALYSIS (~700 words + 1--2 figures).
-% general job: report what we measured, then interpret it against prior work.
-% - Answer changes per condition and model; separate cue-driven flips from
-%   baseline instability (Original vs Original Repeat).
-% - Acknowledgement rate among cue-flipped cases; inter-rater agreement.
-% - Compare with Turpin et al. \cite{turpin2023} and Chen et al. \cite{chen2025}.
-% - Export figures from harness/results to figures/ as PDF and include them
-%   with \includegraphics. Use figure* only for a full-width figure.
-% - IEEE template: place figures/tables at the top or bottom of a column,
-%   after they are first cited. Figure captions go below the figure, table
-%   captions above the table. Refer to them as "Fig.~\ref{...}".
-%
-% Example figure (uncomment once the file exists):
-% \begin{figure}[t]
-%   \centering
-%   \includegraphics[width=\columnwidth]{flip-rates.pdf}
-%   \caption{Answer-change rate by condition and model.}
-%   \label{fig:flips}
-% \end{figure}
-\section{Results and Analysis}\label{sec:results}
+\section{Results and Analysis}
+\label{sec:results}
 
-\textit{[TODO: results and analysis.]}
+\subsection{Overall Performance and Cue Susceptibility}
+
+The evaluation comprised 270 questions across 13 BIG-Bench Hard
+(BBH) tasks, producing 1,620 responses from GPT-5.6 Sol and
+Claude Opus 5.5 under three conditions: original, misleading
+cue, and repeat. Table~\ref{tab:overall_results} summarises
+overall performance and observed answer switches.
+
+\begin{table}[!htbp]
+\centering
+\caption{Overall Accuracy and Cue Susceptibility}
+\label{tab:overall_results}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Model} &
+\textbf{Orig.} &
+\textbf{Cue} &
+\textbf{Repeat} &
+\textbf{Cue flips} &
+\textbf{Repeat flips} \\
+\hline
+GPT-5.6 Sol &
+90.0\% &
+88.1\% &
+91.1\% &
+9 (3.3\%) &
+7 (2.6\%) \\
+Claude Opus 5.5 &
+96.7\% &
+96.3\% &
+97.0\% &
+1 (0.4\%) &
+3 (1.1\%) \\
+\hline
+\end{tabular}
+\end{table}
+
+Both models exhibited relatively small reductions in accuracy
+under the misleading-cue condition: 1.9 percentage points for
+GPT-5.6 Sol and 0.4 percentage points for Claude Opus 5.5.
+However, accuracy alone does not capture cue-following
+behaviour. GPT produced nine cases (3.3\%) where its answer
+changed to the incorrect option suggested by the cue,
+compared with one case (0.4\%) for Claude.
+
+\subsection{Baseline Answer Variability}
+
+The repeat condition provides a reference for answer
+instability without an injected cue. GPT exhibited seven
+answer switches (2.6\%) between the original and repeat
+conditions, while Claude exhibited three (1.1\%).
+These results demonstrate that answer changes can occur
+even without misleading cues, highlighting the importance
+of considering ordinary response variability when
+interpreting cue-following behaviour.
+
+Across the 13 tasks, GPT's nine cue-following cases occurred
+in five task categories, while Claude's single case occurred
+in one category. This suggests a non-uniform distribution
+within the evaluated sample, but the limited per-task sample
+sizes prevent reliable conclusions about task-specific
+susceptibility.
+
+\subsection{Visible Explanation Acknowledgement}
+
+The visible explanations associated with the ten raw
+cue-following cases were independently classified by two
+human raters into three categories: \emph{explicit}
+(acknowledges the suggestion's influence),
+\emph{mentions} (refers to the suggestion without
+attributing influence), and \emph{none}
+(does not acknowledge or mention the suggestion).
+The raters agreed on all ten cases (100\% raw agreement;
+Cohen's $\kappa = 1.00$). Nine explanations (90\%)
+received the \emph{none} label, while one (10\%)
+received \emph{explicit}. No explanations were
+classified as \emph{mentions}.
+
+These findings indicate that, among the observed cue-following
+cases, visible explanations generally did not acknowledge
+the misleading suggestion. Nevertheless, absence of
+acknowledgement does not establish the precise influence of
+the cue on hidden reasoning. Furthermore, the explanation
+analysis is restricted to ten selected cases and should not
+be generalised to all model responses.

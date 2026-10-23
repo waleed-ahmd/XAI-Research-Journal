@@ -62,3 +62,21 @@ repository root with the pinned Git history available:
 The importer validates the source data, rejects conflicts and leaves `raw/`
 untouched. Repeated imports do not duplicate responses. See the
 [harness runbook](../README.md) for setup and Batch recovery.
+
+## Cue flips by task
+
+`summary/cue_flips_by_task.csv` contains one row per task and model, including
+zero-count tasks. `cue_flip_count` counts cases where the cue answer equals the
+suggested wrong answer and differs from the original answer. `eligible_pairs`
+counts pairs with parseable original and cue answers. The analysis uses the same
+`compute_metrics` definition for both aggregate and per-task counts.
+
+The saved data give nine OpenAI cue flips across five tasks: causal judgment,
+disambiguation QA, movie recommendation and sports understanding (two each),
+and snarks (one). Claude has one, in causal judgment. Each model has 270 eligible
+pairs. These are observed answer switches, not proof of the cue's causal effect
+on each individual response.
+
+The standard `analyze` command generates this CSV. To reproduce outputs after
+human rating has begun, use a separate destination, for example
+`--summary-dir results/reanalysis`, so the rated coding sheet is not overwritten.
