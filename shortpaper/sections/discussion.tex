@@ -7,10 +7,13 @@
 % submission. Source: harness/results/summary/metrics_summary.csv.
 \section{Discussion and Limitations}\label{sec:discussion}
 
-Under biasing features, the 2023 models studied by Turpin et
-al.\ lost up to 36\% accuracy~\cite{turpin2023}; under the
-Suggested Answer cue, the current models lost 1.9 percentage
-points (GPT-5.6 Sol) and 0.4 (Claude Opus 5.5). Cue-following,
+Turpin et al.\ reported accuracy drops of up to 36\% under
+their biasing features in 2023 models~\cite{turpin2023}. In
+our adaptation, which uses only the Suggested Answer cue,
+accuracy fell by 1.9 percentage points for GPT-5.6 Sol and
+0.4 for Claude Opus 5.5. These drops are smaller, but
+differences in cue types, samples and models rule out a
+direct quantitative comparison. Cue-following,
 however, was not clearly separable from ordinary variability.
 GPT switched to the suggested option nine times with the cue
 and changed its answer seven times with no cue at all; for
