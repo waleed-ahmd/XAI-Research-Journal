@@ -13,9 +13,9 @@ Where to look for things, and why each folder exists:
 | Folder / file | What's in it |
 |---|---|
 | [`journal/`](journal/) | Dated entries recording how our question, scope and methods developed — decisions, pivots, dead ends, who did what. This is the record Assignment 01 asks for. |
-| [`literature/`](literature/) | Our reading notes on each paper we cite (Wei, Turpin, Lanham, Chen), written before the study was built. |
-| [`papers/`](papers/) | Copies of the cited papers themselves, plus their canonical links (see [`papers/README.md`](papers/README.md)). |
-| [`harness/`](harness/) | The experiment itself: the Python code that selects questions, prompts both models, saves responses and computes metrics, plus the saved data and results. See [`harness/README.md`](harness/README.md) for the full runbook and [`harness/ARCHITECTURE.md`](harness/ARCHITECTURE.md) for how the code is organised. |
+| [`literature/`](literature/) | Our reading notes on the core papers (Wei, Turpin, Lanham, Chen), written before the study was built. The paper also cites Jacovi, Bentham and Chua & Evans; those don't have notes or PDFs here, just the citation. |
+| [`papers/`](papers/) | Copies of the core cited papers themselves, plus their canonical links (see [`papers/README.md`](papers/README.md)). |
+| [`harness/`](harness/) | The experiment itself: the Python code that selects questions, prompts both models, saves responses and computes metrics, plus the saved data and results. See [`harness/README.md`](harness/README.md) for the full runbook, [`harness/ARCHITECTURE.md`](harness/ARCHITECTURE.md) for how the code is organised, and [`harness/ACKNOWLEDGEMENT_RUBRIC.md`](harness/ACKNOWLEDGEMENT_RUBRIC.md) for how the two human raters coded cue acknowledgement. |
 | [`shortpaper/`](shortpaper/) | LaTeX source for the IEEE-format short paper (Assignment 03). Built automatically on every push — see [Latest report draft](#latest-report-draft) below for the current PDF. |
 | [`spec/`](spec/) | The three assignment briefs this repo answers (journal, short paper, presentation), for reference. |
 | `README.md` | This file. |
@@ -28,8 +28,8 @@ entry says which report section it feeds and why the decision was made.
 
 The short paper (`shortpaper/`) rebuilds on every push. The current PDF is
 attached to the [`latest-draft` GitHub release](https://github.com/waleed-ahmd/XAI-Research-Journal/releases/tag/latest-draft).
-As of this entry it covers Introduction, Background, Methodology and Results;
-Discussion and Conclusion are still in review (see open pull requests).
+As of this entry every section is drafted except the abstract, which is
+written last once the rest is settled.
 
 ## Current state — 23 October 2026
 
