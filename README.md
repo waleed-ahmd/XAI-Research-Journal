@@ -6,12 +6,40 @@ The project compares Claude Opus 5.5 and GPT-5.6 Sol using original, cued and
 original-repeat prompts. It does not claim to expose private chain-of-thought or
 prove explanation faithfulness from answer accuracy alone.
 
-## Current state — 21 October 2026
+## Repository guide
+
+Where to look for things, and why each folder exists:
+
+| Folder / file | What's in it |
+|---|---|
+| [`journal/`](journal/) | Dated entries recording how our question, scope and methods developed — decisions, pivots, dead ends, who did what. This is the record Assignment 01 asks for. |
+| [`literature/`](literature/) | Our reading notes on the core papers (Wei, Turpin, Lanham, Chen), written before the study was built. The paper also cites Jacovi, Bentham and Chua & Evans; those don't have notes or PDFs here, just the citation. |
+| [`papers/`](papers/) | Copies of the core cited papers themselves, plus their canonical links (see [`papers/README.md`](papers/README.md)). |
+| [`harness/`](harness/) | The experiment itself: the Python code that selects questions, prompts both models, saves responses and computes metrics, plus the saved data and results. See [`harness/README.md`](harness/README.md) for the full runbook, [`harness/ARCHITECTURE.md`](harness/ARCHITECTURE.md) for how the code is organised, and [`harness/ACKNOWLEDGEMENT_RUBRIC.md`](harness/ACKNOWLEDGEMENT_RUBRIC.md) for how the two human raters coded cue acknowledgement. |
+| [`shortpaper/`](shortpaper/) | LaTeX source for the IEEE-format short paper (Assignment 03). Built automatically on every push — see [Latest report draft](#latest-report-draft) below for the current PDF. |
+| [`spec/`](spec/) | The three assignment briefs this repo answers (journal, short paper, presentation), for reference. |
+| `README.md` | This file. |
+| `LICENSE` | GPLv3. |
+
+If you only read one other thing, start with `journal/`, in date order; each
+entry says which report section it feeds and why the decision was made.
+
+## Latest report draft
+
+The short paper (`shortpaper/`) rebuilds on every push. The current PDF is
+attached to the [`latest-draft` GitHub release](https://github.com/waleed-ahmd/XAI-Research-Journal/releases/tag/latest-draft).
+As of this entry every section is drafted except the abstract, which is
+written last once the rest is settled.
+
+## Current state — 23 October 2026
 
 Collection is complete: **1,620 saved responses**, with 810 per model. Each model
 has 270 original, 270 cue and 270 original-repeat responses. The submitted batches
-finished without failed or missing requests. Combined analysis outputs and human
-ratings have not yet been produced.
+finished without failed or missing requests. Combined analysis (accuracy, cue-flip
+and baseline-instability rates, a per-task breakdown) and the two-rater
+acknowledgement coding are now complete — see
+[`harness/results/summary/`](harness/results/summary/) and the
+[results guide](harness/results/README.md) for the generated files.
 
 ## Main study: 270 questions across 13 BBH task types
 
@@ -36,7 +64,7 @@ The motivation is broader evidence: the first pilot had perfect accuracy and
 no cue flips; the second produced one GPT cue flip. Expanding the task coverage
 allows us to examine whether that limited cue sensitivity holds across different
 reasoning tasks. The pivot was informed by pilot outcomes and is documented in
-the [20 October journal entry](Journal/2026-10-20.md). Report the pilot cohorts
+the [20 October journal entry](journal/2026-10-20.md). Report the pilot cohorts
 and new questions separately as well as in the accumulated results, so the
 change in scope remains transparent.
 
@@ -60,26 +88,6 @@ The saved datasets are in [`harness/results/raw/`](harness/results/raw/)
 [results guide](harness/results/README.md) explains the files and analysis command.
 The [historical import script](harness/scripts/restore_historical_results.sh) can
 recover the pilot data from pinned local Git history if needed.
-
-## Project organisation
-
-Experiment code, configuration, selections, tests and run outputs live under
-`harness/`. Journal entries, literature notes, papers and assignment requirements
-remain separate research material. The [architecture guide](harness/ARCHITECTURE.md)
-describes the runtime layers and distinguishes raw data from derived reports.
-
-## Research record
-
-- [Research journal](journal/): dated decisions, pivots and contributions.
-- [Literature notes](literature/): background and interpretation.
-- [Human-rating rubric](harness/ACKNOWLEDGEMENT_RUBRIC.md): draft instructions for
-  independent cue-acknowledgement rating of visible explanations.
-- [Short-paper specification](spec/Xai-ShortPaper.md): report requirements.
-
-Accuracy, cue-flip rates and baseline instability still need to be calculated
-for the combined dataset. Human acknowledgement ratings require independent
-review of the eligible visible explanations. Collection success does not imply
-answer correctness.
 
 ## What the comparison measures
 

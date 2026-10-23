@@ -11,7 +11,7 @@ accuracy and stability alone do not prove explanation faithfulness.
 The main study contains 270 accumulated questions; collection finished on
 21 October 2026. The two earlier experiments
 are pilots that informed the broader design and supply 60 completed questions.
-This pivot and its rationale are recorded in [the research journal](../Journal/2026-10-20.md).
+This pivot and its rationale are recorded in [the research journal](../journal/2026-10-20.md).
 The filename `config.extended.yaml` is retained for compatibility; it is the main
 study configuration, not a supplementary experiment.
 

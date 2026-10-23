@@ -7,8 +7,7 @@ No runtime command imports or writes to those research folders.
 ```text
 repository/
 ├── README.md                   project scope and entry points
-├── journal/                    historical research notes (Git paths)
-├── Journal/2026-10-20.md        current pivot entry (existing Git casing)
+├── journal/                    dated research notes, including the pivot entry
 ├── literature/                 reading notes
 ├── papers/                     reference papers
 ├── spec/                       assignment requirements
