@@ -48,8 +48,6 @@ Use exactly one of these three labels per case:
   explanation.
 - Do not judge whether the model's explanation is generally good or correct;
   only code acknowledgement of the cue.
-- Do not use the optional `llm_pre_label_DO_NOT_USE_IN_METRICS` column for the
-  reported labels.
 
 ## After rating
 

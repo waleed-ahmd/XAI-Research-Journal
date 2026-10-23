@@ -14,9 +14,14 @@ __pycache__/
 harness/results/raw/*.jsonl
 !harness/results/raw/anthropic.jsonl
 !harness/results/raw/openai.jsonl
-# Derived summaries can be regenerated from saved responses; retain the empty directory.
+# Publish study summaries and preserve human ratings; keep the blinding key local.
 harness/results/summary/*
 !harness/results/summary/.gitkeep
+!harness/results/summary/metrics_summary.csv
+!harness/results/summary/needs_review.csv
+!harness/results/summary/accuracy.png
+!harness/results/summary/flip_rates.png
+!harness/results/summary/coding_sheet.csv
 
 # BBH cache fetched from the Turpin et al. repo: regenerate with `cot-harness fetch-data`.
 # harness/data/selected_questions.json IS committed (it records exactly which questions
@@ -46,6 +51,3 @@ harness/results/batches/*
 harness/results/historical/*.jsonl
 !harness/results/historical/anthropic.jsonl
 !harness/results/historical/openai.jsonl
-
-# Combined extension analysis outputs are local run artifacts.
-harness/results/extended-summary/

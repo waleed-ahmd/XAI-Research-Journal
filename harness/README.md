@@ -159,7 +159,7 @@ From `harness/`:
 cot-harness --config config.extended.yaml \
   --results-dir results/raw analyze \
   --historical-dir results/historical \
-  --summary-dir results/extended-summary
+  --summary-dir results/summary
 ```
 
 Analysis excludes `dryrun_mock.jsonl`, deduplicates identical saved keys and
@@ -201,7 +201,7 @@ are pending or expect synchronous calls to reuse old historical keys.
 ## Analysis and human rating
 
 Analysis combines the response datasets in `results/raw/` and
-`results/historical/`. Reports in `results/extended-summary/` are derived from
+`results/historical/`. Reports in `results/summary/` are derived from
 these saved responses.
 
 Outputs include `metrics_summary.csv`, `needs_review.csv`, accuracy/flip charts,

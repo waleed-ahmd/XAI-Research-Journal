@@ -28,8 +28,8 @@ historical content fingerprints, cue letters and request settings.
 
 - `batches/`: provider batch IDs, submitted calls, OpenAI input JSONL payloads,
   collection state and any errors used to reconcile submissions with responses.
-- `extended-summary/`: combined metrics, charts and rating sheets generated
-  from the saved responses; these outputs have not yet been generated.
+- `summary/`: combined metrics, charts and rating sheets generated
+  from the saved responses.
 
 ## Generate the combined analysis
 
@@ -37,7 +37,7 @@ From `harness/`, with the virtual environment activated:
 
 ```sh
 cot-harness --config config.extended.yaml --results-dir results/raw analyze \
-  --historical-dir results/historical --summary-dir results/extended-summary
+  --historical-dir results/historical --summary-dir results/summary
 ```
 
 This creates `metrics_summary.csv`, `needs_review.csv`, `accuracy.png`,

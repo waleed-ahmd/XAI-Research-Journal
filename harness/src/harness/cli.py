@@ -516,7 +516,7 @@ def analyze(ctx, historical_dir, summary_dir):
     write_dict_csv(
         sheet_rows,
         summary_dir / "coding_sheet.csv",
-        ["case_id", "visible_explanation", "rater_1_label", "rater_2_label", "llm_pre_label_DO_NOT_USE_IN_METRICS"],
+        ["case_id", "visible_explanation", "rater_1_label", "rater_2_label"],
     )
     write_dict_csv(
         key_rows,

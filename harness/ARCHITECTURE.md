@@ -51,7 +51,7 @@ and manifest directory throughout collection.
   with their original request settings and keys.
 - **Submission state:** `results/batches/`, including reservations and errors.
   Back up these files with the raw data so interrupted runs can be reconciled.
-- **Derived outputs:** use `results/extended-summary/` for main-study CSVs, charts
+- **Derived outputs:** use `results/summary/` for main-study CSVs, charts
   and coding sheets. They can be regenerated from saved responses.
 - **Human coding:** keep blinded sheets separate from their model-identity keys.
   The final ratings should be preserved rather than overwritten by re-analysis.

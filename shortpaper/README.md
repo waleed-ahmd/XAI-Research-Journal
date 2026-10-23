@@ -42,5 +42,6 @@ a live preview aswell.
 | Background / Related Work | `background.tex` | Peter | ~550 |
 | Methodology | `methodology.tex` | Luca | ~600 |
 | Results / Analysis | `results.tex` | Waleed | ~700 + 1–2 figures |
-| Discussion, Conclusion & Limitations | `conclusion.tex` | everyone, one editor | ~400 |
+| Discussion and Limitations | `discussion.tex` | everyone, one editor | shared ~400 total with Conclusion |
+| Conclusion | `conclusion.tex` | everyone, one editor | shared budget |
 
