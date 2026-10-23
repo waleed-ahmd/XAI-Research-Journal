@@ -7,25 +7,19 @@
 An explanation is \emph{faithful} when it correctly reflects
 the factors that actually produced a model's prediction, and
 \emph{plausible} when it merely reads as a convincing account
-of that prediction \cite{turpin2023}. The two can come apart:
-a chain of thought can be coherent and correct step by step,
-yet omit the reason the model gave its answer. Faithfulness
-therefore cannot be judged from the text of an explanation
-alone; it has to be tested against something the explanation
-ought to report.
+of that prediction \cite{turpin2023}. A coherent chain of thought may still omit what influenced
+the answer, so faithfulness cannot be judged from the text
+alone.
 
 Turpin et al.\ supply that test by changing the input, not
-the explanation \cite{turpin2023}. They add a biasing feature
-to a prompt, check whether the answer moves towards it,
-and then check whether the chain of thought mentions it.
-One such feature, the Suggested Answer cue, has the user
-state which option they think is correct. Across 13 BBH
+the explanation \cite{turpin2023}. Their Suggested Answer cue has the user suggest an option;
+they test whether the answer moves toward it and whether
+the explanation mentions the cue. Across 13 BBH
 tasks, biasing features lowered accuracy by as much as
 36\% for GPT-3.5 and Claude 1.0, while the explanations
 rationalised the biased answer instead of naming the
-feature that caused it. In a sample of 104 unfaithful
-explanations, 15\% contained no obvious error, so a
-careful reader would not have flagged them. The design
+feature that caused it. Of 104 unfaithful explanations, 15\% contained no
+obvious error. The design
 is asymmetric: an answer switch to the suggested option
 without acknowledgement provides evidence of potentially
 unfaithful explanation, whereas acknowledgement alone
@@ -41,10 +35,8 @@ reasoning on most tasks studied. Bentham et al.\ later
 reproduced this scaling trend only under specific
 conditions and found that, once normalised, the metric
 correlates strongly with accuracy ($R^2 = 0.74$), which
-questions what it measures \cite{bentham2024}. Because
-our question concerns an input cue, and because of
-these concerns about the reasoning-intervention metric,
-we follow Turpin's input-intervention design.
+questions what it measures \cite{bentham2024}. Given our focus on input cues and these measurement
+concerns, we follow Turpin's input-intervention design.
 
 Two recent studies apply that design to reasoning models.
 Chen et al.\ pair hinted and unhinted multiple-choice
@@ -58,17 +50,13 @@ and 39\% for DeepSeek R1. Chua and Evans, using a
 professor cue on MMLU, find that reasoning models
 verbalise the cue far more often than non-reasoning
 models: 59\% for DeepSeek R1 and 7\% for DeepSeek V3
-\cite{chua2025}. These findings suggest that reasoning
-models can acknowledge influential cues more frequently
-in some settings, although explanation unfaithfulness
-remains observable.
+\cite{chua2025}. Thus, some reasoning models acknowledge cues more often,
+though omissions remain.
 
 Both studies, however, moved to new datasets (MMLU
 and GPQA), new cue wordings and, in Chen's case, an
-automated judge. Both studies examined generated
-reasoning traces available from the evaluated models,
-while Chen et al.\ could not access the full generated
-reasoning traces of OpenAI's o1 and o3. Neither study
+automated judge. They analysed available generated reasoning traces; Chen
+et al.\ could not obtain full traces from OpenAI's o1 and o3. Neither study
 directly revisits Turpin et al.'s BBH Suggested Answer
 setting with the models evaluated here. We address
 this gap through a controlled adaptation incorporating
