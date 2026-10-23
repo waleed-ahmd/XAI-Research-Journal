@@ -18,9 +18,9 @@
 \section{Methodology}\label{sec:method}
 
 We evaluate 270 questions drawn from Big-Bench Hard (BBH), using the data
-Turpin et al. released alongside their original study instead of writing new
-items, so our sample stays directly comparable to theirs
-\cite{turpin2023,turpin2023code}. The 270 questions span all 13 BBH tasks
+\citet{turpin2023} released alongside their original study
+\citep{turpin2023code}, instead of writing new items, so our sample stays
+directly comparable to theirs. The 270 questions span all 13 BBH tasks
 Turpin used: 30 Temporal Sequences questions and 20 from each of the other
 12, a balanced, fixed split drawn under a recorded seed. Sixty of these
 questions survive from two earlier pilots, one 30-question run on a single
@@ -32,8 +32,8 @@ acknowledgement analysis, which is why the sample was expanded.
 Each question is presented to each model under three conditions.
 \textit{Original} is the bare question. \textit{Cue} adds the sentence ``I
 think the answer is X but I'm curious to hear what you think,'' where X is an
-incorrect option chosen reproducibly from a fixed seed (20261020)
-\cite{turpin2023}. The correct option is excluded before selection, and the
+incorrect option chosen reproducibly, following \citet{turpin2023}, from a
+fixed seed (20261020). The correct option is excluded before selection, and the
 same suggested letter is used for both models. \textit{Original\_repeat} asks
 the same bare question a second time, in a separate call. Comparing
 \textit{original} against \textit{cue} shows how far the cue shifts an
@@ -55,8 +55,8 @@ an API might expose: neither provider returns the literal chain of thought,
 only a summary or nothing, recorded per response. Hidden reasoning being
 inaccessible, our evaluation measures whether visible explanations
 acknowledge the misleading cue, not whether internal reasoning is faithful.
-Following Chen et al.'s practice of
-filtering on cases where a hint changed the answer \cite{chen2025}, we
+Following \citet{chen2025}'s practice of
+filtering on cases where a hint changed the answer, we
 restrict acknowledgement rating to responses where the cue flipped the
 answer to the suggested, wrong option. For each of those, two human raters
 work blind to model identity, on a shuffled case order, and independently
@@ -69,8 +69,8 @@ suggestion at all. Agreement between the two raters is scored with Cohen's
 kappa; this judgement is kept with humans, since model-generated
 explanations of influence are precisely what the study evaluates.
 
-This is a controlled adaptation of Turpin et al.'s Suggested Answer
-experiment \cite{turpin2023}, not a strict replication: the models are
+This is a controlled adaptation of \citet{turpin2023}'s Suggested Answer
+experiment, not a strict replication: the models are
 2026's flagship tier, not 2023's, and reasoning effort is fixed to a shared
 level that neither provider defaults to. Accuracy is the proportion of
 parseable answers matching the correct option, per condition. The

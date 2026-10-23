@@ -1,14 +1,18 @@
 % XAI Assignment 03: Short Paper (Group 7)
 % Based on IEEE's official conference template (version 6/27/2024), with its
-% guidance text removed. IEEEtran.cls (v1.8b) and IEEEtran.bst (v1.12) in this
-% folder are IEEE's own copies, so the build uses them over any installed ones.
+% guidance text removed. IEEEtran.cls (v1.8b) in this folder is IEEE's own
+% copy, so the build uses it over any installed one; it only sets the layout
+% (two-column, fonts, headings), not the citation style.
 % Do not change margins, font size or spacing: the class handles all of it
 % (spec: "no manually adjusted margins").
+% Citation style: Harvard UL / author-date (natbib + plainnat.bst), not
+% IEEEtran.bst's numbered style. IEEEtran.bst (v1.12) is kept in this folder
+% but unused while this is in effect.
 % Each section lives in sections/ so members can edit and commit separately.
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 
-\usepackage{cite}
+\usepackage[round]{natbib}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{textcomp}
@@ -18,9 +22,6 @@
 \graphicspath{{figures/}}
 
 \begin{document}
-% Applies the reference-list settings at the top of refs.bib.
-\bstctlcite{IEEEtran:BSTcontrol}
-
 
 \title{Do Current LLMs Still Hide What Influenced Them? A Controlled
 Re-evaluation of Chain-of-Thought Unfaithfulness}
@@ -52,7 +53,7 @@ Re-evaluation of Chain-of-Thought Unfaithfulness}
 % BibTeX doesn't fail while the stubs cite nothing; the final list should hold
 % only sources the text actually cites.
 \nocite{*}
-\bibliographystyle{IEEEtran}
+\bibliographystyle{plainnat}
 \bibliography{refs}
 
 \end{document}
