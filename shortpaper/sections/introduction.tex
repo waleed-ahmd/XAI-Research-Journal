@@ -9,9 +9,10 @@
 % - End with a short list of contributions and a one-line roadmap.
 \section{Introduction}\label{sec:intro}
 
-Chain-of-thought (CoT) prompting asks a large language model (LLM) to write
-out intermediate reasoning steps before giving its answer. Wei et
-al.~\cite{wei2022} showed that this alone, with no extra training, raised
+Chain-of-thought (CoT) prompting encourages a large language model (LLM) to
+generate intermediate reasoning steps before producing a final answer,
+typically by including worked examples of such reasoning in the prompt. Wei
+et al.~\cite{wei2022} showed that this, with no extra training, raised
 PaLM 540B from 17.9\% to 56.9\% accuracy on the GSM8K maths benchmark. They
 also described the written steps as ``an interpretable window into the
 behavior of the model''~\cite{wei2022}, and this is how CoT is now commonly
