@@ -1,8 +1,14 @@
-% Shared bibliography. Cite with \citep{key} (parenthetical, "(Author, Year)")
-% or \citet{key} (author in the sentence, "Author (Year)"); natbib + plainnat.bst
-% sort the reference list alphabetically by author, Harvard UL / author-date
-% style, not IEEEtran.bst's numbered order of first citation. Only cited
-% entries appear in the reference list. Keep keys in the form <firstauthor><year>.
+% Shared bibliography. Cite with \cite{key}; IEEEtran.bst numbers entries in
+% order of first citation, and only cited entries appear in the reference list.
+% keep keys in the form <firstauthor><year>.
+
+% reference guide, entries with more than six authors show the first author
+% followed by "et al.". Activated by \bstctlcite in main.tex.
+@IEEEtranBSTCTL{IEEEtran:BSTcontrol,
+  CTLuse_forced_etal       = {yes},
+  CTLmax_names_forced_etal = {6},
+  CTLnames_show_etal       = {1}
+}
 
 @inproceedings{wei2022,
   author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc V. and Zhou, Denny},
