@@ -18,6 +18,7 @@ harness/results/raw/*.jsonl
 harness/results/summary/*
 !harness/results/summary/.gitkeep
 !harness/results/summary/metrics_summary.csv
+!harness/results/summary/cue_flips_by_task.csv
 !harness/results/summary/needs_review.csv
 !harness/results/summary/accuracy.png
 !harness/results/summary/flip_rates.png
