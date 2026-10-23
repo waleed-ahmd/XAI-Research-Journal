@@ -50,14 +50,12 @@ when they adopt the suggested answer?} Our contributions are:
     explanation acknowledges the cue.
 \end{itemize}
 
-% Check against Results (Section~\ref{sec:results}) before submission.
-% Source: harness/results/summary/metrics_summary.csv and coding_sheet.csv.
-We find that the cue rarely changes current models' answers (10 of 540 cued
-responses), but when it does, the explanation rarely says so: both raters
-found that 9 of the 10 explanations justify the cued answer without referring
-to the suggestion.
-
-Section~\ref{sec:background} reviews prior work, Section~\ref{sec:method}
-describes our method, Section~\ref{sec:results} reports the results, and
-Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss them and
-state the limitations.
+% Check against Results (Section~\ref{sec:results}, Table~I) before submission.
+% Source (on main since ae36a0b): harness/results/summary/metrics_summary.csv
+% (cue_flip: openai 9/270, anthropic 1/270) and coding_sheet.csv (both raters:
+% 9 none, 1 explicit).
+Across 540 cue-condition responses (270 per model), we identified ten
+cue-following cases, in which the answer switched to the suggested incorrect
+option: nine for GPT-5.6 Sol and one for Claude Opus 5.5. Both human raters
+classified nine of the ten associated visible explanations as not
+acknowledging the misleading suggestion.
