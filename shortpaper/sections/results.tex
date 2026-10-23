@@ -1,70 +1,74 @@
+% Sources: harness/results/summary/metrics_summary.csv, cue_flips_by_task.csv,
+% coding_sheet.csv; repeat-onto-cue counts recomputed from results/raw and
+% results/historical (openai 2, anthropic 1; discordant pairs 7/0 and 1/1).
 \section{Results and Analysis}
 \label{sec:results}
 
 \subsection{Overall Performance and Cue Susceptibility}
 
-The evaluation comprised 270 questions across 13 BIG-Bench Hard
-(BBH) tasks, producing 1,620 responses from GPT-5.6 Sol and
-Claude Opus 5.5 under three conditions: original, misleading
-cue, and repeat. Table~\ref{tab:overall_results} summarises
-overall performance and observed answer switches.
+Table~\ref{tab:overall_results} summarises accuracy and answer
+switches across all 1,620 responses.
 
 \begin{table}[!htbp]
 \centering
-\caption{Overall Accuracy and Cue Susceptibility}
+\caption{Overall Accuracy and Cue Susceptibility. Rep.: uncued repeat; $\to$Cue: repeat flips onto the cued option.}
 \label{tab:overall_results}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lccccc}
-\hline
+\toprule
 \textbf{Model} &
 \textbf{Orig.} &
 \textbf{Cue} &
-\textbf{Repeat} &
+\textbf{Rep.} &
 \textbf{Cue flips} &
-\textbf{Repeat flips} \\
-\hline
+\textbf{Rep.\ flips} &
+\textbf{$\to$Cue} \\
+\midrule
 GPT-5.6 Sol &
 90.0\% &
 88.1\% &
 91.1\% &
 9 (3.3\%) &
 7 (2.6\%) \\
+2 \\
 Claude Opus 5.5 &
 96.7\% &
 96.3\% &
 97.0\% &
 1 (0.4\%) &
 3 (1.1\%) \\
-\hline
+1 \\
+\bottomrule
 \end{tabular}
 \end{table}
-
-Both models exhibited relatively small reductions in accuracy
-under the misleading-cue condition: 1.9 percentage points for
-GPT-5.6 Sol and 0.4 percentage points for Claude Opus 5.5.
-However, accuracy alone does not capture cue-following
-behaviour. GPT produced nine cases (3.3\%) where its answer
-changed to the incorrect option suggested by the cue,
-compared with one case (0.4\%) for Claude.
+ 
+Accuracy changed little under the cue: by 1.9 percentage points for
+GPT-5.6 Sol and 0.4 for Claude Opus 5.5, both within sampling
+error (GPT: 90.0\%, 95\% CI 85.8--93.0\%, versus 88.1\%,
+83.7--91.5\%). Accuracy alone, however, does not capture
+cue-following. GPT's answer moved to the suggested incorrect
+option in nine cases (3.3\%, CI 1.8--6.2\%), Claude's in one
+(0.4\%, CI 0.1--2.1\%). Rates were similar in the 60 pilot
+questions and the 210 new ones (GPT 1 and 8; Claude 0 and 1).
 
 \subsection{Baseline Answer Variability}
 
-The repeat condition provides a reference for answer
-instability without an injected cue. GPT exhibited seven
-answer switches (2.6\%) between the original and repeat
-conditions, while Claude exhibited three (1.1\%).
-These results demonstrate that answer changes can occur
-even without misleading cues, highlighting the importance
-of considering ordinary response variability when
-interpreting cue-following behaviour.
+Without any cue, GPT's answer changed between original and
+repeat on seven questions (2.6\%) and Claude's on three (1.1\%),
+but only two and one of these, respectively, moved to the option
+the cue would have suggested. Pairing conditions per question,
+GPT followed the cue on seven questions where the repeat did not
+move to that option, and the reverse never occurred (sign test,
+$p \approx 0.016$). Claude's single case is matched by one
+equivalent uncued switch ($p = 1.0$). GPT's cue-following
+therefore exceeds ordinary variability, while Claude's does not.
+Two of GPT's nine cases coincided with the repeat switching to
+the same option and are most plausibly ordinary variation. The
+nine cases fell in five task categories, with five of the nine
+on two-option tasks; per-task samples are too small for
+task-level conclusions.
 
-Across the 13 tasks, GPT's nine cue-following cases occurred
-in five task categories, while Claude's single case occurred
-in one category. This suggests a non-uniform distribution
-within the evaluated sample, but the limited per-task sample
-sizes prevent reliable conclusions about task-specific
-susceptibility.
 
 \subsection{Visible Explanation Acknowledgement}
 
@@ -81,10 +85,7 @@ received the \emph{none} label, while one (10\%)
 received \emph{explicit}. No explanations were
 classified as \emph{mentions}.
 
-These findings indicate that, among the observed cue-following
-cases, visible explanations generally did not acknowledge
-the misleading suggestion. Nevertheless, absence of
-acknowledgement does not establish the precise influence of
-the cue on hidden reasoning. Furthermore, the explanation
-analysis is restricted to ten selected cases and should not
-be generalised to all model responses.
+Among GPT's cue-following cases, then, the visible explanations
+never acknowledged the suggestion. Absence of acknowledgement
+does not establish the cue's influence on hidden reasoning, and
+the analysis covers only ten selected cases.

@@ -5,42 +5,35 @@ Turpin et al.\ reported accuracy drops of up to 36\% under
 their biasing features in 2023 models~\cite{turpin2023}. In
 our adaptation, which uses only the Suggested Answer cue,
 accuracy fell by 1.9 percentage points for GPT-5.6 Sol and
-0.4 for Claude Opus 5.5. These drops are smaller, but
-differences in cue types, samples and models rule out a
+0.4 for Claude Opus 5.5, within sampling error.
+Differences in cue types, samples and models rule out a
 direct quantitative comparison.
 
-The Original Repeat condition also showed ordinary answer
-variability: GPT made nine cue-following switches and seven
-uncued switches, and Claude one and three. The two counts
-measure different changes, since a cue-following switch must
-land on the suggested option, whereas an uncued switch can
-land on any option. The uncued switches still show that
-answers change without a cue, so no individual
-cue-following switch can be attributed to the suggestion
-with certainty.
+The directional baseline changes how the switches should be read.
+Comparing GPT's nine cue-following switches with all seven uncued
+switches would suggest little cue effect, but only two uncued
+switches landed on the cued option, so GPT's susceptibility,
+though rare, is unlikely to be chance. Claude showed no
+susceptibility beyond ordinary variability. One repeat per
+question still cannot attribute any single switch to the cue.
 
-In our evaluation, cue-following was uncommon, and nine of
-the ten associated visible explanations did not acknowledge
-the suggestion. This is consistent with the pattern Turpin
-et al.\ reported and with the low acknowledgement rates Chen
-et al.\ found for reasoning models~\cite{chen2025}, although
-differences in evaluation settings and the small number of
-cases limit stronger conclusions.
+Where GPT did follow the cue, its explanations never mentioned
+it, consistent with the pattern Turpin et al.\ reported and with
+the low acknowledgement rates Chen et al.\ found for reasoning
+models~\cite{chen2025}. Pooling across models would hide this:
+the one explicit acknowledgement came from Claude's single case.
 
-Several limits apply. Only ten cue-following cases were
-available for coding, which limits the precision and
-generalisability of the observed acknowledgement
-proportions. One repeat
-per question gives a baseline for the sample, not an
-attribution for any single switch. We evaluate visible
-explanations rather than hidden reasoning; consequently, a
-\emph{none} label indicates that the suggestion was not
-acknowledged in the text, not that the model did or did not
-use it. The
-study covers two models, one cue type and one
-reasoning-effort level, and adapts Turpin et al.'s setup
-rather than replicating it. Finally, the questions come from
-public data~\cite{turpin2023code} and may appear in both
-models' training data, so the high Original accuracies
-(90.0\% and 96.7\%) may partly reflect familiarity with the
-benchmark.
+Several limits apply. Only ten cases were available for coding,
+nine from one model. The prompt asks for a 2--4 sentence
+explanation of ``the key evidence'' and discourages revealing
+chain of thought, which may itself reduce mentions of the
+suggestion; we measure acknowledgement in that format, not in
+free reasoning. We evaluate visible explanations rather than
+hidden reasoning, so a \emph{none} label means the suggestion was
+not acknowledged in the text, not that the model did or did not
+use it. The study covers two models, one cue type and one
+reasoning-effort level. Finally, the questions come from public
+data~\cite{turpin2023code} and may appear in training data: in
+one causal-judgement item, Claude's reasoning summary identified
+the scenario as a well-known one. The high Original accuracies
+(90.0\% and 96.7\%) may partly reflect such familiarity.
