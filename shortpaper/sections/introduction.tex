@@ -15,27 +15,27 @@ typically by including worked examples of such reasoning in the prompt. Wei
 et al.~\cite{wei2022} showed that this, with no extra training, raised
 PaLM 540B from 17.9\% to 56.9\% accuracy on the GSM8K maths benchmark. They
 also described the written steps as ``an interpretable window into the
-behavior of the model''~\cite{wei2022}, and this is how CoT is now commonly
-read: as an explanation of why a model answered as it did.
+behavior of the model''~\cite{wei2022}. Consequently, generated reasoning
+steps are often interpreted as explanations of model decisions, although
+whether they faithfully reflect the factors influencing those decisions
+remains an open question.
 
-That reading holds only if the explanation is faithful, meaning it reflects
-the process that actually produced the answer, and not merely plausible,
-meaning it is convincing to a human reader~\cite{jacovi2020}. Turpin et
-al.~\cite{turpin2023} showed that the two can come apart. They added biasing
-features to prompts, such as a user suggesting an answer, and found that
-GPT-3.5 and Claude~1.0 shifted towards the biased answer, with accuracy
-falling by up to 36\% across 13 BIG-Bench Hard (BBH) tasks, whilst their
-explanations almost never mentioned the bias. Chen et al.~\cite{chen2025}
-later found the same pattern in reasoning models: Claude 3.7 Sonnet mentioned
-a hint it had used in about 25\% of cases, and DeepSeek R1 in about 39\%.
+Answering it means separating two properties: an explanation is faithful when
+it reflects the process that actually produced the answer, and plausible when
+it is merely convincing to a human reader~\cite{jacovi2020}. Turpin et
+al.~\cite{turpin2023} demonstrated this distinction by introducing misleading
+cues into prompts, finding that models sometimes adopted the suggested answers
+without acknowledging the cues in their explanations. Chen et
+al.~\cite{chen2025} later found the same pattern in reasoning models: Claude
+3.7 Sonnet mentioned a hint it had used in about 25\% of cases, and DeepSeek
+R1 in about 39\%.
 
-The models Turpin et al. tested have since been replaced, however, and Chen
-et al. used different hints and benchmarks. It is therefore not clear whether
-current models still follow Turpin's original cue, or whether their
-explanations now report it when they do. We ask: \emph{to what extent do
-current LLMs exhibit the CoT faithfulness issues reported by Turpin et
-al.~\cite{turpin2023} when evaluated using the same type of controlled cue?}
-Our contributions are:
+However, differences in model generations, cue designs and evaluation
+benchmarks leave uncertainty about how current LLMs respond to comparable
+misleading answer suggestions. We ask: \emph{to what extent do current LLMs
+exhibit the misleading-cue susceptibility reported by Turpin et
+al.~\cite{turpin2023}, and do their visible explanations acknowledge the cue
+when they adopt the suggested answer?} Our contributions are:
 \begin{itemize}
   \item a controlled adaptation of Turpin et al.'s Suggested Answer
     experiment on 270 questions from their released BBH
