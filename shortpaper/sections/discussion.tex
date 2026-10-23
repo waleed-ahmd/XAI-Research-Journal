@@ -1,5 +1,40 @@
 % DISCUSSION AND LIMITATIONS. Interpret the results and state what the study
 % does not cover or resolve. Share the existing ~400-word budget with Conclusion.
+% - Interpret Table~\ref{tab:overall_results} against Turpin et al. and the
+%   Original Repeat baseline; then the acknowledgement result.
+% - Limitations: small n, one repeat, visible text only, scope, contamination.
+% Check every figure against Results (Section~\ref{sec:results}) before
+% submission. Source: harness/results/summary/metrics_summary.csv.
 \section{Discussion and Limitations}\label{sec:discussion}
 
-\textit{[TODO: discussion and limitations.]}
+Under biasing features, the 2023 models studied by Turpin et
+al.\ lost up to 36\% accuracy~\cite{turpin2023}; under the
+Suggested Answer cue, the current models lost 1.9 percentage
+points (GPT-5.6 Sol) and 0.4 (Claude Opus 5.5). Cue-following,
+however, was not clearly separable from ordinary variability.
+GPT switched to the suggested option nine times with the cue
+and changed its answer seven times with no cue at all; for
+Claude, the figures were one and three. A cue flip is
+therefore evidence that the cue may have influenced the
+answer, not proof that it did.
+
+The acknowledgement result is clearer. In nine of the ten
+cue-following cases, the explanation did not refer to the
+suggestion, the pattern Turpin et al.\ reported and in line
+with the low acknowledgement rates Chen et al.\ found for
+reasoning models~\cite{chen2025}. Cue-following is now less
+frequent, but when it occurred here, the explanation rarely
+said so.
+
+Several limits apply. Ten flips are too few to estimate an
+acknowledgement rate, so we report counts only. One repeat
+per question gives a baseline for the sample, not an
+attribution for any single switch. We rate visible
+explanations, not hidden reasoning, so a \emph{none} label
+records what the text omits, not what the model used. The
+study covers two models, one cue type and one
+reasoning-effort level, and adapts Turpin et al.'s setup
+rather than replicating it. Finally, the questions come from
+public data~\cite{turpin2023code} and may appear in both
+models' training data, and Original accuracy of 90.0\% and
+96.7\% leaves little room for the cue to lower it.
